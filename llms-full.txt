@@ -1,0 +1,155 @@
+# POLYMER Powder Coatings — full facts
+
+- Company: Fujian Polymer Industry & Trade Co., Ltd. (brand POLYMER, 玻利玛), Zhangzhou, Fujian, China. Founded 2019.
+- Products: thermosetting powder coatings for metal — epoxy (indoor only), polyester (outdoor), epoxy-polyester hybrid (indoor decorative); standard-cure and low-cure grades.
+- Certification: Qualicoat Class 1 for polyester system PLM100611 only (licence P-2199, gloss category 3, valid until 31 Dec 2026). ISO 9001 and ISO 14001 management systems (not product approvals).
+- Capacity and supply: 5,000 t per year, 9 production lines, 2 metallic bonding machines, standard lead time within 10 days, minimum order 1,000 kg, exports to about 20 countries and regions.
+- Colours and finishes: RAL and customer colours; high gloss ≥90, satin/matt 11–80, dead matt ≤10; smooth, sand, wrinkle, vein, fine texture, hammer tone, pattern, bonded metallic, transparent/translucent, fluorescent.
+- Testing: in-house colour, gloss, film thickness, particle size, salt spray, UV accelerated ageing, hardness, impact, bend, adhesion (internal, not third-party reports).
+- Not offered: Qualicoat Class 2/3, UL or flame-retardant coatings, IATF 16949, FBE/3PE pipeline or heavy-duty anticorrosion systems, orders below 1,000 kg, low-end powder.
+- Contact: Tel +86 596 2600611; https://polymerpaints.com/contact/
+
+## Industry × system
+- Architectural aluminium & facades: main Polyester. A Qualicoat Class 1 polyester system that keeps architectural aluminium true to colour outdoors, batch after batch.
+- Metal furniture, shelving & metalwork: main Hybrid; option Epoxy, Polyester. The right system for indoor and outdoor parts, so a full furniture range looks like one set.
+- Appliances & commercial refrigeration: main Hybrid; option Polyester. Hybrid indoors and polyester outdoors, so white and custom-colour housings run steadily in production.
+- Electrical & new-energy enclosures: main Hybrid, Polyester; option Epoxy. Hybrid indoors and polyester outdoors, with steady supply of standard cabinet colours.
+- Agricultural & industrial equipment: main Polyester; option Epoxy, Hybrid. Polyester outdoors and epoxy or hybrid indoors, so brand colours stay stable and durable.
+- Automotive parts & wheels: main Polyester. Confirm the specification and coating system first, then evaluate parts and wheels under clear technical conditions.
+- Coating applicators: main Polyester, Hybrid, Epoxy. All three systems from one supplier, accurate colour matching and steady lead times, so you deliver on time.
+- Powder distributors: full range of all three systems plus effects.
+
+## FAQ
+### Which powder coating system should I use for outdoor parts and which for indoor parts?
+Use polyester for outdoor and UV-exposed parts. Use epoxy-polyester hybrid for indoor decorative parts and epoxy for indoor functional parts that need chemical resistance or hardness. POLYMER supplies three thermosetting systems, and the choice is driven mainly by where the coated part will be used. Polyester is the weather-resistant system in our catalogue and is the one we recommend for architectural aluminium, outdoor furniture and lighting, air-conditioner housings, outdoor cabinets and agricultural machinery. The epoxy-polyester hybrid gives good flow and gloss and is intended for indoor items such as appliances, steel furniture, shelving and indoor enclosures. Epoxy offers good chemical resistance, hardness and adhesion, and suits indoor functional parts such as safes, security doors, instrument housings and fitness equipment. Neither epoxy nor hybrid should be specified for outdoor use. If one product range contains both indoor and outdoor parts, select the system part by part rather than using one powder for everything. Final suitability is confirmed on your parts, with your pretreatment and cure conditions.
+
+### Can epoxy-polyester hybrid powder be used outdoors?
+No. Our hybrid powders are intended for indoor use and we do not specify them for outdoor or UV-exposed parts; use polyester instead. Epoxy-polyester hybrids combine good flow, high gloss and good mechanical properties, and their heat and light stability is better than that of pure epoxy. That makes them a strong choice for appliances, steel furniture and indoor cabinets, but it does not make them an outdoor product. The epoxy part of the binder is sensitive to UV light. Outdoors, hybrid coatings can lose gloss, chalk and change colour much sooner than a polyester designed for weathering. For that reason POLYMER does not recommend hybrid for exterior parts, even when the part looks well protected or is only partly exposed. If a part may see sunlight, for example an outdoor cabinet, an air-conditioner housing or garden furniture, please tell us so we can propose a polyester powder in the colour and finish you need.
+
+### What does Qualicoat Class 1 mean, and which POLYMER products does it cover?
+Qualicoat Class 1 is the standard-durability approval level for powder coatings on architectural aluminium. At POLYMER it covers one polyester system, PLM100611, under licence P-2199. Qualicoat is a quality label for coatings on aluminium used in architecture. Its Class 1 level is the standard-durability category. Higher durability classes exist, and POLYMER does not hold them. The approval applies to our polyester system PLM100611, licence P-2199, gloss category 3. It does not include structured-texture or metallic extensions, and it does not extend to our other polyester products, to epoxy or hybrid powders, or to every colour we make. The current certificate is valid until 31 December 2026 and will be updated when renewed. If your project requires a Qualicoat-approved powder, tell us the colour, gloss and finish so we can confirm whether it falls within the approved system. If a specification calls for a higher Qualicoat class, that is outside our current approval.
+
+### What is the minimum order quantity for POLYMER powder coatings?
+The minimum order quantity is 1,000 kg per order. POLYMER works with importers and distributors, metal product manufacturers and coating applicators that have regular volume, so our MOQ is 1,000 kg per order. We do not accept one-off orders below that level. When you send an enquiry, it helps to tell us the expected quantity, how it is split across colours and finishes, and how often you expect to reorder. This lets us plan production and confirm the order arrangement and lead time. Smaller workshops whose orders are usually below one tonne are often better served through a local powder distributor. If you are a distributor, an initial order is typically built from a mix of standard colours and the effects your customers ask for most; we can discuss that mix with you before you order.
+
+### What is your lead time for powder coating orders?
+Standard lead time is within 10 days. Lead time for complex custom colours and large volumes is confirmed with each order. With 9 production lines and an annual capacity of 5,000 tonnes, POLYMER can usually produce a standard order within 10 days. This is the production lead time; sea or air freight to your country is additional and depends on the route and shipping schedule. Some orders take longer and are confirmed individually: colours that need new matching work, special effects, and large orders that occupy several lines. In these cases we give you a confirmed date when the order details, approved panel and quantity are fixed. For repeat orders of an approved colour, production is made to the recorded panel version, which avoids re-matching and helps keep the schedule predictable. Telling us your reorder pattern in advance makes planning easier on both sides.
+
+### Can you match a RAL colour or a colour from my own sample?
+Yes. We match RAL colours and customer-specified colours from physical samples, in all three powder systems. For RAL colours, the code is a starting point, but gloss, texture and film thickness all change how a colour looks. We therefore recommend sending a physical reference as well, such as a coated part, a panel or the powder you currently use. For a custom colour, a physical sample is essential. Please tell us the system or environment (indoor or outdoor), target gloss band, finish or effect, substrate, typical film thickness and your cure conditions, and how you judge colour (light source, instrument or visual check). We match the colour, prepare a panel and send it for your approval. Once you approve it, the panel is recorded as a version so later orders are produced to the same reference. Metallic and textured colours are always confirmed on physical panels, because they cannot be judged from a code alone.
+
+### How do you make sure repeat orders match the colour I approved?
+Each approved panel is recorded as a version with its system, colour, gloss, texture, film thickness and cure, and repeat orders are produced and checked against that version. A colour is only meaningful together with the conditions it was made under. When you approve a panel, POLYMER records it as a version that links the powder system, colour, gloss, texture, film thickness and cure conditions. Samples, trial orders and later bulk orders all refer to the same version. In production, each batch is checked in-house for colour, gloss and the other agreed properties before release, using the approved version as the reference. On your side, keep your retained approved panel and apply the powder at similar film thickness and cure conditions; large changes in either can shift colour or gloss even when the powder is identical. If you want to change gloss, texture or system, we create a new version rather than modifying the old one, so the history stays clear.
+
+### What gloss levels and surface effects do you offer?
+Gloss bands are high gloss (≥90), satin/matt (11–80) and dead matt (≤10). Effects include smooth, sand, wrinkle, vein, fine texture, hammer tone, pattern, bonded metallic, transparent/translucent and fluorescent. All three systems are available in a range of gloss levels: high gloss at 90 or above, satin and matt between 11 and 80, and dead matt at 10 or below. The exact target within a band is set to your requirement. Surface effects include smooth, sand texture, wrinkle, vein (net) texture, fine texture, hammer tone, pattern finishes such as antique and art effects, bonded metallics, transparent and translucent powders, and fluorescent colours. Not every combination exists in every system, so we confirm the system, colour and effect together. Textures and metallics are judged on physical panels and, ideally, on your parts with your spray equipment, because film thickness and application settings affect how they look. Tell us the end use and we will suggest suitable combinations.
+
+### What is bonded metallic powder and why does it matter?
+In bonded metallic powder the metallic pigment is attached to the powder particles, which reduces separation during spraying and recovery and helps keep the effect consistent. Metallic and pearlescent effects come from flake pigments. If the flakes are simply dry-blended with the base powder, they can charge and travel differently from the powder particles. The result can be uneven appearance, differences between virgin and recovered powder, and drift in the effect as a job runs. Bonding attaches the flakes to the powder particles under controlled heat and mixing, so they move through the gun and recovery system together. POLYMER has two metallic bonding machines for this. Bonding reduces separation, but metallic effects still depend on application. Viewing angle, film thickness, gun settings and the ratio of recovered powder all influence the final look. We therefore confirm each metallic effect on physical panels and under your spraying conditions before bulk supply.
+
+### When should I consider a low-cure powder coating?
+Consider low-cure grades when your oven cannot reach or hold the standard cure, when heavy parts are slow to heat, or when you want to reduce oven energy or increase line speed. All three POLYMER systems are available in standard-cure and low-cure grades. A low-cure grade reaches full cure at a lower metal temperature or in a shorter time than the standard grade; the actual schedule for each product is given on its TDS. Typical reasons to consider low cure are: an oven that struggles to bring thick sections or mixed-mass loads up to temperature, a wish to reduce gas or electricity use, a need to run the line faster, and parts or assemblies that should not be exposed to higher temperatures. Low-cure powders are more reactive, so storage temperature and stock rotation matter more. Before switching, measure your real metal temperature profile with an oven data logger and run a line trial, then confirm cure and appearance on representative parts.
+
+### How do I request a sample, and what should I send you?
+Send us your part details, environment, target colour and finish, process conditions and expected volume, plus a physical colour reference where possible. We then propose a product and prepare a panel or sample. A good sample starts with a clear brief. Please send: your company and contact; the part name, use, substrate and a photo; whether it is used indoors or outdoors and any humidity, coastal or chemical exposure; the colour code or a physical sample, gloss and effect; pretreatment, target film thickness, spray equipment and actual cure conditions; any standards or approvals the coating must meet; and your expected volume and colour structure. If you are replacing an existing powder, its product name, technical data sheet and the problem you want to solve are also useful. We use this to select the system, match the colour and prepare a panel or sample powder. After you test it on your parts, we agree any adjustments and record the approved version for production.
+
+### What documents can you provide with your powder coatings?
+On request we supply the product catalogue, technical and safety data sheets (TDS and SDS), ISO 9001 and ISO 14001 certificates, and the Qualicoat Class 1 certificate for polyester system PLM100611. A product's TDS lists the product's properties, cure conditions and storage guidance, and its SDS covers safe handling and transport. Our catalogue describes the three systems, cure grades, gloss bands and effects. Colour cards and panels are available for evaluation. Our ISO 9001 and ISO 14001 certificates cover our quality and environmental management systems. They are not product certifications. The Qualicoat Class 1 certificate (licence P-2199) applies only to polyester system PLM100611. Test results we share come from our in-house testing and are not third-party reports. If your project needs an independent report or a specific certification, tell us early so we can confirm what is possible. We do not currently offer UL, IATF 16949 or food-contact approved products.
+
+### Why is epoxy powder for indoor use only, and why can it turn yellow?
+Epoxy binders break down under UV light, so they chalk and discolour outdoors. They can also yellow if baked too hot or for too long. Epoxy powders give strong adhesion, hardness and chemical resistance, which is why they are used for indoor functional parts. Their weakness is UV light: outdoors, the surface chalks and loses colour and gloss relatively quickly. POLYMER epoxy powders are therefore for indoor use only and should not be used directly outdoors. Epoxy can also yellow in the oven. When the metal temperature is too high or the part stays in the oven too long, the film can turn yellow, which is most visible on whites and pale colours. Check that your oven profile matches the cure window on the product TDS, especially on lines with mixed part thicknesses. Our epoxy powders are decorative and protective coatings for indoor parts. They are not fusion-bonded epoxy (FBE/3PE) pipeline coatings or heavy-duty anticorrosion systems.
+
+### How does POLYMER work with distributors and importers?
+We start on a non-exclusive basis and discuss regional cooperation once there are sales results, with customer ownership agreed clearly. Powder importers and distributors are POLYMER's main customer type, and we export to about 20 countries and regions. A new partnership normally begins non-exclusively. As sales develop, we discuss regional terms based on actual results. We agree customer ownership with you at the start, so that both sides know who looks after each end user. We share the catalogue, certificates, colour cards and panels, and the application limits of each system, so that your team can match products to end users without over-promising. A first order is usually built from the three systems: polyester for outdoor and architectural work, hybrid for indoor decorative parts, epoxy for indoor functional parts, together with common RAL colours, textures and effects, and colours matched to customer samples. The MOQ of 1,000 kg per order applies.
+
+### What testing do you carry out in-house, and what are its limits?
+Our in-house tests cover colour, gloss, film thickness, particle size, salt spray, UV accelerated ageing, hardness, impact, bend and adhesion. These are internal tests, not third-party reports. We use these tests to develop and approve panels, check batches before release and support technical discussions with customers. Colour, gloss and particle size are used to keep batches consistent with the approved version; mechanical tests check that the film is flexible and adherent; salt spray and UV accelerated ageing are used to compare products under laboratory conditions. These results have limits. They are produced in-house, not by an accredited third party. Accelerated tests indicate relative performance; they do not predict an outdoor lifetime in years. Results also depend on the substrate, pretreatment, film thickness and cure used, which may differ from your line. For a project, we recommend testing on your own parts with your process. If an independent report is required, tell us at the enquiry stage.
+
+## How-to guides
+### How to choose between epoxy, polyester and hybrid powder coatings
+Pick the powder system from the part's service environment first, then refine by appearance and functional needs.
+1. Define the environment: Decide whether each part will see sunlight or weather at any point in its life. Any UV exposure points to polyester.
+2. Separate indoor decorative from indoor functional: For indoor parts where flow, gloss and appearance matter most, such as appliances and furniture, start with hybrid. Where chemical resistance, hardness or abrasion resistance matter more, consider epoxy.
+3. Check special requirements: Note whether the project needs Qualicoat approval, a specific test standard or customer approval. Only POLYMER polyester system PLM100611 is Qualicoat Class 1 approved.
+4. Choose cure grade: Select standard cure, or low cure if your oven, part mass or energy targets call for it. Confirm the cure schedule on the TDS.
+5. Add colour, gloss and effect: Select the RAL or custom colour, the gloss band and any texture or metallic effect within the chosen system.
+6. Verify on real parts: Run a panel or line trial with your pretreatment and oven before committing to production.
+
+### How to prepare a colour-matching request
+A complete brief with a physical reference gives a closer first match and fewer rounds of adjustment.
+1. Provide a physical reference: Send a flat coated part, panel or the current powder, not only a photo or screen colour. A RAL code is useful, but add a physical reference when gloss or texture matters.
+2. State system and environment: Say whether the part is indoor or outdoor and which system you expect, so the match is made in the right chemistry.
+3. Specify gloss and effect: Give the gloss band or target value and the effect, for example smooth, sand texture or metallic.
+4. Describe your process: Include substrate, pretreatment, target film thickness and actual cure conditions, since these influence colour and gloss.
+5. Agree how colour is judged: State the light source, whether an instrument is used, and the colour-difference tolerance you or your customer accept.
+6. Add volume and timing: Give expected quantity, reorder pattern and when you need the panel.
+
+### How to run a line trial with a new powder coating
+A structured line trial confirms appearance, application and cure on your parts before you switch production.
+1. Set the reference: Keep the approved panel and the TDS at the line. Agree in advance which results decide pass or fail.
+2. Clean the system: Clean the booth, hoses, guns and recovery system to avoid contamination from the previous powder.
+3. Use representative parts: Coat parts with normal pretreatment, including difficult shapes, edges and the heaviest sections.
+4. Record application settings: Note voltage, powder output, gun distance, line speed and film thickness readings.
+5. Measure the oven profile: Run a data logger with probes on the parts to record metal temperature and time against the TDS cure schedule.
+6. Test the coated parts: Compare colour, gloss and texture with the approved panel and check cure, adhesion and impact by your usual methods.
+7. Include recovered powder: If you recycle powder, run with your normal virgin-to-recovered mix and check that appearance stays consistent.
+
+### How to read a powder coating technical data sheet (TDS)
+Read a TDS for system, use environment, cure, application data and the conditions behind each test result.
+1. Confirm system and use: Check the resin system and whether the product is for indoor or outdoor use. This determines where it can go before any other figure matters.
+2. Note the cure schedule: Read the cure window as metal temperature and time. Check that your oven can achieve it on your heaviest parts.
+3. Check powder properties: Look at specific gravity and particle size. Specific gravity is needed for coverage estimates; particle size affects application and finish.
+4. Read the test conditions: For mechanical and resistance results, note the substrate, pretreatment, film thickness and test method used. Results on laboratory panels may differ from your parts.
+5. Check storage guidance: Note recommended storage conditions and shelf life, especially for low-cure grades.
+6. Cross-check certificates: If an approval is mentioned, confirm that it covers that specific product, colour and finish.
+
+### How to check that powder coating is fully cured
+Confirm cure by measuring the actual metal temperature profile and backing it up with simple film tests.
+1. Measure metal temperature: Run an oven data logger with probes attached to the parts, including the thickest sections. Record how long each part stays at or above the TDS cure temperature.
+2. Compare with the TDS: Check that every probe falls inside the cure window, not just the average.
+3. Do a solvent rub test: A common check is rubbing the film with a cloth soaked in MEK and judging any softening or colour transfer against a known well-cured panel. Agree the number of rubs and pass criteria with your supplier.
+4. Check mechanical properties: Run your usual impact, bend or cross-cut adhesion tests. Poor results can indicate undercure.
+5. Look for overbake: Compare colour and gloss with the approved panel; yellowing, especially with epoxy whites, suggests overbaking.
+
+### How to measure powder coating film thickness
+Use the right gauge for the substrate, calibrate it, and take enough readings to see the real spread.
+1. Pick the right gauge: On steel and other magnetic substrates, use a magnetic-induction gauge (ISO 2178 type methods). On aluminium and other non-ferrous metals, use an eddy-current gauge (ISO 2360 type methods). Many gauges combine both.
+2. Calibrate on bare substrate: Zero and check the gauge on an uncoated piece of the same metal and shape, using calibration foils near your target thickness.
+3. Measure cured film: Take readings on the cured, cooled coating. Readings on uncured powder are unreliable.
+4. Take enough readings: Measure several points per part, including edges, recesses and flat areas, and record the range as well as the average.
+5. Compare with the target: Check results against the film thickness on the TDS or your customer specification, and adjust gun settings if needed.
+
+### How to estimate powder coating coverage and consumption
+Calculate theoretical coverage from specific gravity and film thickness, then adjust for your real utilisation.
+1. Get specific gravity: Take the specific gravity from the product's TDS. Polyester powders in our catalogue range from 1.4 to 1.8 g/cm³ depending on colour and gloss.
+2. Set film thickness: Use your actual average cured film thickness in µm, not the minimum.
+3. Calculate theoretical coverage: Theoretical coverage (m²/kg) = 1000 ÷ (specific gravity × film thickness in µm). For example, specific gravity 1.5 at 60 µm gives about 11.1 m²/kg.
+4. Apply utilisation: Multiply by your overall utilisation, which reflects first-pass transfer efficiency, recovery and losses. A line with good recovery uses far more of the powder than one without.
+5. Calculate consumption: Divide the area to be coated by the practical coverage to estimate kilograms needed, then add an allowance for colour changes.
+
+### How to avoid colour differences between powder coating batches
+Fix one approved reference, keep application and cure stable, and avoid mixing batches on the same job.
+1. Fix one reference: Approve a panel and keep it as the master. POLYMER records it as a version and produces repeat orders to it.
+2. Order by version: Quote the colour and approved version on every order so the right reference is used.
+3. Keep film thickness steady: Hold a consistent target thickness; colour, gloss and textures shift when thickness changes.
+4. Keep cure consistent: Control metal temperature and time, as overbaking can shift colour, especially on whites.
+5. Judge colour the same way: Use the same light source or instrument and the same tolerance every time.
+6. Avoid mixing batches: Finish one batch before opening the next on a single job or assembly, and record batch numbers on coated parts.
+
+### How to get consistent sand, wrinkle and hammer-tone textures
+Textured finishes depend on the powder and the application, so standardise thickness, gun settings, recovery ratio and cure.
+1. Approve a physical reference: Agree texture coarseness and appearance on a physical panel; texture cannot be specified by a code alone.
+2. Set a film thickness window: Find the thickness range that gives the target texture on your parts and keep within it.
+3. Standardise gun settings: Fix voltage, powder output and gun distance; changes in these alter how texture develops.
+4. Control recovered powder: Keep a consistent virgin-to-recovered ratio, as recovered powder can change texture and effect.
+5. Keep the cure profile stable: Wrinkle and other textures form during melting and curing, so line speed and oven temperature should be constant.
+6. Check orientation and shape: Compare vertical and horizontal surfaces and edges with the reference during trials.
+
+### How to store and handle powder coatings
+Keep powder cool, dry and sealed, rotate stock, and follow the SDS for safe handling.
+1. Store cool and dry: Keep powder in a dry, well-ventilated area away from heat sources and direct sun. Follow the storage temperature on the TDS.
+2. Keep containers sealed: Close containers after use to avoid moisture pick-up and contamination.
+3. Avoid condensation: If powder has been stored cold, let the closed container reach room temperature before opening.
+4. Rotate stock: Use first-in, first-out and check shelf life on the TDS. Pay closer attention to low-cure grades.
+5. Check before use: Make sure powder flows freely and fluidises well. Do not use powder with hard lumps.
+6. Handle safely: Follow the SDS: avoid dust clouds and ignition sources, ground equipment and use suitable personal protection.

@@ -1,0 +1,797 @@
+{
+ "faq": [
+  {
+   "slug": "which-powder-system-outdoor-indoor",
+   "q": "Which powder coating system should I use for outdoor parts and which for indoor parts?",
+   "short": "Use polyester for outdoor and UV-exposed parts. Use epoxy-polyester hybrid for indoor decorative parts and epoxy for indoor functional parts that need chemical resistance or hardness.",
+   "body": [
+    "POLYMER supplies three thermosetting systems, and the choice is driven mainly by where the coated part will be used. Polyester is the weather-resistant system in our catalogue and is the one we recommend for architectural aluminium, outdoor furniture and lighting, air-conditioner housings, outdoor cabinets and agricultural machinery.",
+    "The epoxy-polyester hybrid gives good flow and gloss and is intended for indoor items such as appliances, steel furniture, shelving and indoor enclosures. Epoxy offers good chemical resistance, hardness and adhesion, and suits indoor functional parts such as safes, security doors, instrument housings and fitness equipment.",
+    "Neither epoxy nor hybrid should be specified for outdoor use. If one product range contains both indoor and outdoor parts, select the system part by part rather than using one powder for everything. Final suitability is confirmed on your parts, with your pretreatment and cure conditions."
+   ],
+   "basis": "POLYMER product catalogue (system descriptions and application areas).",
+   "related": [
+    "choose-epoxy-polyester-or-hybrid",
+    "read-powder-coating-tds"
+   ]
+  },
+  {
+   "slug": "can-hybrid-powder-be-used-outdoors",
+   "q": "Can epoxy-polyester hybrid powder be used outdoors?",
+   "short": "No. Our hybrid powders are intended for indoor use and we do not specify them for outdoor or UV-exposed parts; use polyester instead.",
+   "body": [
+    "Epoxy-polyester hybrids combine good flow, high gloss and good mechanical properties, and their heat and light stability is better than that of pure epoxy. That makes them a strong choice for appliances, steel furniture and indoor cabinets, but it does not make them an outdoor product.",
+    "The epoxy part of the binder is sensitive to UV light. Outdoors, hybrid coatings can lose gloss, chalk and change colour much sooner than a polyester designed for weathering. For that reason POLYMER does not recommend hybrid for exterior parts, even when the part looks well protected or is only partly exposed.",
+    "If a part may see sunlight, for example an outdoor cabinet, an air-conditioner housing or garden furniture, please tell us so we can propose a polyester powder in the colour and finish you need."
+   ],
+   "basis": "POLYMER product catalogue; general knowledge of epoxy UV sensitivity.",
+   "related": [
+    "choose-epoxy-polyester-or-hybrid"
+   ]
+  },
+  {
+   "slug": "what-qualicoat-class-1-covers",
+   "q": "What does Qualicoat Class 1 mean, and which POLYMER products does it cover?",
+   "short": "Qualicoat Class 1 is the standard-durability approval level for powder coatings on architectural aluminium. At POLYMER it covers one polyester system, PLM100611, under licence P-2199.",
+   "body": [
+    "Qualicoat is a quality label for coatings on aluminium used in architecture. Its Class 1 level is the standard-durability category. Higher durability classes exist, and POLYMER does not hold them.",
+    "The approval applies to our polyester system PLM100611, licence P-2199, gloss category 3. It does not include structured-texture or metallic extensions, and it does not extend to our other polyester products, to epoxy or hybrid powders, or to every colour we make. The current certificate is valid until 31 December 2026 and will be updated when renewed.",
+    "If your project requires a Qualicoat-approved powder, tell us the colour, gloss and finish so we can confirm whether it falls within the approved system. If a specification calls for a higher Qualicoat class, that is outside our current approval."
+   ],
+   "basis": "POLYMER Qualicoat certificate (licence P-2199) as stated in company records.",
+   "related": [
+    "read-powder-coating-tds",
+    "choose-epoxy-polyester-or-hybrid"
+   ]
+  },
+  {
+   "slug": "minimum-order-quantity",
+   "q": "What is the minimum order quantity for POLYMER powder coatings?",
+   "short": "The minimum order quantity is 1,000 kg per order.",
+   "body": [
+    "POLYMER works with importers and distributors, metal product manufacturers and coating applicators that have regular volume, so our MOQ is 1,000 kg per order. We do not accept one-off orders below that level.",
+    "When you send an enquiry, it helps to tell us the expected quantity, how it is split across colours and finishes, and how often you expect to reorder. This lets us plan production and confirm the order arrangement and lead time.",
+    "Smaller workshops whose orders are usually below one tonne are often better served through a local powder distributor. If you are a distributor, an initial order is typically built from a mix of standard colours and the effects your customers ask for most; we can discuss that mix with you before you order."
+   ],
+   "basis": "POLYMER commercial terms.",
+   "related": [
+    "estimate-powder-coverage-consumption"
+   ]
+  },
+  {
+   "slug": "powder-coating-lead-time",
+   "q": "What is your lead time for powder coating orders?",
+   "short": "Standard lead time is within 10 days. Lead time for complex custom colours and large volumes is confirmed with each order.",
+   "body": [
+    "With 9 production lines and an annual capacity of 5,000 tonnes, POLYMER can usually produce a standard order within 10 days. This is the production lead time; sea or air freight to your country is additional and depends on the route and shipping schedule.",
+    "Some orders take longer and are confirmed individually: colours that need new matching work, special effects, and large orders that occupy several lines. In these cases we give you a confirmed date when the order details, approved panel and quantity are fixed.",
+    "For repeat orders of an approved colour, production is made to the recorded panel version, which avoids re-matching and helps keep the schedule predictable. Telling us your reorder pattern in advance makes planning easier on both sides."
+   ],
+   "basis": "POLYMER manufacturing data (capacity, lines, standard lead time).",
+   "related": [
+    "avoid-batch-colour-differences"
+   ]
+  },
+  {
+   "slug": "colour-matching-ral-or-sample",
+   "q": "Can you match a RAL colour or a colour from my own sample?",
+   "short": "Yes. We match RAL colours and customer-specified colours from physical samples, in all three powder systems.",
+   "body": [
+    "For RAL colours, the code is a starting point, but gloss, texture and film thickness all change how a colour looks. We therefore recommend sending a physical reference as well, such as a coated part, a panel or the powder you currently use.",
+    "For a custom colour, a physical sample is essential. Please tell us the system or environment (indoor or outdoor), target gloss band, finish or effect, substrate, typical film thickness and your cure conditions, and how you judge colour (light source, instrument or visual check).",
+    "We match the colour, prepare a panel and send it for your approval. Once you approve it, the panel is recorded as a version so later orders are produced to the same reference. Metallic and textured colours are always confirmed on physical panels, because they cannot be judged from a code alone."
+   ],
+   "basis": "POLYMER colour-matching process; general colour-matching practice.",
+   "related": [
+    "prepare-colour-matching-request",
+    "avoid-batch-colour-differences"
+   ]
+  },
+  {
+   "slug": "approved-panel-version-repeat-orders",
+   "q": "How do you make sure repeat orders match the colour I approved?",
+   "short": "Each approved panel is recorded as a version with its system, colour, gloss, texture, film thickness and cure, and repeat orders are produced and checked against that version.",
+   "body": [
+    "A colour is only meaningful together with the conditions it was made under. When you approve a panel, POLYMER records it as a version that links the powder system, colour, gloss, texture, film thickness and cure conditions.",
+    "Samples, trial orders and later bulk orders all refer to the same version. In production, each batch is checked in-house for colour, gloss and the other agreed properties before release, using the approved version as the reference.",
+    "On your side, keep your retained approved panel and apply the powder at similar film thickness and cure conditions; large changes in either can shift colour or gloss even when the powder is identical. If you want to change gloss, texture or system, we create a new version rather than modifying the old one, so the history stays clear."
+   ],
+   "basis": "POLYMER panel version management; in-house batch checks.",
+   "related": [
+    "avoid-batch-colour-differences",
+    "prepare-colour-matching-request"
+   ]
+  },
+  {
+   "slug": "available-finishes-and-effects",
+   "q": "What gloss levels and surface effects do you offer?",
+   "short": "Gloss bands are high gloss (≥90), satin/matt (11–80) and dead matt (≤10). Effects include smooth, sand, wrinkle, vein, fine texture, hammer tone, pattern, bonded metallic, transparent/translucent and fluorescent.",
+   "body": [
+    "All three systems are available in a range of gloss levels: high gloss at 90 or above, satin and matt between 11 and 80, and dead matt at 10 or below. The exact target within a band is set to your requirement.",
+    "Surface effects include smooth, sand texture, wrinkle, vein (net) texture, fine texture, hammer tone, pattern finishes such as antique and art effects, bonded metallics, transparent and translucent powders, and fluorescent colours.",
+    "Not every combination exists in every system, so we confirm the system, colour and effect together. Textures and metallics are judged on physical panels and, ideally, on your parts with your spray equipment, because film thickness and application settings affect how they look. Tell us the end use and we will suggest suitable combinations."
+   ],
+   "basis": "POLYMER product catalogue.",
+   "related": [
+    "consistent-texture-finishes",
+    "prepare-colour-matching-request"
+   ]
+  },
+  {
+   "slug": "what-is-bonded-metallic-powder",
+   "q": "What is bonded metallic powder and why does it matter?",
+   "short": "In bonded metallic powder the metallic pigment is attached to the powder particles, which reduces separation during spraying and recovery and helps keep the effect consistent.",
+   "body": [
+    "Metallic and pearlescent effects come from flake pigments. If the flakes are simply dry-blended with the base powder, they can charge and travel differently from the powder particles. The result can be uneven appearance, differences between virgin and recovered powder, and drift in the effect as a job runs.",
+    "Bonding attaches the flakes to the powder particles under controlled heat and mixing, so they move through the gun and recovery system together. POLYMER has two metallic bonding machines for this.",
+    "Bonding reduces separation, but metallic effects still depend on application. Viewing angle, film thickness, gun settings and the ratio of recovered powder all influence the final look. We therefore confirm each metallic effect on physical panels and under your spraying conditions before bulk supply."
+   ],
+   "basis": "POLYMER equipment (2 bonding machines); general powder coating practice.",
+   "related": [
+    "consistent-texture-finishes",
+    "run-line-trial-new-powder"
+   ]
+  },
+  {
+   "slug": "when-to-use-low-cure-powder",
+   "q": "When should I consider a low-cure powder coating?",
+   "short": "Consider low-cure grades when your oven cannot reach or hold the standard cure, when heavy parts are slow to heat, or when you want to reduce oven energy or increase line speed.",
+   "body": [
+    "All three POLYMER systems are available in standard-cure and low-cure grades. A low-cure grade reaches full cure at a lower metal temperature or in a shorter time than the standard grade; the actual schedule for each product is given on its TDS.",
+    "Typical reasons to consider low cure are: an oven that struggles to bring thick sections or mixed-mass loads up to temperature, a wish to reduce gas or electricity use, a need to run the line faster, and parts or assemblies that should not be exposed to higher temperatures.",
+    "Low-cure powders are more reactive, so storage temperature and stock rotation matter more. Before switching, measure your real metal temperature profile with an oven data logger and run a line trial, then confirm cure and appearance on representative parts."
+   ],
+   "basis": "POLYMER catalogue (cure grades); general powder coating practice.",
+   "related": [
+    "check-powder-coating-cure",
+    "run-line-trial-new-powder",
+    "store-handle-powder-coatings"
+   ]
+  },
+  {
+   "slug": "how-to-request-a-sample",
+   "q": "How do I request a sample, and what should I send you?",
+   "short": "Send us your part details, environment, target colour and finish, process conditions and expected volume, plus a physical colour reference where possible. We then propose a product and prepare a panel or sample.",
+   "body": [
+    "A good sample starts with a clear brief. Please send: your company and contact; the part name, use, substrate and a photo; whether it is used indoors or outdoors and any humidity, coastal or chemical exposure; the colour code or a physical sample, gloss and effect; pretreatment, target film thickness, spray equipment and actual cure conditions; any standards or approvals the coating must meet; and your expected volume and colour structure.",
+    "If you are replacing an existing powder, its product name, technical data sheet and the problem you want to solve are also useful.",
+    "We use this to select the system, match the colour and prepare a panel or sample powder. After you test it on your parts, we agree any adjustments and record the approved version for production."
+   ],
+   "basis": "POLYMER sample and order process.",
+   "related": [
+    "prepare-colour-matching-request",
+    "run-line-trial-new-powder"
+   ]
+  },
+  {
+   "slug": "documents-available-tds-sds-certificates",
+   "q": "What documents can you provide with your powder coatings?",
+   "short": "On request we supply the product catalogue, technical and safety data sheets (TDS and SDS), ISO 9001 and ISO 14001 certificates, and the Qualicoat Class 1 certificate for polyester system PLM100611.",
+   "body": [
+    "A product's TDS lists the product's properties, cure conditions and storage guidance, and its SDS covers safe handling and transport. Our catalogue describes the three systems, cure grades, gloss bands and effects. Colour cards and panels are available for evaluation.",
+    "Our ISO 9001 and ISO 14001 certificates cover our quality and environmental management systems. They are not product certifications. The Qualicoat Class 1 certificate (licence P-2199) applies only to polyester system PLM100611.",
+    "Test results we share come from our in-house testing and are not third-party reports. If your project needs an independent report or a specific certification, tell us early so we can confirm what is possible. We do not currently offer UL, IATF 16949 or food-contact approved products."
+   ],
+   "basis": "POLYMER certificates and document set.",
+   "related": [
+    "read-powder-coating-tds"
+   ]
+  },
+  {
+   "slug": "why-epoxy-yellows-indoor-only",
+   "q": "Why is epoxy powder for indoor use only, and why can it turn yellow?",
+   "short": "Epoxy binders break down under UV light, so they chalk and discolour outdoors. They can also yellow if baked too hot or for too long.",
+   "body": [
+    "Epoxy powders give strong adhesion, hardness and chemical resistance, which is why they are used for indoor functional parts. Their weakness is UV light: outdoors, the surface chalks and loses colour and gloss relatively quickly. POLYMER epoxy powders are therefore for indoor use only and should not be used directly outdoors.",
+    "Epoxy can also yellow in the oven. When the metal temperature is too high or the part stays in the oven too long, the film can turn yellow, which is most visible on whites and pale colours. Check that your oven profile matches the cure window on the product TDS, especially on lines with mixed part thicknesses.",
+    "Our epoxy powders are decorative and protective coatings for indoor parts. They are not fusion-bonded epoxy (FBE/3PE) pipeline coatings or heavy-duty anticorrosion systems."
+   ],
+   "basis": "POLYMER catalogue; general knowledge of epoxy coatings.",
+   "related": [
+    "choose-epoxy-polyester-or-hybrid",
+    "check-powder-coating-cure"
+   ]
+  },
+  {
+   "slug": "distributor-cooperation-terms",
+   "q": "How does POLYMER work with distributors and importers?",
+   "short": "We start on a non-exclusive basis and discuss regional cooperation once there are sales results, with customer ownership agreed clearly.",
+   "body": [
+    "Powder importers and distributors are POLYMER's main customer type, and we export to about 20 countries and regions. A new partnership normally begins non-exclusively. As sales develop, we discuss regional terms based on actual results.",
+    "We agree customer ownership with you at the start, so that both sides know who looks after each end user. We share the catalogue, certificates, colour cards and panels, and the application limits of each system, so that your team can match products to end users without over-promising.",
+    "A first order is usually built from the three systems: polyester for outdoor and architectural work, hybrid for indoor decorative parts, epoxy for indoor functional parts, together with common RAL colours, textures and effects, and colours matched to customer samples. The MOQ of 1,000 kg per order applies."
+   ],
+   "basis": "POLYMER channel cooperation policy.",
+   "related": [
+    "store-handle-powder-coatings",
+    "avoid-batch-colour-differences"
+   ]
+  },
+  {
+   "slug": "in-house-testing-scope-and-limits",
+   "q": "What testing do you carry out in-house, and what are its limits?",
+   "short": "Our in-house tests cover colour, gloss, film thickness, particle size, salt spray, UV accelerated ageing, hardness, impact, bend and adhesion. These are internal tests, not third-party reports.",
+   "body": [
+    "We use these tests to develop and approve panels, check batches before release and support technical discussions with customers. Colour, gloss and particle size are used to keep batches consistent with the approved version; mechanical tests check that the film is flexible and adherent; salt spray and UV accelerated ageing are used to compare products under laboratory conditions.",
+    "These results have limits. They are produced in-house, not by an accredited third party. Accelerated tests indicate relative performance; they do not predict an outdoor lifetime in years. Results also depend on the substrate, pretreatment, film thickness and cure used, which may differ from your line.",
+    "For a project, we recommend testing on your own parts with your process. If an independent report is required, tell us at the enquiry stage."
+   ],
+   "basis": "POLYMER in-house test capability; general testing practice.",
+   "related": [
+    "run-line-trial-new-powder",
+    "check-powder-coating-cure",
+    "read-powder-coating-tds"
+   ]
+  }
+ ],
+ "howto": [
+  {
+   "slug": "choose-epoxy-polyester-or-hybrid",
+   "title": "How to choose between epoxy, polyester and hybrid powder coatings",
+   "summary": "Pick the powder system from the part's service environment first, then refine by appearance and functional needs.",
+   "scene": "You are specifying a powder for a new part, consolidating suppliers, or your product range mixes indoor and outdoor parts. Choosing the system before colour avoids costly field failures such as chalking or discoloration outdoors.",
+   "steps": [
+    {
+     "name": "Define the environment",
+     "text": "Decide whether each part will see sunlight or weather at any point in its life. Any UV exposure points to polyester."
+    },
+    {
+     "name": "Separate indoor decorative from indoor functional",
+     "text": "For indoor parts where flow, gloss and appearance matter most, such as appliances and furniture, start with hybrid. Where chemical resistance, hardness or abrasion resistance matter more, consider epoxy."
+    },
+    {
+     "name": "Check special requirements",
+     "text": "Note whether the project needs Qualicoat approval, a specific test standard or customer approval. Only POLYMER polyester system PLM100611 is Qualicoat Class 1 approved."
+    },
+    {
+     "name": "Choose cure grade",
+     "text": "Select standard cure, or low cure if your oven, part mass or energy targets call for it. Confirm the cure schedule on the TDS."
+    },
+    {
+     "name": "Add colour, gloss and effect",
+     "text": "Select the RAL or custom colour, the gloss band and any texture or metallic effect within the chosen system."
+    },
+    {
+     "name": "Verify on real parts",
+     "text": "Run a panel or line trial with your pretreatment and oven before committing to production."
+    }
+   ],
+   "params": [
+    {
+     "k": "Outdoor / UV-exposed",
+     "v": "Polyester"
+    },
+    {
+     "k": "Indoor decorative",
+     "v": "Epoxy-polyester hybrid"
+    },
+    {
+     "k": "Indoor functional",
+     "v": "Epoxy"
+    },
+    {
+     "k": "Cure grades",
+     "v": "Standard or low cure, all systems"
+    },
+    {
+     "k": "Cure schedule",
+     "v": "per TDS"
+    }
+   ],
+   "mistakes": [
+    "Using one powder for a whole product range that has both indoor and outdoor parts.",
+    "Specifying hybrid outdoors because it performs well indoors.",
+    "Assuming every polyester colour or texture is covered by a Qualicoat approval.",
+    "Treating indoor epoxy powder as a pipeline or heavy-duty anticorrosion coating."
+   ],
+   "cta": "Send us a description of your parts and where they are used, and we will propose a system and prepare a panel."
+  },
+  {
+   "slug": "prepare-colour-matching-request",
+   "title": "How to prepare a colour-matching request",
+   "summary": "A complete brief with a physical reference gives a closer first match and fewer rounds of adjustment.",
+   "scene": "You need a new colour, want to replace a current powder, or your customer has supplied a colour sample. The more the brief describes the conditions behind the colour, the faster the panel can be approved.",
+   "steps": [
+    {
+     "name": "Provide a physical reference",
+     "text": "Send a flat coated part, panel or the current powder, not only a photo or screen colour. A RAL code is useful, but add a physical reference when gloss or texture matters."
+    },
+    {
+     "name": "State system and environment",
+     "text": "Say whether the part is indoor or outdoor and which system you expect, so the match is made in the right chemistry."
+    },
+    {
+     "name": "Specify gloss and effect",
+     "text": "Give the gloss band or target value and the effect, for example smooth, sand texture or metallic."
+    },
+    {
+     "name": "Describe your process",
+     "text": "Include substrate, pretreatment, target film thickness and actual cure conditions, since these influence colour and gloss."
+    },
+    {
+     "name": "Agree how colour is judged",
+     "text": "State the light source, whether an instrument is used, and the colour-difference tolerance you or your customer accept."
+    },
+    {
+     "name": "Add volume and timing",
+     "text": "Give expected quantity, reorder pattern and when you need the panel."
+    }
+   ],
+   "params": [
+    {
+     "k": "Colour reference",
+     "v": "RAL code and/or physical sample"
+    },
+    {
+     "k": "Gloss bands",
+     "v": "≥90 high gloss; 11–80 satin/matt; ≤10 dead matt"
+    },
+    {
+     "k": "Colour tolerance",
+     "v": "Agreed per project"
+    },
+    {
+     "k": "Approved panel",
+     "v": "Recorded as a version"
+    }
+   ],
+   "mistakes": [
+    "Sending only a photo or a screen colour.",
+    "Giving a RAL code for a metallic or textured finish without a physical sample.",
+    "Leaving out gloss, so the colour matches but the appearance does not.",
+    "Not mentioning the light source or tolerance the end customer uses."
+   ],
+   "cta": "Send your colour reference and the brief above, and we will match the colour and return a panel for approval."
+  },
+  {
+   "slug": "run-line-trial-new-powder",
+   "title": "How to run a line trial with a new powder coating",
+   "summary": "A structured line trial confirms appearance, application and cure on your parts before you switch production.",
+   "scene": "You have an approved panel from a new supplier or a new product and need to confirm it works on your line. A trial on real parts shows effects that a laboratory panel cannot, such as coverage in recesses or behaviour of recovered powder.",
+   "steps": [
+    {
+     "name": "Set the reference",
+     "text": "Keep the approved panel and the TDS at the line. Agree in advance which results decide pass or fail."
+    },
+    {
+     "name": "Clean the system",
+     "text": "Clean the booth, hoses, guns and recovery system to avoid contamination from the previous powder."
+    },
+    {
+     "name": "Use representative parts",
+     "text": "Coat parts with normal pretreatment, including difficult shapes, edges and the heaviest sections."
+    },
+    {
+     "name": "Record application settings",
+     "text": "Note voltage, powder output, gun distance, line speed and film thickness readings."
+    },
+    {
+     "name": "Measure the oven profile",
+     "text": "Run a data logger with probes on the parts to record metal temperature and time against the TDS cure schedule."
+    },
+    {
+     "name": "Test the coated parts",
+     "text": "Compare colour, gloss and texture with the approved panel and check cure, adhesion and impact by your usual methods."
+    },
+    {
+     "name": "Include recovered powder",
+     "text": "If you recycle powder, run with your normal virgin-to-recovered mix and check that appearance stays consistent."
+    }
+   ],
+   "params": [
+    {
+     "k": "Cure schedule",
+     "v": "per TDS (metal temperature and time)"
+    },
+    {
+     "k": "Target film thickness",
+     "v": "per TDS / your specification"
+    },
+    {
+     "k": "Reference",
+     "v": "Approved panel version"
+    },
+    {
+     "k": "Records",
+     "v": "Settings, film thickness, oven profile, test results"
+    }
+   ],
+   "mistakes": [
+    "Trialling only flat, easy parts.",
+    "Setting the oven by air temperature instead of measured metal temperature.",
+    "Not cleaning the system, so the old powder contaminates the trial.",
+    "Judging metallic or textured finishes without recovered powder in the mix."
+   ],
+   "cta": "Tell us your parts and line conditions, and we will prepare trial powder matched to your approved panel."
+  },
+  {
+   "slug": "read-powder-coating-tds",
+   "title": "How to read a powder coating technical data sheet (TDS)",
+   "summary": "Read a TDS for system, use environment, cure, application data and the conditions behind each test result.",
+   "scene": "You are comparing products, qualifying a new supplier or setting up your line. The TDS tells you how a powder is meant to be used, but its numbers only mean something together with the test conditions listed alongside them.",
+   "steps": [
+    {
+     "name": "Confirm system and use",
+     "text": "Check the resin system and whether the product is for indoor or outdoor use. This determines where it can go before any other figure matters."
+    },
+    {
+     "name": "Note the cure schedule",
+     "text": "Read the cure window as metal temperature and time. Check that your oven can achieve it on your heaviest parts."
+    },
+    {
+     "name": "Check powder properties",
+     "text": "Look at specific gravity and particle size. Specific gravity is needed for coverage estimates; particle size affects application and finish."
+    },
+    {
+     "name": "Read the test conditions",
+     "text": "For mechanical and resistance results, note the substrate, pretreatment, film thickness and test method used. Results on laboratory panels may differ from your parts."
+    },
+    {
+     "name": "Check storage guidance",
+     "text": "Note recommended storage conditions and shelf life, especially for low-cure grades."
+    },
+    {
+     "name": "Cross-check certificates",
+     "text": "If an approval is mentioned, confirm that it covers that specific product, colour and finish."
+    }
+   ],
+   "params": [
+    {
+     "k": "Polyester specific gravity (catalogue)",
+     "v": "1.4–1.8 g/cm³ depending on colour and gloss"
+    },
+    {
+     "k": "Polyester particle size (catalogue)",
+     "v": "Average 30–38 µm; >90% between 10 and 84 µm"
+    },
+    {
+     "k": "Cure schedule",
+     "v": "per TDS"
+    },
+    {
+     "k": "Storage and shelf life",
+     "v": "per TDS"
+    }
+   ],
+   "mistakes": [
+    "Comparing test results from two suppliers without checking film thickness and substrate.",
+    "Reading the cure temperature as oven air temperature.",
+    "Treating an in-house test result as an independent certificate.",
+    "Assuming an approval listed for one product applies to the whole range."
+   ],
+   "cta": "Ask us for the TDS and SDS of the product you are considering, and send your process details if you want us to check them against it."
+  },
+  {
+   "slug": "check-powder-coating-cure",
+   "title": "How to check that powder coating is fully cured",
+   "summary": "Confirm cure by measuring the actual metal temperature profile and backing it up with simple film tests.",
+   "scene": "You see poor adhesion, low chemical resistance or soft films, or you are starting a new powder, new oven setting or heavier parts. An undercured film can look normal but fail in use, while overbaking can cause discoloration.",
+   "steps": [
+    {
+     "name": "Measure metal temperature",
+     "text": "Run an oven data logger with probes attached to the parts, including the thickest sections. Record how long each part stays at or above the TDS cure temperature."
+    },
+    {
+     "name": "Compare with the TDS",
+     "text": "Check that every probe falls inside the cure window, not just the average."
+    },
+    {
+     "name": "Do a solvent rub test",
+     "text": "A common check is rubbing the film with a cloth soaked in MEK and judging any softening or colour transfer against a known well-cured panel. Agree the number of rubs and pass criteria with your supplier."
+    },
+    {
+     "name": "Check mechanical properties",
+     "text": "Run your usual impact, bend or cross-cut adhesion tests. Poor results can indicate undercure."
+    },
+    {
+     "name": "Look for overbake",
+     "text": "Compare colour and gloss with the approved panel; yellowing, especially with epoxy whites, suggests overbaking."
+    }
+   ],
+   "params": [
+    {
+     "k": "Cure schedule",
+     "v": "per TDS (metal temperature × time)"
+    },
+    {
+     "k": "Temperature measurement",
+     "v": "Oven data logger on parts"
+    },
+    {
+     "k": "Solvent rub",
+     "v": "Method and pass criteria agreed per project"
+    },
+    {
+     "k": "Mechanical checks",
+     "v": "Your usual impact, bend, adhesion tests"
+    }
+   ],
+   "mistakes": [
+    "Setting cure by oven air temperature only.",
+    "Logging only light parts when heavy sections share the load.",
+    "Judging cure by surface hardness or appearance alone.",
+    "Ignoring yellowing as a sign of overbaking on epoxy and pale colours."
+   ],
+   "cta": "Send us your oven profile and a description of the problem, and we will review it against the product's cure window."
+  },
+  {
+   "slug": "measure-powder-coating-film-thickness",
+   "title": "How to measure powder coating film thickness",
+   "summary": "Use the right gauge for the substrate, calibrate it, and take enough readings to see the real spread.",
+   "scene": "Film thickness affects colour, gloss, texture, coverage, mechanical properties and powder cost. You need reliable readings during trials, for quality control and when comparing results with a TDS or customer specification.",
+   "steps": [
+    {
+     "name": "Pick the right gauge",
+     "text": "On steel and other magnetic substrates, use a magnetic-induction gauge (ISO 2178 type methods). On aluminium and other non-ferrous metals, use an eddy-current gauge (ISO 2360 type methods). Many gauges combine both."
+    },
+    {
+     "name": "Calibrate on bare substrate",
+     "text": "Zero and check the gauge on an uncoated piece of the same metal and shape, using calibration foils near your target thickness."
+    },
+    {
+     "name": "Measure cured film",
+     "text": "Take readings on the cured, cooled coating. Readings on uncured powder are unreliable."
+    },
+    {
+     "name": "Take enough readings",
+     "text": "Measure several points per part, including edges, recesses and flat areas, and record the range as well as the average."
+    },
+    {
+     "name": "Compare with the target",
+     "text": "Check results against the film thickness on the TDS or your customer specification, and adjust gun settings if needed."
+    }
+   ],
+   "params": [
+    {
+     "k": "Steel",
+     "v": "Magnetic induction (ISO 2178 type)"
+    },
+    {
+     "k": "Aluminium / non-ferrous",
+     "v": "Eddy current (ISO 2360 type)"
+    },
+    {
+     "k": "Target film thickness",
+     "v": "per TDS / customer specification"
+    },
+    {
+     "k": "Calibration",
+     "v": "Bare substrate plus foils"
+    }
+   ],
+   "mistakes": [
+    "Calibrating on a different metal or a flat plate when measuring curved parts.",
+    "Measuring too close to edges where readings are distorted.",
+    "Reporting only the average and missing thin spots.",
+    "Comparing colour between panels coated at very different thicknesses."
+   ],
+   "cta": "If your colour or texture varies with thickness, send us your readings and we will help set a target with you."
+  },
+  {
+   "slug": "estimate-powder-coverage-consumption",
+   "title": "How to estimate powder coating coverage and consumption",
+   "summary": "Calculate theoretical coverage from specific gravity and film thickness, then adjust for your real utilisation.",
+   "scene": "You are comparing products, quoting a job or planning stock. Kilogram price alone is misleading, because powders with different specific gravities cover different areas at the same film thickness.",
+   "steps": [
+    {
+     "name": "Get specific gravity",
+     "text": "Take the specific gravity from the product's TDS. Polyester powders in our catalogue range from 1.4 to 1.8 g/cm³ depending on colour and gloss."
+    },
+    {
+     "name": "Set film thickness",
+     "text": "Use your actual average cured film thickness in µm, not the minimum."
+    },
+    {
+     "name": "Calculate theoretical coverage",
+     "text": "Theoretical coverage (m²/kg) = 1000 ÷ (specific gravity × film thickness in µm). For example, specific gravity 1.5 at 60 µm gives about 11.1 m²/kg."
+    },
+    {
+     "name": "Apply utilisation",
+     "text": "Multiply by your overall utilisation, which reflects first-pass transfer efficiency, recovery and losses. A line with good recovery uses far more of the powder than one without."
+    },
+    {
+     "name": "Calculate consumption",
+     "text": "Divide the area to be coated by the practical coverage to estimate kilograms needed, then add an allowance for colour changes."
+    }
+   ],
+   "params": [
+    {
+     "k": "Formula",
+     "v": "m²/kg = 1000 / (SG × µm)"
+    },
+    {
+     "k": "Specific gravity",
+     "v": "per TDS (polyester catalogue 1.4–1.8 g/cm³)"
+    },
+    {
+     "k": "Film thickness",
+     "v": "Your measured average"
+    },
+    {
+     "k": "Utilisation",
+     "v": "Line-specific; measure on your line"
+    }
+   ],
+   "mistakes": [
+    "Comparing powders by price per kilogram without considering specific gravity.",
+    "Using the minimum specified thickness instead of the real average.",
+    "Ignoring overspray that is not recovered.",
+    "Treating the example figure as a product specification."
+   ],
+   "cta": "Send us your parts, area and film thickness, and we will help you estimate quantity for your first order."
+  },
+  {
+   "slug": "avoid-batch-colour-differences",
+   "title": "How to avoid colour differences between powder coating batches",
+   "summary": "Fix one approved reference, keep application and cure stable, and avoid mixing batches on the same job.",
+   "scene": "Parts coated weeks apart do not match, or assemblies combine parts from different deliveries. Batch differences can come from the powder, but often come from changes in film thickness, cure or how colour is judged.",
+   "steps": [
+    {
+     "name": "Fix one reference",
+     "text": "Approve a panel and keep it as the master. POLYMER records it as a version and produces repeat orders to it."
+    },
+    {
+     "name": "Order by version",
+     "text": "Quote the colour and approved version on every order so the right reference is used."
+    },
+    {
+     "name": "Keep film thickness steady",
+     "text": "Hold a consistent target thickness; colour, gloss and textures shift when thickness changes."
+    },
+    {
+     "name": "Keep cure consistent",
+     "text": "Control metal temperature and time, as overbaking can shift colour, especially on whites."
+    },
+    {
+     "name": "Judge colour the same way",
+     "text": "Use the same light source or instrument and the same tolerance every time."
+    },
+    {
+     "name": "Avoid mixing batches",
+     "text": "Finish one batch before opening the next on a single job or assembly, and record batch numbers on coated parts."
+    }
+   ],
+   "params": [
+    {
+     "k": "Reference",
+     "v": "Approved panel version"
+    },
+    {
+     "k": "Colour tolerance",
+     "v": "Agreed per project"
+    },
+    {
+     "k": "Film thickness",
+     "v": "per TDS / your specification"
+    },
+    {
+     "k": "Cure",
+     "v": "per TDS"
+    }
+   ],
+   "mistakes": [
+    "Comparing new parts with old parts that have aged in use instead of with the master panel.",
+    "Mixing two batches in the hopper during one job.",
+    "Changing gun settings or line speed without checking thickness.",
+    "Judging colour under different lighting each time."
+   ],
+   "cta": "Send us your approved panel or colour reference, and we will record it as a version for consistent repeat supply."
+  },
+  {
+   "slug": "consistent-texture-finishes",
+   "title": "How to get consistent sand, wrinkle and hammer-tone textures",
+   "summary": "Textured finishes depend on the powder and the application, so standardise thickness, gun settings, recovery ratio and cure.",
+   "scene": "You use texture to hide surface defects or for appearance, but texture varies between parts, shifts or operators. Textures are more sensitive to process changes than smooth finishes, so small differences in thickness, gun settings or cure become visible quickly.",
+   "steps": [
+    {
+     "name": "Approve a physical reference",
+     "text": "Agree texture coarseness and appearance on a physical panel; texture cannot be specified by a code alone."
+    },
+    {
+     "name": "Set a film thickness window",
+     "text": "Find the thickness range that gives the target texture on your parts and keep within it."
+    },
+    {
+     "name": "Standardise gun settings",
+     "text": "Fix voltage, powder output and gun distance; changes in these alter how texture develops."
+    },
+    {
+     "name": "Control recovered powder",
+     "text": "Keep a consistent virgin-to-recovered ratio, as recovered powder can change texture and effect."
+    },
+    {
+     "name": "Keep the cure profile stable",
+     "text": "Wrinkle and other textures form during melting and curing, so line speed and oven temperature should be constant."
+    },
+    {
+     "name": "Check orientation and shape",
+     "text": "Compare vertical and horizontal surfaces and edges with the reference during trials."
+    }
+   ],
+   "params": [
+    {
+     "k": "Texture reference",
+     "v": "Approved physical panel"
+    },
+    {
+     "k": "Film thickness",
+     "v": "per TDS / established in trial"
+    },
+    {
+     "k": "Recovered powder ratio",
+     "v": "Fixed on your line"
+    },
+    {
+     "k": "Cure",
+     "v": "per TDS"
+    }
+   ],
+   "mistakes": [
+    "Approving texture from a photo.",
+    "Letting operators set their own gun parameters.",
+    "Running with variable amounts of recovered powder.",
+    "Comparing texture on a thin test panel with texture on a heavy part that heats more slowly.",
+    "Changing line speed without rechecking texture."
+   ],
+   "cta": "Send a sample of the texture you need, and we will prepare a panel and suggest trial settings for your line."
+  },
+  {
+   "slug": "store-handle-powder-coatings",
+   "title": "How to store and handle powder coatings",
+   "summary": "Keep powder cool, dry and sealed, rotate stock, and follow the SDS for safe handling.",
+   "scene": "You hold stock as a distributor or applicator, or your warehouse is hot or humid. Powder is a reactive product: poor storage can cause clumping, poor fluidisation, uneven film build and changes in application or cure behaviour that only show up on the line.",
+   "steps": [
+    {
+     "name": "Store cool and dry",
+     "text": "Keep powder in a dry, well-ventilated area away from heat sources and direct sun. Follow the storage temperature on the TDS."
+    },
+    {
+     "name": "Keep containers sealed",
+     "text": "Close containers after use to avoid moisture pick-up and contamination."
+    },
+    {
+     "name": "Avoid condensation",
+     "text": "If powder has been stored cold, let the closed container reach room temperature before opening."
+    },
+    {
+     "name": "Rotate stock",
+     "text": "Use first-in, first-out and check shelf life on the TDS. Pay closer attention to low-cure grades."
+    },
+    {
+     "name": "Check before use",
+     "text": "Make sure powder flows freely and fluidises well. Do not use powder with hard lumps."
+    },
+    {
+     "name": "Handle safely",
+     "text": "Follow the SDS: avoid dust clouds and ignition sources, ground equipment and use suitable personal protection."
+    }
+   ],
+   "params": [
+    {
+     "k": "Storage temperature",
+     "v": "per TDS"
+    },
+    {
+     "k": "Shelf life",
+     "v": "per TDS"
+    },
+    {
+     "k": "Safety information",
+     "v": "per SDS"
+    },
+    {
+     "k": "Stock rotation",
+     "v": "First in, first out"
+    }
+   ],
+   "mistakes": [
+    "Storing powder near ovens or under a hot roof.",
+    "Opening cold containers in a warm, humid room.",
+    "Leaving partly used containers open.",
+    "Holding low-cure stock longer than the TDS allows.",
+    "Mixing powder from different products or batches in one container."
+   ],
+   "cta": "Ask us for the TDS and SDS of the products you stock, and tell us your warehouse conditions so we can advise."
+  }
+ ]
+}

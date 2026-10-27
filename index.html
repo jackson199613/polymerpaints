@@ -5,250 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>POLYMER Powder Coatings | Epoxy, Polyester &amp; Hybrid Powder Coatings, China</title>
 <meta name="description" content="Fujian Polymer manufactures epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.">
-<meta property="og:title" content="POLYMER Powder Coatings">
-<meta property="og:description" content="Epoxy, polyester and hybrid powder coatings. Matched colour and finish, every batch true to the approved panel.">
-<meta property="og:image" content="/assets/img/home/og.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="/assets/img/home/hero-panels.webp" imagesrcset="/assets/img/home/hero-panels-600.webp 600w, /assets/img/home/hero-panels.webp 1122w" imagesizes="(min-width:980px) 46vw, 100vw">
-<style>
-:root{
-  --ink:#141618; --ink-2:#3d4146; --muted:#6e7278; --line:#dedad3; --line-2:#cbc6bd;
-  --paper:#f4f2ee; --paper-2:#eae6df; --white:#fff;
-  --night:#121416; --night-2:#191c1f; --night-line:#2b3034; --night-text:#ebe8e2; --night-muted:#9a9fa5;
-  --accent:#c2410c; --accent-hi:#e8703f; /* placeholder until the logo arrives */
-  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
-  --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-  --w:1280px; --g:20px; --sec:96px; --r:3px;
-}
-@media(min-width:900px){:root{--g:44px;--sec:144px}}
-*{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-img{display:block;max-width:100%;height:auto}
-a{color:inherit;text-decoration:none}
-button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
-:focus-visible{outline:2px solid var(--accent-hi);outline-offset:3px}
-.wrap{max-width:var(--w);margin:0 auto;padding:0 var(--g)}
-.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
-.eyebrow::before{content:"";width:28px;height:1px;background:currentColor;opacity:.55}
-.dark .eyebrow{color:var(--night-muted)}
-.h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.6vw,76px);line-height:1;letter-spacing:-.012em}
-.h2 em{font-style:italic;color:var(--accent)}
-.dark .h2 em{color:var(--accent-hi)}
-.lead{font-size:17.5px;color:var(--ink-2);max-width:520px}
-.dark .lead{color:var(--night-muted)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:var(--r);font-weight:600;font-size:15px;transition:background .2s,color .2s,border-color .2s}
-.btn svg{width:16px;height:16px;transition:transform .2s;flex:none}
-.btn:hover svg{transform:translateX(3px)}
-.btn-primary{background:var(--accent);color:#fff}
-.btn-primary:hover{background:#a5370a}
-.btn-line{border:1px solid rgba(255,255,255,.35);color:#fff}
-.btn-line:hover{border-color:#fff}
-.btn-light{background:#fff;color:var(--ink)}
-.btn-light:hover{background:var(--paper-2)}
-.link{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14.5px;color:var(--accent)}
-.dark .link{color:var(--accent-hi)}
-.link::after{content:"→";transition:transform .2s}
-.link:hover::after{transform:translateX(4px)}
-.sec{padding:var(--sec) 0;position:relative}
-.dark{background:var(--night);color:var(--night-text)}
-.head{display:grid;gap:24px;margin-bottom:64px}
-@media(min-width:900px){.head{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:end;gap:72px}}
-.head .h2{margin-top:22px}
-
-/* header */
-.topbar{background:#0c0d0f;color:var(--night-muted);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
-.topbar .wrap{display:flex;justify-content:space-between;gap:20px;height:34px;align-items:center}
-.topbar span+span::before{content:"·";margin:0 10px;opacity:.5}
-.topbar .r{display:none}
-@media(min-width:900px){.topbar .r{display:block}}
-@media(max-width:560px){.topbar .l span:nth-child(n+2){display:none}}
-header.site{position:sticky;top:0;z-index:50;background:rgba(18,20,22,.9);backdrop-filter:saturate(1.3) blur(14px);-webkit-backdrop-filter:saturate(1.3) blur(14px);color:var(--night-text);border-bottom:1px solid rgba(255,255,255,.07)}
-header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:24px}
-.logo{display:flex;align-items:baseline;gap:10px;white-space:nowrap}
-.logo b{font-weight:700;font-size:19px;letter-spacing:.24em}
-.logo small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--night-muted);text-transform:uppercase}
-nav.main{display:none;gap:32px;font-size:14.5px;font-weight:500}
-nav.main a{opacity:.8;transition:opacity .2s}
-nav.main a:hover{opacity:1}
-.hdr-cta{display:none}
-@media(min-width:1060px){nav.main{display:flex}.hdr-cta{display:inline-flex;min-height:42px;font-size:14px;padding:0 18px}}
-.burger{width:44px;height:44px;display:grid;place-items:center}
-@media(min-width:1060px){.burger{display:none}}
-
-/* hero */
-.hero{background:var(--night);color:var(--night-text);position:relative;overflow:hidden}
-.hero-grid{display:grid}
-@media(min-width:980px){.hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,46vw);min-height:calc(100vh - 106px);max-height:980px}}
-.hero-copy{padding:64px var(--g) 56px;display:flex;flex-direction:column;justify-content:center}
-@media(min-width:980px){.hero-copy{padding:80px 64px 80px max(var(--g),calc((100vw - var(--w))/2 + var(--g)))}}
-.h1{font-family:var(--serif);font-weight:400;font-size:clamp(50px,6.6vw,104px);line-height:.96;letter-spacing:-.018em;margin:28px 0 30px;max-width:9.5em}
-.h1 em{font-style:italic;color:var(--accent-hi)}
-.hero .lead{color:#b4b8bd;max-width:470px}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
-.hero-img{position:relative;min-height:440px;background:#16181a}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
-@media(min-width:980px){.hero-img{min-height:0}.hero-img img{position:absolute;inset:0}}
-.hero-img::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--night) 0,rgba(18,20,22,0) 22%);pointer-events:none}
-@media(max-width:979px){.hero-img::before{background:linear-gradient(180deg,var(--night) 0,rgba(18,20,22,0) 18%)}}
-.hero-img figcaption{position:absolute;z-index:2;right:20px;bottom:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
-.proof{border-top:1px solid var(--night-line);background:var(--night)}
-.proof .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
-@media(min-width:760px){.proof .wrap{grid-template-columns:repeat(5,minmax(0,1fr))}}
-.proof .wrap>div{padding:26px 0 28px 22px;border-left:1px solid var(--night-line)}
-.proof .wrap>div:first-child{border-left:0;padding-left:0}
-@media(max-width:759px){.proof .wrap>div{border-bottom:1px solid var(--night-line)}.proof .wrap>div:nth-child(odd){border-left:0;padding-left:0}.proof .wrap>div:last-child{grid-column:1/-1;border-bottom:0}}
-.proof strong{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.4vw,44px);line-height:1;color:#fff}
-.proof span{display:block;margin-top:10px;font-size:13px;color:var(--night-muted)}
-
-/* buyer services */
-.svc{background:var(--paper-2);border-bottom:1px solid var(--line)}
-.svc .wrap{display:grid;grid-template-columns:minmax(0,1fr)}
-@media(min-width:700px){.svc .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(min-width:1060px){.svc .wrap{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.svc a{display:grid;grid-template-columns:40px minmax(0,1fr) 20px;gap:16px;align-items:center;padding:28px 0;border-bottom:1px solid var(--line);transition:color .2s}
-@media(min-width:1060px){.svc a{padding:34px 28px;border-bottom:0;border-left:1px solid var(--line)}.svc a:first-child{border-left:0;padding-left:0}}
-@media(min-width:700px) and (max-width:1059px){.svc a:nth-child(even){padding-left:24px;border-left:1px solid var(--line)}}
-.svc svg{width:28px;height:28px;stroke:var(--ink);fill:none;stroke-width:1.3}
-.svc b{display:block;font-weight:600;font-size:15.5px}
-.svc small{display:block;font-size:13.5px;color:var(--muted);margin-top:2px}
-.svc i{font-style:normal;color:var(--muted);transition:transform .2s,color .2s}
-.svc a:hover i{transform:translateX(4px);color:var(--accent)}
-
-/* finish atlas */
-.atlas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-@media(min-width:700px){.atlas{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(min-width:1060px){.atlas{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}}
-.tile figure{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:2px;background:#1b1e21}
-.tile img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.tile:hover img{transform:scale(1.06)}
-.tile h3{font-weight:600;font-size:15px;margin-top:14px;color:#fff}
-.tile p{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--night-muted);margin-top:4px;text-transform:uppercase}
-.gloss{display:grid;gap:36px;margin-top:96px;align-items:center}
-@media(min-width:980px){.gloss{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:72px}}
-.gloss img{border-radius:2px;width:100%}
-.gloss h3{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.4vw,46px);line-height:1.05;color:#fff}
-.bands{margin-top:28px;border-top:1px solid var(--night-line)}
-.bands div{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid var(--night-line);font-size:15px}
-.bands span{font-family:var(--mono);font-size:13px;color:var(--accent-hi)}
-
-/* systems */
-.sys{display:grid;border-top:1px solid var(--line)}
-@media(min-width:900px){.sys{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.sys article{padding:40px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column}
-@media(min-width:900px){.sys article{padding:48px 40px 48px 0;border-bottom:0}.sys article+article{padding-left:40px;border-left:1px solid var(--line)}}
-.sys small{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.sys h3{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4vw,56px);line-height:1;margin:18px 0 18px}
-.sys p{color:var(--ink-2);font-size:15.5px}
-.sys .parts{margin:22px 0 28px;font-size:14px;color:var(--muted)}
-.sys .parts b{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
-.sys .link{margin-top:auto}
-.badge{display:inline-block;margin-left:10px;vertical-align:middle;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--accent);color:var(--accent);border-radius:999px}
-.sys-note{margin-top:28px;font-size:13px;color:var(--muted)}
-
-/* industries */
-.inds{display:grid;grid-template-columns:minmax(0,1fr);gap:40px 16px}
-@media(min-width:640px){.inds{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(min-width:1060px){.inds{grid-template-columns:repeat(4,minmax(0,1fr));gap:56px 18px}}
-.ind figure{aspect-ratio:4/3;overflow:hidden;border-radius:2px;background:var(--paper-2)}
-.ind img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.ind:hover img{transform:scale(1.05)}
-.ind .n{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:18px}
-.ind h3{font-family:var(--serif);font-weight:400;font-size:27px;line-height:1.08;margin-top:6px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);white-space:nowrap}
-.chip.main{background:var(--ink);border-color:var(--ink);color:#fff}
-.ind-note{margin-top:48px;font-size:13px;color:var(--muted);max-width:760px}
-
-/* approved panel promise */
-.promise{display:grid;gap:56px;align-items:center}
-@media(min-width:980px){.promise{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:96px}}
-.promise figure{position:relative;border-radius:2px;overflow:hidden;aspect-ratio:4/5;background:#16181a}
-.promise figure img{width:100%;height:100%;object-fit:cover}
-.promise figcaption{position:absolute;left:20px;bottom:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65)}
-.vers{margin-top:40px;border-top:1px solid var(--line)}
-.vers li{list-style:none;display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
-.vers span{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:3px}
-.vers b{font-weight:600}
-.vers p{font-size:14.5px;color:var(--muted);margin-top:2px}
-.fine{font-size:12.5px;color:var(--muted);margin-top:22px}
-
-/* distributors */
-.dist{display:grid;gap:56px;align-items:center}
-@media(min-width:980px){.dist{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:96px}}
-.dist figure{border-radius:2px;overflow:hidden;aspect-ratio:4/3}
-.dist figure img{width:100%;height:100%;object-fit:cover}
-.steps{margin:36px 0 40px;display:grid;gap:0;border-top:1px solid var(--night-line)}
-.steps li{list-style:none;display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:16px 0;border-bottom:1px solid var(--night-line);font-size:15px;color:#c9ccd0}
-.steps span{font-family:var(--mono);font-size:12px;color:var(--accent-hi);padding-top:3px}
-.steps b{color:#fff;font-weight:600}
-
-/* quality */
-.certs{display:grid;gap:14px}
-@media(min-width:900px){.certs{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr)}}
-.cert{border:1px solid var(--line);border-radius:3px;padding:30px;background:var(--white);display:flex;flex-direction:column}
-.cert small{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.cert h3{font-family:var(--serif);font-weight:400;font-size:36px;line-height:1.05;margin:12px 0 20px}
-.cert dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 18px;font-size:14px;margin-bottom:24px}
-.cert dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
-.cert .link{margin-top:auto}
-.cert.key{background:var(--ink);border-color:var(--ink);color:#fff}
-.cert.key small,.cert.key dt{color:#9ca1a7}
-.cert.key .link{color:var(--accent-hi)}
-.labs{margin-top:14px;padding:22px 30px;border:1px solid var(--line);border-radius:3px;display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;font-size:14px;color:var(--ink-2)}
-.labs b{font-weight:600;color:var(--ink)}
-.labs em{font-style:normal;font-size:12.5px;color:var(--muted)}
-
-/* cta */
-.cta{position:relative;background:#0e0f11;color:#fff;overflow:hidden}
-.cta picture,.cta>img{position:absolute;inset:0}
-.cta img.bg{width:100%;height:100%;object-fit:cover;object-position:right center}
-.cta::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,15,17,.92) 0,rgba(14,15,17,.75) 45%,rgba(14,15,17,.05) 80%)}
-@media(max-width:979px){.cta::after{background:linear-gradient(180deg,rgba(14,15,17,.7),rgba(14,15,17,.94) 60%)}}
-.cta .wrap{position:relative;z-index:1;padding-top:128px;padding-bottom:128px}
-.cta .h2{max-width:11em;margin:22px 0 28px}
-.cta p{color:#b9bcc0;max-width:440px;margin-bottom:36px}
-
-/* footer */
-footer{background:#0b0c0e;color:var(--night-muted);font-size:14px}
-footer .wrap{display:grid;gap:40px;padding-top:80px;padding-bottom:40px}
-@media(min-width:900px){footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr))}}
-footer h4{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:18px}
-footer li{list-style:none;margin-bottom:10px}
-footer a:hover{color:#fff}
-.slogan{font-family:var(--serif);font-size:30px;line-height:1.1;color:#fff;margin:22px 0 20px}
-.f-bottom{grid-column:1/-1;border-top:1px solid var(--night-line);padding-top:24px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:12.5px}
-
-/* motion (progressive; content is visible without JS) */
-.js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
-.js .rv.in{opacity:1;transform:none}
-.js .hero .h1,.js .hero .lead,.js .hero .hero-ctas,.js .hero .eyebrow{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
-.js .hero .h1{animation-delay:.08s}.js .hero .lead{animation-delay:.2s}.js .hero .hero-ctas{animation-delay:.32s}
-.js .hero-img img{animation:settle 1.8s cubic-bezier(.2,.7,.2,1) both}
-@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-@keyframes settle{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}.js .hero *{animation:none!important}.tile img,.ind img{transition:none}}
-</style>
+<link rel="canonical" href="https://polymerpaints.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="POLYMER Powder Coatings | Epoxy, Polyester &amp; Hybrid Powder Coatings, China">
+<meta property="og:description" content="Fujian Polymer manufactures epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.">
+<meta property="og:image" content="https://polymerpaints.com/assets/img/home/og.jpg">
+<meta property="og:url" content="https://polymerpaints.com/">
+<meta name="theme-color" content="#121416">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/polymer-v1.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "@id": "https://polymerpaints.com/#org", "name": "POLYMER", "legalName": "Fujian Polymer Industry & Trade Co., Ltd.", "alternateName": "玻利玛", "url": "https://polymerpaints.com/", "foundingDate": "2019", "telephone": "+86 596 2600611", "slogan": "You apply powder, we apply care.", "address": {"@type": "PostalAddress", "streetAddress": "No. 2 Zhuli Road, Xiangcheng District", "addressLocality": "Zhangzhou", "addressRegion": "Fujian", "addressCountry": "CN"}, "description": "Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system.", "hasCredential": [{"@type": "EducationalOccupationalCredential", "name": "Qualicoat Class 1 approval, polyester system PLM100611", "identifier": "P-2199", "validUntil": "2026-12-31"}, {"@type": "EducationalOccupationalCredential", "name": "ISO 9001 quality management system"}, {"@type": "EducationalOccupationalCredential", "name": "ISO 14001 environmental management system"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "POLYMER Powder Coatings", "url": "https://polymerpaints.com/"}</script>
 </head>
 <body>
+<a class="hp" href="#main">Skip to content</a>
 <div class="topbar"><div class="wrap">
   <div class="l"><span>Qualicoat Class 1 polyester system</span><span>ISO 9001</span><span>ISO 14001</span></div>
-  <div class="r"><span>MOQ 1,000 kg</span><span>Lead time within 10 days</span><span>+86 596 2600611</span></div>
+  <div class="r"><span>MOQ 1,000 kg</span><span>Lead time within 10 days</span><span><a href="tel:+865962600611">+86 596 2600611</a></span></div>
 </div></div>
-
 <header class="site"><div class="wrap">
   <a class="logo" href="/" aria-label="POLYMER home"><b>POLYMER</b><small>Powder coatings</small></a>
   <nav class="main" aria-label="Main">
-    <a href="#systems">Products</a><a href="#finishes">Finishes</a><a href="#industries">Industries</a><a href="#distributors">Distributors</a><a href="#quality">Quality</a><a href="#company">Company</a>
+    <div class="dd"><a href="/products/">Products</a><div class="menu wide"><div><small>By system</small><a href="/products/polyester/">Polyester</a><a href="/products/hybrid/">Hybrid</a><a href="/products/epoxy/">Epoxy</a><a href="/products/#cure">Low-cure grades</a></div><div><small>Choose &amp; compare</small><a href="/finishes/">Colours &amp; finishes</a><a href="/selector/">System selector</a><a href="/selector/#matrix">Industry × system table</a></div></div></div>
+    <div class="dd"><a href="/industries/">Industries</a><div class="menu"><small>By application</small><a href="/industries/architectural-aluminium/">Architectural aluminium</a><a href="/industries/metal-furniture/">Metal furniture &amp; shelving</a><a href="/industries/appliances/">Appliances &amp; refrigeration</a><a href="/industries/electrical-enclosures/">Electrical &amp; energy enclosures</a><a href="/industries/equipment/">Agricultural &amp; industrial equipment</a><a href="/industries/automotive-wheels/">Automotive parts &amp; wheels</a><a href="/industries/coating-applicators/">Coating applicators</a><a href="/distributors/">Powder distributors</a></div></div>
+    <a href="/finishes/">Finishes</a>
+    <a href="/distributors/">Distributors</a>
+    <a href="/quality/">Quality</a>
+    <div class="dd"><a href="/faq/">Resources</a><div class="menu"><a href="/faq/">Technical FAQ</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/selector/">System selector</a></div></div>
+    <a href="/company/">Company</a>
+    <a href="/contact/">Contact</a>
   </nav>
-  <a class="btn btn-primary hdr-cta" href="#start">Request a sample</a>
-  <button class="burger" aria-label="Open menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+  <a class="btn btn-primary hdr-cta" href="/request-sample/">Request a sample</a>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
 </div></header>
-
-<main>
+<nav class="mnav" id="mnav" aria-label="Mobile">
+  <h4>Products</h4><a href="/products/">All products</a><a href="/products/polyester/">Polyester</a><a href="/products/hybrid/">Hybrid</a><a href="/products/epoxy/">Epoxy</a><a href="/finishes/">Colours &amp; finishes</a><a href="/selector/">System selector</a>
+  <h4>Industries</h4><a href="/industries/architectural-aluminium/">Architectural aluminium</a><a href="/industries/metal-furniture/">Metal furniture &amp; shelving</a><a href="/industries/appliances/">Appliances &amp; refrigeration</a><a href="/industries/electrical-enclosures/">Electrical &amp; energy enclosures</a><a href="/industries/equipment/">Agricultural &amp; industrial equipment</a><a href="/industries/automotive-wheels/">Automotive parts &amp; wheels</a><a href="/industries/coating-applicators/">Coating applicators</a><a href="/distributors/">Powder distributors</a>
+  <h4>Company</h4><a href="/quality/">Quality &amp; certificates</a><a href="/company/">About POLYMER</a><a href="/faq/">Technical FAQ</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/contact/">Contact</a>
+  <a class="btn btn-primary" href="/request-sample/">Request a sample</a>
+</nav>
+<main id="main">
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-grid">
     <div class="hero-copy">
@@ -256,7 +54,7 @@ footer a:hover{color:#fff}
       <h1 class="h1" id="hero-title">Every batch true to the <em>approved panel.</em></h1>
       <p class="lead">Epoxy, polyester and hybrid powder coatings, matched to your colour and finish and supplied within 10 days.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#start">Request a sample <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="btn btn-primary" href="/request-sample/">Request a sample <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
         <a class="btn btn-line" href="#finishes">Explore finishes</a>
       </div>
     </div>
@@ -275,10 +73,10 @@ footer a:hover{color:#fff}
 </section>
 
 <nav class="svc" aria-label="Buyer services"><div class="wrap">
-  <a href="#start"><svg viewBox="0 0 28 28"><rect x="8" y="3" width="12" height="20" rx="1.5"/><circle cx="14" cy="7" r="1.3"/><path d="M5 25h18"/></svg><span><b>Request a sample</b><small>Panels on your colour</small></span><i>→</i></a>
-  <a href="#finishes"><svg viewBox="0 0 28 28"><circle cx="10" cy="11" r="6"/><circle cx="18" cy="11" r="6"/><circle cx="14" cy="18" r="6"/></svg><span><b>Match a colour</b><small>RAL or physical sample</small></span><i>→</i></a>
-  <a href="#distributors"><svg viewBox="0 0 28 28"><path d="M3 11l11-7 11 7v13H3z"/><path d="M10 24v-7h8v7"/></svg><span><b>Become a distributor</b><small>Combined range, 10-day supply</small></span><i>→</i></a>
-  <a href="#quality"><svg viewBox="0 0 28 28"><path d="M7 3h10l5 5v17H7z"/><path d="M17 3v5h5M11 15h7M11 19h7"/></svg><span><b>Downloads</b><small>TDS, SDS and certificates</small></span><i>→</i></a>
+  <a href="/request-sample/"><svg viewBox="0 0 28 28"><rect x="8" y="3" width="12" height="20" rx="1.5"/><circle cx="14" cy="7" r="1.3"/><path d="M5 25h18"/></svg><span><b>Request a sample</b><small>Panels on your colour</small></span><i>→</i></a>
+  <a href="/request-sample/?topic=colour"><svg viewBox="0 0 28 28"><circle cx="10" cy="11" r="6"/><circle cx="18" cy="11" r="6"/><circle cx="14" cy="18" r="6"/></svg><span><b>Match a colour</b><small>RAL or physical sample</small></span><i>→</i></a>
+  <a href="/distributors/"><svg viewBox="0 0 28 28"><path d="M3 11l11-7 11 7v13H3z"/><path d="M10 24v-7h8v7"/></svg><span><b>Become a distributor</b><small>Combined range, 10-day supply</small></span><i>→</i></a>
+  <a href="/downloads/"><svg viewBox="0 0 28 28"><path d="M7 3h10l5 5v17H7z"/><path d="M17 3v5h5M11 15h7M11 19h7"/></svg><span><b>Downloads</b><small>TDS, SDS and certificates</small></span><i>→</i></a>
 </div></nav>
 
 <section class="sec dark" id="finishes" aria-labelledby="fin-title">
@@ -288,16 +86,16 @@ footer a:hover{color:#fff}
       <p class="lead">RAL shades and customer samples in every effect. Each finish is confirmed on a physical panel, then kept as the reference for repeat orders.</p>
     </div>
     <div class="atlas">
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/smooth-400.webp" srcset="/assets/img/finish/smooth-400.webp 400w, /assets/img/finish/smooth.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Smooth white powder coating, macro"></figure><h3>Smooth</h3><p>All gloss levels</p></a>
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/sand-400.webp" srcset="/assets/img/finish/sand-400.webp 400w, /assets/img/finish/sand.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Light grey sand texture powder coating, macro"></figure><h3>Sand texture</h3><p>Cabinets · enclosures</p></a>
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/wrinkle-400.webp" srcset="/assets/img/finish/wrinkle-400.webp 400w, /assets/img/finish/wrinkle.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Black wrinkle powder coating, macro"></figure><h3>Wrinkle</h3><p>Equipment</p></a>
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/vein-400.webp" srcset="/assets/img/finish/vein-400.webp 400w, /assets/img/finish/vein.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Green vein texture powder coating, macro"></figure><h3>Vein texture</h3><p>Decorative metal</p></a>
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/fine-400.webp" srcset="/assets/img/finish/fine-400.webp 400w, /assets/img/finish/fine.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Graphite fine texture powder coating, macro"></figure><h3>Fine texture</h3><p>Soft-touch look</p></a>
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/hammer-400.webp" srcset="/assets/img/finish/hammer-400.webp 400w, /assets/img/finish/hammer.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Anthracite hammer tone powder coating, macro"></figure><h3>Hammer tone</h3><p>Machinery · tools</p></a>
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/pattern-400.webp" srcset="/assets/img/finish/pattern-400.webp 400w, /assets/img/finish/pattern.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Copper antique pattern powder coating, macro"></figure><h3>Pattern</h3><p>Antique &amp; art</p></a>
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/metallic-400.webp" srcset="/assets/img/finish/metallic-400.webp 400w, /assets/img/finish/metallic.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Champagne silver bonded metallic powder coating, macro"></figure><h3>Metallic</h3><p>Bonded on 2 machines</p></a>
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/transparent-400.webp" srcset="/assets/img/finish/transparent-400.webp 400w, /assets/img/finish/transparent.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Amber translucent powder coating over brushed aluminium, macro"></figure><h3>Transparent</h3><p>Clear &amp; tinted</p></a>
-      <a class="tile rv" href="#"><figure><img src="/assets/img/finish/fluorescent-400.webp" srcset="/assets/img/finish/fluorescent-400.webp 400w, /assets/img/finish/fluorescent.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Fluorescent orange powder coating, macro"></figure><h3>Fluorescent</h3><p>Safety &amp; signal</p></a>
+      <a class="tile rv" href="/finishes/#smooth"><figure><img src="/assets/img/finish/smooth-400.webp" srcset="/assets/img/finish/smooth-400.webp 400w, /assets/img/finish/smooth.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Smooth white powder coating, macro"></figure><h3>Smooth</h3><p>All gloss levels</p></a>
+      <a class="tile rv" href="/finishes/#sand"><figure><img src="/assets/img/finish/sand-400.webp" srcset="/assets/img/finish/sand-400.webp 400w, /assets/img/finish/sand.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Light grey sand texture powder coating, macro"></figure><h3>Sand texture</h3><p>Cabinets · enclosures</p></a>
+      <a class="tile rv" href="/finishes/#wrinkle"><figure><img src="/assets/img/finish/wrinkle-400.webp" srcset="/assets/img/finish/wrinkle-400.webp 400w, /assets/img/finish/wrinkle.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Black wrinkle powder coating, macro"></figure><h3>Wrinkle</h3><p>Equipment</p></a>
+      <a class="tile rv" href="/finishes/#vein"><figure><img src="/assets/img/finish/vein-400.webp" srcset="/assets/img/finish/vein-400.webp 400w, /assets/img/finish/vein.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Green vein texture powder coating, macro"></figure><h3>Vein texture</h3><p>Decorative metal</p></a>
+      <a class="tile rv" href="/finishes/#fine"><figure><img src="/assets/img/finish/fine-400.webp" srcset="/assets/img/finish/fine-400.webp 400w, /assets/img/finish/fine.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Graphite fine texture powder coating, macro"></figure><h3>Fine texture</h3><p>Soft-touch look</p></a>
+      <a class="tile rv" href="/finishes/#hammer"><figure><img src="/assets/img/finish/hammer-400.webp" srcset="/assets/img/finish/hammer-400.webp 400w, /assets/img/finish/hammer.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Anthracite hammer tone powder coating, macro"></figure><h3>Hammer tone</h3><p>Machinery · tools</p></a>
+      <a class="tile rv" href="/finishes/#pattern"><figure><img src="/assets/img/finish/pattern-400.webp" srcset="/assets/img/finish/pattern-400.webp 400w, /assets/img/finish/pattern.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Copper antique pattern powder coating, macro"></figure><h3>Pattern</h3><p>Antique &amp; art</p></a>
+      <a class="tile rv" href="/finishes/#metallic"><figure><img src="/assets/img/finish/metallic-400.webp" srcset="/assets/img/finish/metallic-400.webp 400w, /assets/img/finish/metallic.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Champagne silver bonded metallic powder coating, macro"></figure><h3>Metallic</h3><p>Bonded on 2 machines</p></a>
+      <a class="tile rv" href="/finishes/#transparent"><figure><img src="/assets/img/finish/transparent-400.webp" srcset="/assets/img/finish/transparent-400.webp 400w, /assets/img/finish/transparent.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Amber translucent powder coating over brushed aluminium, macro"></figure><h3>Transparent</h3><p>Clear &amp; tinted</p></a>
+      <a class="tile rv" href="/finishes/#fluorescent"><figure><img src="/assets/img/finish/fluorescent-400.webp" srcset="/assets/img/finish/fluorescent-400.webp 400w, /assets/img/finish/fluorescent.webp 800w" sizes="(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw" width="800" height="800" loading="lazy" alt="Fluorescent orange powder coating, macro"></figure><h3>Fluorescent</h3><p>Safety &amp; signal</p></a>
     </div>
     <div class="gloss rv">
       <img src="/assets/img/home/gloss-trio-768.webp" srcset="/assets/img/home/gloss-trio-768.webp 768w, /assets/img/home/gloss-trio.webp 1536w" sizes="(min-width:980px) 60vw, 100vw" width="1536" height="1024" loading="lazy" alt="Three anthracite panels in dead matt, satin and high gloss">
@@ -314,9 +112,9 @@ footer a:hover{color:#fff}
       <p class="lead">Outdoor or indoor, decorative or functional. The environment decides the chemistry; the panel confirms it.</p>
     </div>
     <div class="sys">
-      <article class="rv"><small>Outdoor</small><h3>Polyester<span class="badge">Qualicoat</span></h3><p>Weather-resistant, resists yellowing, strong edge coverage and impact strength.</p><p class="parts"><b>Typical parts</b>Aluminium profiles, outdoor furniture and lighting, AC housings, farm machinery</p><a class="link" href="#">Polyester range</a></article>
-      <article class="rv"><small>Indoor · decorative</small><h3>Hybrid</h3><p>Epoxy-polyester with good flow and high gloss, for appearance-led indoor metal.</p><p class="parts"><b>Typical parts</b>Appliances, steel furniture, shelving, indoor lighting, instrument housings</p><a class="link" href="#">Hybrid range</a></article>
-      <article class="rv"><small>Indoor · functional</small><h3>Epoxy</h3><p>Chemical resistance, electrical insulation, hardness and strong adhesion.</p><p class="parts"><b>Typical parts</b>Security doors, safes, electrical cabinets, industrial and fitness equipment</p><a class="link" href="#">Epoxy range</a></article>
+      <article class="rv"><small>Outdoor</small><h3>Polyester<span class="badge">Qualicoat</span></h3><p>Weather-resistant, resists yellowing, strong edge coverage and impact strength.</p><p class="parts"><b>Typical parts</b>Aluminium profiles, outdoor furniture and lighting, AC housings, farm machinery</p><a class="link" href="/products/polyester/">Polyester range</a></article>
+      <article class="rv"><small>Indoor · decorative</small><h3>Hybrid</h3><p>Epoxy-polyester with good flow and high gloss, for appearance-led indoor metal.</p><p class="parts"><b>Typical parts</b>Appliances, steel furniture, shelving, indoor lighting, instrument housings</p><a class="link" href="/products/hybrid/">Hybrid range</a></article>
+      <article class="rv"><small>Indoor · functional</small><h3>Epoxy</h3><p>Chemical resistance, electrical insulation, hardness and strong adhesion.</p><p class="parts"><b>Typical parts</b>Security doors, safes, electrical cabinets, industrial and fitness equipment</p><a class="link" href="/products/epoxy/">Epoxy range</a></article>
     </div>
     <p class="sys-note">All systems in standard and low-cure grades. Epoxy and hybrid are for indoor use. Qualicoat Class 1 applies to polyester system PLM100611 only.</p>
   </div>
@@ -329,14 +127,14 @@ footer a:hover{color:#fff}
       <p class="lead">Each page sets out the buyer’s problems, the system we propose and what we verify on your part before bulk supply.</p>
     </div>
     <div class="inds">
-      <a class="ind rv" href="#"><figure><img src="/assets/img/apps/aluminium-600.webp" srcset="/assets/img/apps/aluminium-600.webp 600w, /assets/img/apps/aluminium.webp 1024w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1024" height="768" loading="lazy" alt="Building facade with anthracite powder-coated aluminium fins"></figure><span class="n">01</span><h3>Architectural aluminium</h3><div class="chips"><span class="chip main">Polyester</span><span class="chip">Qualicoat</span></div></a>
-      <a class="ind rv" href="#"><figure><img src="/assets/img/apps/furniture-600.webp" srcset="/assets/img/apps/furniture-600.webp 600w, /assets/img/apps/furniture.webp 1200w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1200" height="900" loading="lazy" alt="Powder-coated steel office cabinets and shelving"></figure><span class="n">02</span><h3>Metal furniture &amp; shelving</h3><div class="chips"><span class="chip main">Hybrid</span><span class="chip">Epoxy</span><span class="chip">Polyester</span></div></a>
-      <a class="ind rv" href="#"><figure><img src="/assets/img/apps/appliances-600.webp" srcset="/assets/img/apps/appliances-600.webp 600w, /assets/img/apps/appliances.webp 1200w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1200" height="900" loading="lazy" alt="White appliance panels on a powder coating line"></figure><span class="n">03</span><h3>Appliances &amp; refrigeration</h3><div class="chips"><span class="chip main">Hybrid</span><span class="chip">Polyester</span></div></a>
-      <a class="ind rv" href="#"><figure><img src="/assets/img/apps/enclosures-600.webp" srcset="/assets/img/apps/enclosures-600.webp 600w, /assets/img/apps/enclosures.webp 1200w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1200" height="900" loading="lazy" alt="Light grey outdoor electrical cabinets and storage enclosure"></figure><span class="n">04</span><h3>Electrical &amp; energy enclosures</h3><div class="chips"><span class="chip main">Hybrid</span><span class="chip main">Polyester</span><span class="chip">Epoxy</span></div></a>
-      <a class="ind rv" href="#"><figure><img src="/assets/img/apps/equipment-600.webp" srcset="/assets/img/apps/equipment-600.webp 600w, /assets/img/apps/equipment.webp 1150w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1150" height="862" loading="lazy" alt="Green powder-coated agricultural machine bodywork"></figure><span class="n">05</span><h3>Agricultural &amp; industrial equipment</h3><div class="chips"><span class="chip main">Polyester</span><span class="chip">Epoxy</span><span class="chip">Hybrid</span></div></a>
-      <a class="ind rv" href="#"><figure><img src="/assets/img/apps/wheels-600.webp" srcset="/assets/img/apps/wheels-600.webp 600w, /assets/img/apps/wheels.webp 1024w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1024" height="768" loading="lazy" alt="Gunmetal powder-coated alloy wheel"></figure><span class="n">06</span><h3>Automotive parts &amp; wheels</h3><div class="chips"><span class="chip main">Polyester</span><span class="chip">To specification</span></div></a>
-      <a class="ind rv" href="#"><figure><img src="/assets/img/apps/applicators-600.webp" srcset="/assets/img/apps/applicators-600.webp 600w, /assets/img/apps/applicators.webp 1024w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1024" height="768" loading="lazy" alt="Metal parts entering a powder spray booth"></figure><span class="n">07</span><h3>Coating applicators</h3><div class="chips"><span class="chip main">All three systems</span></div></a>
-      <a class="ind rv" href="#distributors"><figure><img src="/assets/img/apps/distributors-600.webp" srcset="/assets/img/apps/distributors-600.webp 600w, /assets/img/apps/distributors.webp 1024w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1024" height="768" loading="lazy" alt="Powder coating cartons on pallets in a distribution warehouse"></figure><span class="n">08</span><h3>Powder distributors</h3><div class="chips"><span class="chip main">Full range</span></div></a>
+      <a class="ind rv" href="/industries/architectural-aluminium/"><figure><img src="/assets/img/apps/aluminium-600.webp" srcset="/assets/img/apps/aluminium-600.webp 600w, /assets/img/apps/aluminium.webp 1024w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1024" height="768" loading="lazy" alt="Building facade with anthracite powder-coated aluminium fins"></figure><span class="n">01</span><h3>Architectural aluminium</h3><div class="chips"><span class="chip main">Polyester</span><span class="chip">Qualicoat</span></div></a>
+      <a class="ind rv" href="/industries/metal-furniture/"><figure><img src="/assets/img/apps/furniture-600.webp" srcset="/assets/img/apps/furniture-600.webp 600w, /assets/img/apps/furniture.webp 1200w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1200" height="900" loading="lazy" alt="Powder-coated steel office cabinets and shelving"></figure><span class="n">02</span><h3>Metal furniture &amp; shelving</h3><div class="chips"><span class="chip main">Hybrid</span><span class="chip">Epoxy</span><span class="chip">Polyester</span></div></a>
+      <a class="ind rv" href="/industries/appliances/"><figure><img src="/assets/img/apps/appliances-600.webp" srcset="/assets/img/apps/appliances-600.webp 600w, /assets/img/apps/appliances.webp 1200w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1200" height="900" loading="lazy" alt="White appliance panels on a powder coating line"></figure><span class="n">03</span><h3>Appliances &amp; refrigeration</h3><div class="chips"><span class="chip main">Hybrid</span><span class="chip">Polyester</span></div></a>
+      <a class="ind rv" href="/industries/electrical-enclosures/"><figure><img src="/assets/img/apps/enclosures-600.webp" srcset="/assets/img/apps/enclosures-600.webp 600w, /assets/img/apps/enclosures.webp 1200w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1200" height="900" loading="lazy" alt="Light grey outdoor electrical cabinets and storage enclosure"></figure><span class="n">04</span><h3>Electrical &amp; energy enclosures</h3><div class="chips"><span class="chip main">Hybrid</span><span class="chip main">Polyester</span><span class="chip">Epoxy</span></div></a>
+      <a class="ind rv" href="/industries/equipment/"><figure><img src="/assets/img/apps/equipment-600.webp" srcset="/assets/img/apps/equipment-600.webp 600w, /assets/img/apps/equipment.webp 1150w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1150" height="862" loading="lazy" alt="Green powder-coated agricultural machine bodywork"></figure><span class="n">05</span><h3>Agricultural &amp; industrial equipment</h3><div class="chips"><span class="chip main">Polyester</span><span class="chip">Epoxy</span><span class="chip">Hybrid</span></div></a>
+      <a class="ind rv" href="/industries/automotive-wheels/"><figure><img src="/assets/img/apps/wheels-600.webp" srcset="/assets/img/apps/wheels-600.webp 600w, /assets/img/apps/wheels.webp 1024w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1024" height="768" loading="lazy" alt="Gunmetal powder-coated alloy wheel"></figure><span class="n">06</span><h3>Automotive parts &amp; wheels</h3><div class="chips"><span class="chip main">Polyester</span><span class="chip">To specification</span></div></a>
+      <a class="ind rv" href="/industries/coating-applicators/"><figure><img src="/assets/img/apps/applicators-600.webp" srcset="/assets/img/apps/applicators-600.webp 600w, /assets/img/apps/applicators.webp 1024w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1024" height="768" loading="lazy" alt="Metal parts entering a powder spray booth"></figure><span class="n">07</span><h3>Coating applicators</h3><div class="chips"><span class="chip main">All three systems</span></div></a>
+      <a class="ind rv" href="/distributors/"><figure><img src="/assets/img/apps/distributors-600.webp" srcset="/assets/img/apps/distributors-600.webp 600w, /assets/img/apps/distributors.webp 1024w" sizes="(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw" width="1024" height="768" loading="lazy" alt="Powder coating cartons on pallets in a distribution warehouse"></figure><span class="n">08</span><h3>Powder distributors</h3><div class="chips"><span class="chip main">Full range</span></div></a>
     </div>
     <p class="ind-note">Recommendations are a starting point. Final suitability depends on your part, pretreatment, film thickness, cure, specification and a line trial.</p>
   </div>
@@ -373,7 +171,7 @@ footer a:hover{color:#fff}
         <li><span>03</span><div><b>Sample trials</b> · you bring the part, we match the colour</div></li>
         <li><span>04</span><div><b>Repeat orders</b> · non-exclusive to start, regional terms on results</div></li>
       </ol>
-      <a class="btn btn-light" href="#start">Become a distributor <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a class="btn btn-light" href="/distributors/#apply">Become a distributor <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
     </div>
   </div>
 </section>
@@ -386,46 +184,33 @@ footer a:hover{color:#fff}
     </div>
     <div class="certs">
       <article class="cert key rv"><small>Architectural coating approval</small><h3>Qualicoat Class 1</h3>
-        <dl><dt>Licence</dt><dd>P-2199</dd><dt>System</dt><dd>Polyester PLM100611 · gloss category 3</dd><dt>Valid</dt><dd>Until 31 Dec 2026</dd><dt>Scope</dt><dd>The approved polyester system only</dd></dl><a class="link" href="#">View certificate</a></article>
-      <article class="cert rv"><small>Quality management</small><h3>ISO 9001</h3><dl><dt>Type</dt><dd>Management system, not a product approval</dd></dl><a class="link" href="#">View certificate</a></article>
-      <article class="cert rv"><small>Environmental management</small><h3>ISO 14001</h3><dl><dt>Type</dt><dd>Management system, not a product approval</dd></dl><a class="link" href="#">View certificate</a></article>
+        <dl><dt>Licence</dt><dd>P-2199</dd><dt>System</dt><dd>Polyester PLM100611 · gloss category 3</dd><dt>Valid</dt><dd>Until 31 Dec 2026</dd><dt>Scope</dt><dd>The approved polyester system only</dd></dl><a class="link" href="/quality/">View details</a></article>
+      <article class="cert rv"><small>Quality management</small><h3>ISO 9001</h3><dl><dt>Type</dt><dd>Management system, not a product approval</dd></dl><a class="link" href="/quality/">View details</a></article>
+      <article class="cert rv"><small>Environmental management</small><h3>ISO 14001</h3><dl><dt>Type</dt><dd>Management system, not a product approval</dd></dl><a class="link" href="/quality/">View details</a></article>
     </div>
     <p class="labs rv"><b>In-house test conditions</b>Colour · gloss · film thickness · particle size · salt spray · UV ageing · hardness · impact · bend · adhesion <em>Internal evaluation, not third-party reports.</em></p>
   </div>
 </section>
 
-<section class="cta" id="start" aria-labelledby="cta-title">
+<section class="cta" aria-labelledby="cta-title">
   <img class="bg" src="/assets/img/home/cta-powder-960.webp" srcset="/assets/img/home/cta-powder-960.webp 960w, /assets/img/home/cta-powder.webp 1916w" sizes="100vw" width="1916" height="821" loading="lazy" alt="">
   <div class="wrap">
     <p class="eyebrow" style="color:#c9a795">Start a project</p>
     <h2 class="h2" id="cta-title">Send us your most-used colour <em>and your hardest one.</em></h2>
     <p>Tell us the part, environment, process and expected volume. We reply with a proposed system and a sample plan. Orders from 1,000 kg.</p>
-    <a class="btn btn-primary" href="#">Send project details <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+    <a class="btn btn-primary" href="/contact/">Send project details <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
   </div>
 </section>
 </main>
-
-<footer id="company"><div class="wrap">
+<footer><div class="wrap">
   <div><a class="logo" href="/"><b style="color:#fff">POLYMER</b><small>Powder coatings</small></a>
     <p class="slogan">You apply powder,<br>we apply care.</p>
-    <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian, China<br>Tel +86 596 2600611</p></div>
-  <div><h4>Products</h4><ul><li><a href="#">Polyester</a></li><li><a href="#">Hybrid</a></li><li><a href="#">Epoxy</a></li><li><a href="#">Colours &amp; finishes</a></li><li><a href="#">Low-cure grades</a></li></ul></div>
-  <div><h4>Industries</h4><ul><li><a href="#">Architectural aluminium</a></li><li><a href="#">Metal furniture</a></li><li><a href="#">Appliances</a></li><li><a href="#">Electrical enclosures</a></li><li><a href="#">Equipment</a></li><li><a href="#">Applicators</a></li><li><a href="#">Distributors</a></li></ul></div>
-  <div><h4>Company</h4><ul><li><a href="#">About POLYMER</a></li><li><a href="#">Quality &amp; certificates</a></li><li><a href="#">Downloads</a></li><li><a href="#">Contact</a></li><li><a href="#">Request a sample</a></li></ul></div>
-  <div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd.</span><span>Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
+    <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian, China<br><a href="tel:+865962600611">Tel +86 596 2600611</a></p></div>
+  <div><h4>Products</h4><ul><li><a href="/products/polyester/">Polyester</a></li><li><a href="/products/hybrid/">Hybrid</a></li><li><a href="/products/epoxy/">Epoxy</a></li><li><a href="/finishes/">Colours &amp; finishes</a></li><li><a href="/selector/">System selector</a></li></ul></div>
+  <div><h4>Industries</h4><ul><li><a href="/industries/architectural-aluminium/">Architectural aluminium</a></li><li><a href="/industries/metal-furniture/">Metal furniture &amp; shelving</a></li><li><a href="/industries/appliances/">Appliances &amp; refrigeration</a></li><li><a href="/industries/electrical-enclosures/">Electrical &amp; energy enclosures</a></li><li><a href="/industries/equipment/">Agricultural &amp; industrial equipment</a></li><li><a href="/industries/automotive-wheels/">Automotive parts &amp; wheels</a></li><li><a href="/industries/coating-applicators/">Coating applicators</a></li><li><a href="/distributors/">Distributors</a></li></ul></div>
+  <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
+  <div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd. · <a href="/privacy/">Privacy &amp; cookies</a></span><span>Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
 </div></footer>
-
-<script>
-(function(){
-  var d=document.documentElement; d.classList.add('js');
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els=[].slice.call(document.querySelectorAll('.rv'));
-  if(reduce||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -6% 0px'});
-  els.forEach(function(e){io.observe(e)});
-  // safety: never leave content hidden
-  setTimeout(function(){els.forEach(function(e){if(e.getBoundingClientRect().top<innerHeight)e.classList.add('in')})},1500);
-})();
-</script>
+<script src="/assets/js/polymer-v1.js" defer></script>
 </body>
 </html>

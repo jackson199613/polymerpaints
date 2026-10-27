@@ -1,0 +1,102 @@
+{
+"sys/polyester": [
+1536,
+1024,
+768
+],
+"sys/hybrid": [
+1536,
+1024,
+768
+],
+"sys/epoxy": [
+1536,
+1024,
+768
+],
+"ind/aluminium-a": [
+1024,
+683,
+600
+],
+"ind/aluminium-b": [
+1536,
+1024,
+768
+],
+"ind/furniture-a": [
+1024,
+683,
+600
+],
+"ind/furniture-b": [
+1536,
+1024,
+768
+],
+"ind/appliances-a": [
+1024,
+683,
+600
+],
+"ind/appliances-b": [
+1536,
+1024,
+768
+],
+"ind/enclosures-a": [
+1536,
+1024,
+768
+],
+"ind/enclosures-b": [
+1536,
+1024,
+768
+],
+"ind/equipment-a": [
+1536,
+1024,
+768
+],
+"ind/equipment-b": [
+1024,
+683,
+600
+],
+"ind/wheels-a": [
+1536,
+1024,
+768
+],
+"ind/wheels-b": [
+1536,
+1024,
+768
+],
+"ind/applicators-a": [
+1536,
+1024,
+768
+],
+"ind/applicators-b": [
+1536,
+1024,
+768
+],
+"ind/distributors-a": [
+1536,
+1024,
+768
+],
+"ind/distributors-b": [
+1536,
+1024,
+768
+],
+"home/sample-kit": [
+1536,
+1024,
+768
+]
+}
