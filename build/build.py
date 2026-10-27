@@ -8,7 +8,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v4.css'
+CSS = '/assets/css/polymer-v5.css'
 JS = '/assets/js/polymer-v2.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -39,7 +39,7 @@ def img(name, w, h, alt, sizes='100vw', small=None, lazy=True, cls=''):
             f'width="{w}" height="{h}"{" loading=lazy" if lazy else " fetchpriority=high"} alt="{E(alt)}">')
 
 
-def head(title, desc, path, ld=None, og='/assets/img/home/og.jpg'):
+def head(title, desc, path, ld=None, og='/assets/img/home/og.jpg', extra=''):
     lds = [ORG] + (ld or [])
     if path != '/':
         crumbs = [{"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/"}]
@@ -69,7 +69,7 @@ def head(title, desc, path, ld=None, og='/assets/img/home/og.jpg'):
 <link rel="preload" href="/assets/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{CSS}">
-{ldtxt}
+{extra}{ldtxt}
 </head>
 <body>'''
 
@@ -157,8 +157,8 @@ def phero(crumbs, h1, lead, figure='', facts=None, ctas=None):
 </section>'''
 
 
-def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.jpg', sitemap=True):
-    out = head(title, desc, path, ld, og) + header(active) + body + footer()
+def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.jpg', sitemap=True, extra_head='', pre=''):
+    out = head(title, desc, path, ld, og, extra_head) + pre + header(active) + body + footer()
     fp = os.path.join(ROOT, path.strip('/'), 'index.html') if path.endswith('/') else os.path.join(ROOT, path.strip('/'))
     os.makedirs(os.path.dirname(fp), exist_ok=True)
     open(fp, 'w').write(out)
@@ -196,9 +196,26 @@ def build_home():
     src = open(os.path.join(ROOT, 'build/home_main.html')).read()
     src = src.replace('{{PHOTOS}}', photos([('real/extruder', 'Twin-screw powder coating extruder with cooling belt', 'Melt extrusion'), ('real/bonding', 'Metallic bonding machine', 'Metallic bonding'),
                                              ('real/gloss', '60° gloss measurement on a green panel', '60° gloss check'), ('real/particle', 'Loading powder into the laser particle size analyser', 'Particle size')], 'c4'))
+    lp = json.load(open(os.path.join(ROOT, 'build/logo_paths.json')))
+    word = ''.join(f'<span style="transition-delay:{.06 * i:.2f}s">{c}</span>' for i, c in enumerate('POLYMER'))
+    lay = ''.join(f'<div class="pi-l pi-{k}" data-src="/assets/img/intro/{k}.webp" data-sm="/assets/img/intro/{k}-{sm}.webp"></div>' for k, sm in [('charge', 900), ('burst', 640), ('melt', 900), ('palette', 900), ('panels', 640)])
+    intro = f'''<div id="pi" data-s="0">
+<div aria-hidden="true">{lay}<canvas></canvas><div class="pi-fl"></div><div class="pi-sweep"></div><div class="pi-vig"></div><div class="pi-grain"></div><div class="pi-lb t"></div><div class="pi-lb b"></div>
+<div class="pi-brand"><img src="/assets/img/logo-mark-dark.svg" alt="">POLYMER<small>Powder coatings · Since 2019</small></div>
+<svg class="pi-mark" viewBox="{lp['vb']}"><path class="b" pathLength="1" fill-rule="evenodd" d="{lp['blue']}"/><path class="r" pathLength="1" fill-rule="evenodd" d="{lp['red']}"/></svg>
+<div class="pi-word"><b>{word}</b><em>You apply powder, <i>we apply care.</i></em><small>Epoxy · Polyester · Hybrid powder coatings · Zhangzhou, China</small></div>
+<div class="pi-cap"></div><div class="pi-bar"><i></i></div></div>
+<button class="pi-skipb" type="button">Skip intro</button>
+</div>
+'''
+    hs = ('<script>(function(){try{var r=document.documentElement,f=/[?&]intro=1\\b/.test(location.search),s=false,m=false;'
+          'try{s=sessionStorage.getItem("pl-intro")==="1"}catch(e){}try{m=matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){}'
+          'if(f||(!s&&!m))r.classList.add("pi-on")}catch(e){}})()</script>\n'
+          '<link rel="preload" as="image" href="/assets/img/intro/charge.webp" media="(min-width:760px)">\n'
+          '<script src="/assets/js/intro-v1.js" defer></script>\n')
     write('/', 'POLYMER Powder Coatings | Epoxy, Polyester & Hybrid Powder Coatings, China',
           'Fujian Polymer manufactures epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.',
-          src, ld=[{"@context": "https://schema.org", "@type": "WebSite", "name": "POLYMER Powder Coatings", "url": BASE + "/"}])
+          src, ld=[{"@context": "https://schema.org", "@type": "WebSite", "name": "POLYMER Powder Coatings", "url": BASE + "/"}], extra_head=hs, pre=intro)
 
 
 # ---------------------------------------------------------------- products
