@@ -8,7 +8,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v3.css'
+CSS = '/assets/css/polymer-v4.css'
 JS = '/assets/js/polymer-v2.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -134,7 +134,7 @@ def cta(title='Send us your most-used colour <em>and your hardest one.</em>', te
 <section class="cta" aria-label="Start a project">
   {img("home/cta-powder", 1916, 821, "", small=960).replace('<img ', '<img class="bg" ')}
   <div class="wrap">
-    <p class="eyebrow" style="color:#c9a795">Start a project</p>
+    <p class="eyebrow" style="color:#d9b0ab">Start a project</p>
     <h2 class="h2">{title}</h2>
     <p>{E(text)}</p>
     <div class="hero-ctas" style="margin-top:0"><a class="btn btn-primary" href="{btn[1]}">{btn[0]} {ARROW}</a><a class="btn btn-line" href="{btn2[1]}">{btn2[0]}</a></div>
@@ -245,7 +245,7 @@ def build_products():
             extra = '''<section class="sec tight dark"><div class="wrap split">
   <div class="rv"><p class="eyebrow">Architectural approval</p><h2 class="h3" style="margin-top:20px;color:#fff">Qualicoat Class 1, <em style="color:var(--accent-hi)">with its scope.</em></h2></div>
   <div class="rv"><dl class="kv" style="border-color:var(--night-line)">
-   <dt>Licence</dt><dd style="color:#e9e6e0">P-2199</dd><dt>System</dt><dd style="color:#e9e6e0">Polyester PLM100611, gloss category 3</dd><dt>Valid</dt><dd style="color:#e9e6e0">Until 31 December 2026</dd><dt>Scope</dt><dd style="color:#e9e6e0">The approved polyester system only. Not all products or colours; no structured-texture or metallic extension; not Class 2 or Class 3.</dd></dl>
+   <dt>Licence</dt><dd style="color:#e8eaec">P-2199</dd><dt>System</dt><dd style="color:#e8eaec">Polyester PLM100611, gloss category 3</dd><dt>Valid</dt><dd style="color:#e8eaec">Until 31 December 2026</dd><dt>Scope</dt><dd style="color:#e8eaec">The approved polyester system only. Not all products or colours; no structured-texture or metallic extension; not Class 2 or Class 3.</dd></dl>
    <p class="mt24"><a class="link" href="/quality/">Quality &amp; certificates</a></p></div></div></section>'''
         faqs = {'polyester': ['which-powder-system-outdoor-indoor', 'what-qualicoat-class-1-covers'],
                 'hybrid': ['can-hybrid-powder-be-used-outdoors', 'which-powder-system-outdoor-indoor'],
@@ -440,7 +440,7 @@ def build_distributors():
 </div></section>
 <section class="sec tight alt" id="apply"><div class="wrap form-grid">
   {form_distributor()}
-  <aside class="aside"><h3>What happens next</h3><p>We reply within one working day with the starter pack and a call to understand your end-user structure.</p><h3>Direct</h3><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:+865962600611">Tel {TEL}</a></li><li>{ADDR}</li></ul><h3>Useful</h3><ul><li><a href="/selector/#matrix">Industry × system table</a></li><li><a href="/faq/#distributor-cooperation-terms">Cooperation terms FAQ</a></li></ul></aside>
+  {std_aside([('Cooperation terms FAQ', '/faq/#distributor-cooperation-terms')])}
 </div></section>'''
     body += cta(title='Serve your whole market <em>from one supplier.</em>', text='Tell us your market, end-user mix and monthly volume. We propose a first range and a starter pack.', btn=('Apply as distributor', '#apply'), btn2=('Downloads', '/downloads/'))
     write('/distributors/', 'Powder Coating Distributors & Importers: Partner Programme | POLYMER',
@@ -449,57 +449,65 @@ def build_distributors():
 
 # ---------------------------------------------------------------- forms
 def consent():
-    return '<label class="consent"><input type="checkbox" name="consent" required> <span>I agree that POLYMER may use these details to answer my request, as described in the <a href="/privacy/">privacy notice</a>. <i style="color:var(--accent);font-style:normal">*</i></span></label>'
+    return '<label class="consent"><input type="checkbox" name="consent" required> <span>I agree that POLYMER may store and process the information above in order to respond to this enquiry, as described in the <a href="/privacy/">privacy notice</a>. <i>*</i></span></label>'
 
 
-def common_fields():
-    return '''<div class="row two"><div class="fld"><label for="f-name">Name <i>*</i></label><input id="f-name" name="name" autocomplete="name" required></div><div class="fld"><label for="f-co">Company <i>*</i></label><input id="f-co" name="company" autocomplete="organization" required></div></div>
-<div class="row two"><div class="fld"><label for="f-mail">Work email <i>*</i></label><input id="f-mail" type="email" name="email" autocomplete="email" required></div><div class="fld"><label for="f-country">Country / region <i>*</i></label><input id="f-country" name="country" autocomplete="country-name" required></div></div>
-<div class="row two"><div class="fld"><label for="f-role">Your role</label><select id="f-role" name="role"><option value="">Select</option><option>Purchasing</option><option>Owner / General manager</option><option>Sourcing</option><option>Production / coating line</option><option>Technical / QC</option><option>Distributor</option><option>Other</option></select></div><div class="fld"><label for="f-phone">Phone / WhatsApp</label><input id="f-phone" name="phone" autocomplete="tel"></div></div>'''
+ROLES = ['Purchasing / sourcing', 'Technical / QC', 'Production / coating line', 'Management / owner', 'Distributor / trader']
 
 
-def form_open(name):
-    return f'<form class="f" name="{name}" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="{name}"><p class="hp"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>'
+def std_form(name, btn, placeholder, hidden=(), summary=False):
+    """One form template for every form on the site (reference layout: vistamatt.com/contact)."""
+    hid = ''.join(f'<input type="hidden" name="{h}" data-prefill="{h}">' for h in hidden)
+    roles = ''.join(f'<option>{r}</option>' for r in ROLES)
+    return f'''<form class="f" name="{name}" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="{name}"><p class="hp"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>{hid}
+<div class="row two"><div class="fld"><label for="{name}-name">Name <i>*</i></label><input id="{name}-name" name="name" autocomplete="name" required></div><div class="fld"><label for="{name}-co">Company <i>*</i></label><input id="{name}-co" name="company" autocomplete="organization" required></div></div>
+<div class="row two"><div class="fld"><label for="{name}-mail">Work email <i>*</i></label><input id="{name}-mail" type="email" name="email" autocomplete="email" required></div><div class="fld"><label for="{name}-country">Country / region <i>*</i></label><input id="{name}-country" name="country" autocomplete="country-name" required></div></div>
+<div class="row two"><div class="fld"><label for="{name}-role">Your role</label><select id="{name}-role" name="role"><option value="">Select</option>{roles}</select></div></div>
+<div class="row"><div class="fld"><label for="{name}-need">What do you need <i>*</i></label><textarea id="{name}-need" name="message" required{" data-prefill-summary" if summary else ""} placeholder="{E(placeholder)}"></textarea></div></div>
+{consent()}
+<div class="submit"><button class="btn btn-primary" type="submit">{btn}</button></div>
+<p class="form-note">Fields marked * are required. We use these details only to respond to your enquiry and do not share them with third parties.</p></form>'''
 
 
-def form_close(btn):
-    return f'{consent()}<button class="btn btn-primary" type="submit">{btn} {ARROW}</button><p class="form-note">* Required. We use your details only to answer this request and do not share them for marketing.</p></form>'
+def std_aside(extra=()):
+    links = [('System selector', '/selector/'), ('Colours &amp; finishes', '/finishes/'), ('Technical FAQ', '/faq/'), ('Quality &amp; certificates', '/quality/')] + list(extra)
+    li = ''.join(f'<li><a href="{u}">{t}</a></li>' for t, u in links)
+    return f'''<aside class="aside">
+ <div class="grp"><h3>Direct contact</h3><dl><dt>Email</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd><dt>Phone</dt><dd><a href="tel:+865962600611">{TEL}</a></dd><dt>Response time</dt><dd>Within one working day, Monday to Saturday (UTC+8).</dd></dl></div>
+ <div class="grp"><h3>Regional coverage</h3><dl class="reg"><dd><b>Russia &amp; Europe</b> · Russia, Latvia, Turkey</dd><dd><b>Latin America</b> · Mexico, Colombia, Peru, Brazil, Chile</dd><dd><b>Middle East &amp; Africa</b> · Saudi Arabia, UAE, Oman, Kenya, Nigeria</dd><dd><b>South &amp; Southeast Asia</b> · Sri Lanka, Vietnam, Thailand, Malaysia, Indonesia</dd></dl><p>All enquiries are handled by our team in Zhangzhou, China. Tell us the destination early and we prepare export documents, packing and freight together with the samples.</p></div>
+ <div class="grp"><h3>Useful before you write</h3><ul>{li}</ul></div>
+</aside>'''
+
+
+WHY = '''<section class="sec tight alt"><div class="wrap">
+ <div class="head rv"><div><p class="eyebrow">Before samples ship</p><h2 class="h2">What we ask for, <em>and why.</em></h2></div><p class="lead">A described part gets a matched panel and a system recommendation. A bare colour code gets a guess.</p></div>
+ <div class="cards c4">
+ <div class="card rv"><small>Part</small><h3 style="font-size:24px">What it is</h3><p>Use, substrate, size and a photo or sample. This decides the system.</p></div>
+ <div class="card rv"><small>Environment</small><h3 style="font-size:24px">Where it lives</h3><p>Indoor or outdoor, humidity, coastal, chemicals, temperature.</p></div>
+ <div class="card rv"><small>Appearance</small><h3 style="font-size:24px">How it looks</h3><p>Colour code or sample, gloss, texture or metallic target.</p></div>
+ <div class="card rv"><small>Process</small><h3 style="font-size:24px">How you coat</h3><p>Pretreatment, film thickness, spray equipment and actual cure. Usually the most useful line.</p></div></div>
+</div></section>'''
 
 
 def form_distributor():
-    return (form_open('distributor') + common_fields() +
-            '''<div class="row two"><div class="fld"><label for="f-mk">Market / territory <i>*</i></label><input id="f-mk" name="market" required></div><div class="fld"><label for="f-vol">Monthly powder volume</label><select id="f-vol" name="volume"><option value="">Select</option><option>1–5 t</option><option>5–20 t</option><option>20–50 t</option><option>50 t +</option></select></div></div>
-<div class="row"><div class="fld"><label for="f-need">Your business <i>*</i></label><textarea id="f-need" name="message" required placeholder="End users you serve (applicators, aluminium, furniture, cabinets, appliances), current suppliers, warehousing and technical sales"></textarea></div></div>''' + form_close('Apply as distributor'))
+    return std_form('distributor', 'Apply as distributor', 'Your market and territory, the end users you serve (applicators, aluminium, furniture, cabinets, appliances), current suppliers, monthly powder volume and warehousing.')
 
 
 def build_forms():
-    why = '''<div class="why"><p class="eyebrow">What we ask for, and why</p><div class="cards c4">
- <div class="card"><small>Part</small><h3 style="font-size:24px">What it is</h3><p>Use, substrate, size and a photo or sample. It decides the system.</p></div>
- <div class="card"><small>Environment</small><h3 style="font-size:24px">Where it lives</h3><p>Indoor or outdoor, humidity, coastal, chemicals, temperature.</p></div>
- <div class="card"><small>Appearance</small><h3 style="font-size:24px">How it looks</h3><p>Colour code or sample, gloss, texture or metallic target.</p></div>
- <div class="card"><small>Process</small><h3 style="font-size:24px">How you coat</h3><p>Pretreatment, film thickness, spray equipment and actual cure.</p></div></div></div>'''
-    sys_opts = ''.join(f'<option>{s["name"]}</option>' for s in SYS.values())
-    fin_opts = ''.join(f'<option>{n}</option>' for _, n, _ in FINISHES)
-    ind_opts = ''.join(f'<option>{E(i["short"])}</option>' for i in IND) + '<option>Powder distributor</option><option>Other</option>'
-    sample = (form_open('sample') + common_fields() +
-              f'''<div class="row two"><div class="fld"><label for="f-ind">Industry</label><select id="f-ind" name="industry" data-prefill="industry"><option value="">Select</option>{ind_opts}</select></div><div class="fld"><label for="f-sys">System of interest</label><select id="f-sys" name="system" data-prefill="system"><option value="">Not sure</option>{sys_opts}</select></div></div>
-<div class="row two"><div class="fld"><label for="f-fin">Finish</label><select id="f-fin" name="finish" data-prefill="finish"><option value="">Select</option>{fin_opts}</select></div><div class="fld"><label for="f-col">Colour reference</label><input id="f-col" name="colour" placeholder="e.g. RAL 7016, or physical sample to follow"></div></div>
-<div class="row"><div class="fld"><label for="f-need">What do you need? <i>*</i></label><textarea id="f-need" name="message" required data-prefill-summary placeholder="Part and substrate, indoor or outdoor, gloss, pretreatment, film thickness, cure, current product and expected volume (from 1,000 kg)"></textarea></div></div>
-<div class="row"><div class="fld"><label for="f-ship">Shipping address for samples <i>*</i></label><textarea id="f-ship" name="address" required style="min-height:90px" autocomplete="street-address"></textarea></div></div>''' + form_close('Request samples'))
-    aside = f'''<aside class="aside"><h3>Direct contact</h3><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:+865962600611">Tel {TEL}</a></li><li>Replies within one working day, Mon–Sat (UTC+8)</li></ul><h3>Company</h3><p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>{ADDR}</p><h3>Useful</h3><ul><li><a href="/selector/">System selector</a></li><li><a href="/how-to/prepare-colour-matching-request/">Prepare a colour-matching request</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/faq/">Technical FAQ</a></li></ul></aside>'''
+    aside = std_aside()
+    sample = std_form('sample', 'Request samples', 'Tell us the part and substrate, indoor or outdoor use, target colour (RAL or sample) and finish, pretreatment, cure, your current powder and expected volume (orders from 1,000 kg). Please add the shipping address for the samples.',
+                      hidden=('industry', 'system', 'finish', 'gloss', 'cure', 'topic'), summary=True)
     fig = f'<figure>{img("home/sample-kit", 1536, 1024, "Sample box with three powder-coated panels and powder sachets", "(min-width:980px) 45vw, 100vw", 768, lazy=False)}</figure>'
     body = phero([('Request a sample', None)], 'Panels in your colour, <em>before you commit.</em>',
-                 'Tell us the part, environment and target appearance. We propose a system, match the colour and send panels or powder for a trial on your line.', figure=fig,
+                 'The more you tell us about the part, the more useful the first panels will be. We propose a system, match the colour and send panels or powder for a trial on your line.', figure=fig,
                  facts=['Matched to your colour', 'Approved version recorded', 'Orders from 1,000 kg'])
-    body += f'<section class="sec tight"><div class="wrap"><div class="form-grid">{sample}{aside}</div>{why}</div></section>'
+    body += f'<section class="sec tight"><div class="wrap"><div class="form-grid">{sample}{aside}</div></div></section>' + WHY
     write('/request-sample/', 'Request a Powder Coating Sample | POLYMER', 'Request powder coating panels or powder in your colour and finish for evaluation and line trials.', body)
 
-    contact = (form_open('contact') + common_fields() +
-               '''<div class="row"><div class="fld"><label for="f-topic">Topic</label><select id="f-topic" name="topic" data-prefill="topic"><option value="">Select</option><option value="project">New project / quotation</option><option value="colour">Colour matching</option><option value="documents">Documents (TDS, SDS, certificates)</option><option value="distributor">Distributor cooperation</option><option value="other">Other</option></select></div></div>
-<div class="row"><div class="fld"><label for="f-need">What do you need? <i>*</i></label><textarea id="f-need" name="message" required placeholder="Part and substrate, environment, colour and finish, process, current product and expected volume"></textarea></div></div>''' + form_close('Send message'))
-    body = phero([('Contact', None)], 'Talk to <em>our team.</em>', 'For projects, colour matching, documents or distributor cooperation. We reply within one working day.',
+    contact = std_form('contact', 'Send enquiry', 'If you tell us the part, where it is used, the colour and finish you need and the powder you use now, we can recommend the right system and match your product faster.', hidden=('topic',))
+    body = phero([('Contact', None)], 'Start a project <em>with our team.</em>', 'For projects, colour matching, documents or distributor cooperation. A described problem gets a sample plan; a bare colour code gets a guess.',
                  facts=[EMAIL, 'Tel ' + TEL, 'Zhangzhou, Fujian, China'])
-    body += f'<section class="sec tight"><div class="wrap"><div class="form-grid">{contact}{aside}</div>{why}</div></section>'
+    body += f'<section class="sec tight"><div class="wrap"><div class="form-grid">{contact}{aside}</div></div></section>' + WHY
     write('/contact/', 'Contact POLYMER Powder Coatings', 'Contact Fujian Polymer about powder coating projects, colour matching, documents or distributor cooperation.', body, 'contact')
 
     body = phero([('Thank you', None)], 'Thank you, <em>we have it.</em>', 'We reply within one working day. If your request is urgent, email ' + EMAIL + ' or call ' + TEL + '.',
@@ -508,9 +516,8 @@ def build_forms():
 
     docs = [('Product catalogue', 'Three systems, cure grades, gloss bands and effects'), ('Technical data sheets (TDS)', 'Per product: properties, cure conditions, storage'), ('Safety data sheets (SDS)', 'Per product: safe handling and transport'),
             ('Qualicoat Class 1 certificate', 'Polyester system PLM100611, P-2199, valid until 31 Dec 2026'), ('ISO 9001:2015 certificate', 'No. 05326Q01777R001, valid until 11 Oct 2029'), ('ISO 14001:2015 certificate', 'No. 05326E01349R001, valid until 11 Oct 2029'), ('SGS EU RoHS report', 'XMNEC26001081101, black powder sample, (EU) 2015/863'), ('Colour cards and panels', 'Physical samples for evaluation')]
-    checks = ''.join(f'<label><input type="checkbox" name="documents" value="{E(n)}"> {E(n)}</label>' for n, _ in docs)
     cards = ''.join(f'<div class="card rv"><small>On request</small><h3 style="font-size:24px">{E(n)}</h3><p>{E(d)}</p></div>' for n, d in docs)
-    dform = (form_open('documents') + common_fields() + f'<div class="row"><div class="fld"><label>Documents needed <i>*</i></label><div class="checks">{checks}</div></div></div><div class="row"><div class="fld"><label for="f-need">Products or project</label><textarea id="f-need" name="message" style="min-height:90px" placeholder="Which products or applications the documents are for"></textarea></div></div>' + form_close('Request documents'))
+    dform = std_form('documents', 'Request documents', 'Which documents you need (catalogue, TDS, SDS, Qualicoat, ISO or the SGS report) and for which products, colours or project.')
     body = phero([('Resources', '/faq/'), ('Downloads', None)], 'Documents for <em>your approval file.</em>', 'Catalogue, TDS, SDS and certificates are sent by email on request, so each file matches the product you are evaluating and the latest version.',
                  figure=f'<figure>{img("ind/distributors-b", 1536, 1024, "Colour panels, colour card and powder sample", "(min-width:980px) 45vw, 100vw", 768, lazy=False)}</figure>', facts=['TDS', 'SDS', 'Certificates', 'Catalogue'])
     body += f'<section class="sec tight"><div class="wrap"><div class="cards c4">{cards}</div></div></section><section class="sec tight alt"><div class="wrap form-grid">{dform}{aside}</div></section>'

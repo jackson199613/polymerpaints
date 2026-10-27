@@ -1,8 +1,8 @@
 
 :root{
-  --ink:#141618; --ink-2:#3d4146; --muted:#6e7278; --line:#dedad3; --line-2:#cbc6bd;
-  --paper:#f4f2ee; --paper-2:#eae6df; --white:#fff;
-  --night:#121416; --night-2:#191c1f; --night-line:#2b3034; --night-text:#ebe8e2; --night-muted:#9a9fa5;
+  --ink:#141618; --ink-2:#3d4146; --muted:#6e7278; --line:#dcdfe1; --line-2:#c6cacd;
+  --paper:#f2f3f3; --paper-2:#e7e9ea; --white:#fff;
+  --night:#121416; --night-2:#191c1f; --night-line:#2b3034; --night-text:#eceef0; --night-muted:#9a9fa5;
   --accent:#c8231a; --accent-hi:#f0584d; --brand-blue:#125894; --brand-blue-hi:#3d8bd6; /* from the POLYMER logo */
   --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
   --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -18,7 +18,7 @@ a{color:inherit;text-decoration:none}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 :focus-visible{outline:2px solid var(--accent-hi);outline-offset:3px}
 .wrap{max-width:var(--w);margin:0 auto;padding:0 var(--g)}
-.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
 .eyebrow::before{content:"";width:28px;height:1px;background:currentColor;opacity:.55}
 .dark .eyebrow{color:var(--night-muted)}
 .h2{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.6vw,76px);line-height:1;letter-spacing:-.012em}
@@ -57,7 +57,7 @@ header.site .wrap{display:flex;align-items:center;justify-content:space-between;
 .logo{display:flex;align-items:center;gap:10px;white-space:nowrap}
 .logo img{width:30px;height:35px;flex:none}
 .logo b{font-weight:700;font-size:19px;letter-spacing:.24em}
-.logo small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--night-muted);text-transform:uppercase}
+.logo small{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--night-muted);text-transform:uppercase}
 nav.main{display:none;gap:32px;font-size:14.5px;font-weight:500}
 nav.main a{opacity:.8;transition:opacity .2s}
 nav.main a:hover{opacity:1}
@@ -81,7 +81,7 @@ nav.main a:hover{opacity:1}
 @media(min-width:980px){.hero-img{min-height:0}.hero-img img{position:absolute;inset:0}}
 .hero-img::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,var(--night) 0,rgba(18,20,22,0) 22%);pointer-events:none}
 @media(max-width:979px){.hero-img::before{background:linear-gradient(180deg,var(--night) 0,rgba(18,20,22,0) 18%)}}
-.hero-img figcaption{position:absolute;z-index:2;right:20px;bottom:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero-img figcaption{position:absolute;z-index:2;right:20px;bottom:18px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
 .proof{border-top:1px solid var(--night-line);background:var(--night)}
 .proof .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(min-width:760px){.proof .wrap{grid-template-columns:repeat(5,minmax(0,1fr))}}
@@ -113,7 +113,7 @@ nav.main a:hover{opacity:1}
 .tile img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .tile:hover img{transform:scale(1.06)}
 .tile h3{font-weight:600;font-size:15px;margin-top:14px;color:#fff}
-.tile p{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--night-muted);margin-top:4px;text-transform:uppercase}
+.tile p{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--night-muted);margin-top:4px;text-transform:uppercase}
 .gloss{display:grid;gap:36px;margin-top:96px;align-items:center}
 @media(min-width:980px){.gloss{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:72px}}
 .gloss img{border-radius:2px;width:100%}
@@ -127,13 +127,13 @@ nav.main a:hover{opacity:1}
 @media(min-width:900px){.sys{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .sys article{padding:40px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column}
 @media(min-width:900px){.sys article{padding:48px 40px 48px 0;border-bottom:0}.sys article+article{padding-left:40px;border-left:1px solid var(--line)}}
-.sys small{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.sys small{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .sys h3{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4vw,56px);line-height:1;margin:18px 0 18px}
 .sys p{color:var(--ink-2);font-size:15.5px}
 .sys .parts{margin:22px 0 28px;font-size:14px;color:var(--muted)}
-.sys .parts b{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
+.sys .parts b{display:block;font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-bottom:6px}
 .sys .link{margin-top:auto}
-.badge{display:inline-block;margin-left:10px;vertical-align:middle;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--accent);color:var(--accent);border-radius:999px}
+.badge{display:inline-block;margin-left:10px;vertical-align:middle;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--accent);color:var(--accent);border-radius:999px}
 .sys-note{margin-top:28px;font-size:13px;color:var(--muted)}
 
 /* industries */
@@ -143,10 +143,10 @@ nav.main a:hover{opacity:1}
 .ind figure{aspect-ratio:4/3;overflow:hidden;border-radius:2px;background:var(--paper-2)}
 .ind img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .ind:hover img{transform:scale(1.05)}
-.ind .n{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:18px}
+.ind .n{display:block;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:18px}
 .ind h3{font-family:var(--serif);font-weight:400;font-size:27px;line-height:1.08;margin-top:6px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);white-space:nowrap}
+.chip{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2);white-space:nowrap}
 .chip.main{background:var(--ink);border-color:var(--ink);color:#fff}
 .ind-note{margin-top:48px;font-size:13px;color:var(--muted);max-width:760px}
 
@@ -155,7 +155,7 @@ nav.main a:hover{opacity:1}
 @media(min-width:980px){.promise{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:96px}}
 .promise figure{position:relative;border-radius:2px;overflow:hidden;aspect-ratio:4/5;background:#16181a}
 .promise figure img{width:100%;height:100%;object-fit:cover}
-.promise figcaption{position:absolute;left:20px;bottom:18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.promise figcaption{position:absolute;left:20px;bottom:18px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65)}
 .vers{margin-top:40px;border-top:1px solid var(--line)}
 .vers li{list-style:none;display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
 .vers span{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:3px}
@@ -177,10 +177,10 @@ nav.main a:hover{opacity:1}
 .certs{display:grid;gap:14px}
 @media(min-width:900px){.certs{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr)}}
 .cert{border:1px solid var(--line);border-radius:3px;padding:30px;background:var(--white);display:flex;flex-direction:column}
-.cert small{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cert small{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 .cert h3{font-family:var(--serif);font-weight:400;font-size:36px;line-height:1.05;margin:12px 0 20px}
 .cert dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px 18px;font-size:14px;margin-bottom:24px}
-.cert dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.cert dt{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
 .cert .link{margin-top:auto}
 .cert.key{background:var(--ink);border-color:var(--ink);color:#fff}
 .cert.key small,.cert.key dt{color:#9ca1a7}
@@ -203,7 +203,7 @@ nav.main a:hover{opacity:1}
 footer{background:#0b0c0e;color:var(--night-muted);font-size:14px}
 footer .wrap{display:grid;gap:40px;padding-top:80px;padding-bottom:40px}
 @media(min-width:900px){footer .wrap{grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr))}}
-footer h4{font-family:var(--mono);font-weight:500;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin-bottom:18px}
+footer h4{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:18px}
 footer li{list-style:none;margin-bottom:10px}
 footer a:hover{color:#fff}
 .slogan{font-family:var(--serif);font-size:30px;line-height:1.1;color:#fff;margin:22px 0 20px}
