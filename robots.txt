@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+# Preview build. Remove this block before launch.
