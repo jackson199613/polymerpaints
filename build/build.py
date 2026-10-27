@@ -7,9 +7,10 @@ IMG2 = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v1.css'
+CSS = '/assets/css/polymer-v2.css'
 JS = '/assets/js/polymer-v1.js'
 TEL = '+86 596 2600611'
+EMAIL = 'sales@polymerpaints.com'
 ADDR = 'No. 2 Zhuli Road, Xiangcheng District, Zhangzhou, Fujian, China'
 E = html.escape
 GEO = json.load(open(os.path.join(ROOT, 'build/content_geo.json')))
@@ -19,7 +20,7 @@ INDMAP = {i['slug']: i for i in IND}
 
 ORG = {"@context": "https://schema.org", "@type": "Organization", "@id": BASE + "/#org",
        "name": "POLYMER", "legalName": "Fujian Polymer Industry & Trade Co., Ltd.", "alternateName": "玻利玛",
-       "url": BASE + "/", "foundingDate": "2019", "telephone": TEL,
+       "url": BASE + "/", "foundingDate": "2019", "telephone": TEL, "email": EMAIL,
        "slogan": "You apply powder, we apply care.",
        "address": {"@type": "PostalAddress", "streetAddress": "No. 2 Zhuli Road, Xiangcheng District", "addressLocality": "Zhangzhou", "addressRegion": "Fujian", "addressCountry": "CN"},
        "description": "Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system.",
@@ -82,7 +83,7 @@ def header(active=''):
 <a class="hp" href="#main">Skip to content</a>
 <div class="topbar"><div class="wrap">
   <div class="l"><span>Qualicoat Class 1 polyester system</span><span>ISO 9001</span><span>ISO 14001</span></div>
-  <div class="r"><span>MOQ 1,000 kg</span><span>Lead time within 10 days</span><span><a href="tel:+865962600611">{TEL}</a></span></div>
+  <div class="r"><span>MOQ 1,000 kg</span><span>Lead time within 10 days</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span><a href="tel:+865962600611">{TEL}</a></span></div>
 </div></div>
 <header class="site"><div class="wrap">
   <a class="logo" href="/" aria-label="POLYMER home"><b>POLYMER</b><small>Powder coatings</small></a>
@@ -114,7 +115,7 @@ def footer():
 <footer><div class="wrap">
   <div><a class="logo" href="/"><b style="color:#fff">POLYMER</b><small>Powder coatings</small></a>
     <p class="slogan">You apply powder,<br>we apply care.</p>
-    <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian, China<br><a href="tel:+865962600611">Tel {TEL}</a></p></div>
+    <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian, China<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:+865962600611">Tel {TEL}</a></p></div>
   <div><h4>Products</h4><ul><li><a href="/products/polyester/">Polyester</a></li><li><a href="/products/hybrid/">Hybrid</a></li><li><a href="/products/epoxy/">Epoxy</a></li><li><a href="/finishes/">Colours &amp; finishes</a></li><li><a href="/selector/">System selector</a></li></ul></div>
   <div><h4>Industries</h4><ul>{inds}<li><a href="/distributors/">Distributors</a></li></ul></div>
   <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
@@ -423,7 +424,7 @@ def build_distributors():
 </div></section>
 <section class="sec tight alt" id="apply"><div class="wrap form-grid">
   {form_distributor()}
-  <aside class="aside"><h3>What happens next</h3><p>We reply within one working day with the starter pack and a call to understand your end-user structure.</p><h3>Direct</h3><ul><li><a href="tel:+865962600611">Tel {TEL}</a></li><li>{ADDR}</li></ul><h3>Useful</h3><ul><li><a href="/selector/#matrix">Industry × system table</a></li><li><a href="/faq/#distributor-cooperation-terms">Cooperation terms FAQ</a></li></ul></aside>
+  <aside class="aside"><h3>What happens next</h3><p>We reply within one working day with the starter pack and a call to understand your end-user structure.</p><h3>Direct</h3><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:+865962600611">Tel {TEL}</a></li><li>{ADDR}</li></ul><h3>Useful</h3><ul><li><a href="/selector/#matrix">Industry × system table</a></li><li><a href="/faq/#distributor-cooperation-terms">Cooperation terms FAQ</a></li></ul></aside>
 </div></section>'''
     body += cta(title='Serve your whole market <em>from one supplier.</em>', text='Tell us your market, end-user mix and monthly volume. We propose a first range and a starter pack.', btn=('Apply as distributor', '#apply'), btn2=('Downloads', '/downloads/'))
     write('/distributors/', 'Powder Coating Distributors & Importers: Partner Programme | POLYMER',
@@ -469,7 +470,7 @@ def build_forms():
 <div class="row two"><div class="fld"><label for="f-fin">Finish</label><select id="f-fin" name="finish" data-prefill="finish"><option value="">Select</option>{fin_opts}</select></div><div class="fld"><label for="f-col">Colour reference</label><input id="f-col" name="colour" placeholder="e.g. RAL 7016, or physical sample to follow"></div></div>
 <div class="row"><div class="fld"><label for="f-need">What do you need? <i>*</i></label><textarea id="f-need" name="message" required data-prefill-summary placeholder="Part and substrate, indoor or outdoor, gloss, pretreatment, film thickness, cure, current product and expected volume (from 1,000 kg)"></textarea></div></div>
 <div class="row"><div class="fld"><label for="f-ship">Shipping address for samples <i>*</i></label><textarea id="f-ship" name="address" required style="min-height:90px" autocomplete="street-address"></textarea></div></div>''' + form_close('Request samples'))
-    aside = f'''<aside class="aside"><h3>Direct contact</h3><ul><li><a href="tel:+865962600611">Tel {TEL}</a></li><li>Replies within one working day, Mon–Sat (UTC+8)</li></ul><h3>Company</h3><p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>{ADDR}</p><h3>Useful</h3><ul><li><a href="/selector/">System selector</a></li><li><a href="/how-to/prepare-colour-matching-request/">Prepare a colour-matching request</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/faq/">Technical FAQ</a></li></ul></aside>'''
+    aside = f'''<aside class="aside"><h3>Direct contact</h3><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:+865962600611">Tel {TEL}</a></li><li>Replies within one working day, Mon–Sat (UTC+8)</li></ul><h3>Company</h3><p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>{ADDR}</p><h3>Useful</h3><ul><li><a href="/selector/">System selector</a></li><li><a href="/how-to/prepare-colour-matching-request/">Prepare a colour-matching request</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/faq/">Technical FAQ</a></li></ul></aside>'''
     fig = f'<figure>{img("home/sample-kit", 1536, 1024, "Sample box with three powder-coated panels and powder sachets", "(min-width:980px) 45vw, 100vw", 768, lazy=False)}</figure>'
     body = phero([('Request a sample', None)], 'Panels in your colour, <em>before you commit.</em>',
                  'Tell us the part, environment and target appearance. We propose a system, match the colour and send panels or powder for a trial on your line.', figure=fig,
@@ -481,11 +482,11 @@ def build_forms():
                '''<div class="row"><div class="fld"><label for="f-topic">Topic</label><select id="f-topic" name="topic" data-prefill="topic"><option value="">Select</option><option value="project">New project / quotation</option><option value="colour">Colour matching</option><option value="documents">Documents (TDS, SDS, certificates)</option><option value="distributor">Distributor cooperation</option><option value="other">Other</option></select></div></div>
 <div class="row"><div class="fld"><label for="f-need">What do you need? <i>*</i></label><textarea id="f-need" name="message" required placeholder="Part and substrate, environment, colour and finish, process, current product and expected volume"></textarea></div></div>''' + form_close('Send message'))
     body = phero([('Contact', None)], 'Talk to <em>our team.</em>', 'For projects, colour matching, documents or distributor cooperation. We reply within one working day.',
-                 facts=['Tel ' + TEL, 'Zhangzhou, Fujian, China'])
+                 facts=[EMAIL, 'Tel ' + TEL, 'Zhangzhou, Fujian, China'])
     body += f'<section class="sec tight"><div class="wrap"><div class="form-grid">{contact}{aside}</div>{why}</div></section>'
     write('/contact/', 'Contact POLYMER Powder Coatings', 'Contact Fujian Polymer about powder coating projects, colour matching, documents or distributor cooperation.', body, 'contact')
 
-    body = phero([('Thank you', None)], 'Thank you, <em>we have it.</em>', 'We reply within one working day. If your request is urgent, call us on ' + TEL + '.',
+    body = phero([('Thank you', None)], 'Thank you, <em>we have it.</em>', 'We reply within one working day. If your request is urgent, email ' + EMAIL + ' or call ' + TEL + '.',
                  ctas=[('Back to home', '/', 'btn-primary'), ('Read the technical FAQ', '/faq/', 'btn-line')])
     write('/thanks/', 'Thank you | POLYMER', 'Your message has been received.', body, sitemap=False)
 
@@ -611,7 +612,7 @@ def build_legal():
 <h2>Why we use it</h2><ul><li>To answer your request, prepare samples, documents or quotations, and follow up on your project (steps taken at your request before a contract, and our legitimate interest in responding to business enquiries).</li><li>To keep records of business correspondence as required by law.</li></ul><p>We do not sell your data or use it for third-party marketing.</p>
 <h2>Who processes it</h2><p>The website is hosted by Netlify, Inc., which also receives form submissions on our behalf. Data may therefore be processed outside your country, including in the United States and China, with appropriate safeguards where required.</p>
 <h2>How long we keep it</h2><p>Enquiries that do not lead to business are deleted within 24 months. Records linked to orders are kept as long as accounting and legal rules require.</p>
-<h2>Your rights</h2><p>Depending on where you live, including under the EU and UK GDPR, you may ask to access, correct or delete your data, object to or restrict its use, or receive a copy. You may also complain to your data protection authority. To exercise a right, use the <a class="link" href="/contact/">contact form</a> or call {TEL}.</p>
+<h2>Your rights</h2><p>Depending on where you live, including under the EU and UK GDPR, you may ask to access, correct or delete your data, object to or restrict its use, or receive a copy. You may also complain to your data protection authority. To exercise a right, email <a class="link" href="mailto:{EMAIL}">{EMAIL}</a>, use the <a class="link" href="/contact/">contact form</a> or call {TEL}.</p>
 <h2>Cookies</h2><p>This website does not use advertising or analytics cookies and does not track you across sites. Fonts and images are served from our own site. If we add analytics in the future, we will update this notice and ask for consent where the law requires it.</p>
 <h2>Changes</h2><p>We may update this notice; the date above shows the latest version.</p>
 <p class="tbl-note">This notice is provided for transparency and should be reviewed by legal counsel for your target markets.</p>
@@ -632,7 +633,7 @@ def build_meta():
 - Colours and finishes: RAL and customer colours; high gloss ≥90, satin/matt 11–80, dead matt ≤10; smooth, sand, wrinkle, vein, fine texture, hammer tone, pattern, bonded metallic, transparent/translucent, fluorescent.
 - Testing: in-house colour, gloss, film thickness, particle size, salt spray, UV accelerated ageing, hardness, impact, bend, adhesion (internal, not third-party reports).
 - Not offered: Qualicoat Class 2/3, UL or flame-retardant coatings, IATF 16949, FBE/3PE pipeline or heavy-duty anticorrosion systems, orders below 1,000 kg, low-end powder.
-- Contact: Tel +86 596 2600611; https://polymerpaints.com/contact/"""
+- Contact: sales@polymerpaints.com; Tel +86 596 2600611; https://polymerpaints.com/contact/"""
     pages = '\n'.join(f'- [{t}]({BASE}{p})' for p, t in PAGES)
     open(os.path.join(ROOT, 'llms.txt'), 'w').write(f"# POLYMER Powder Coatings\n\n> Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.\n\n## Key facts\n{facts}\n\n## Pages\n{pages}\n")
     full = f"# POLYMER Powder Coatings — full facts\n\n{facts}\n\n## Industry × system\n" + '\n'.join(f"- {i['name']}: main {', '.join(SYS[m]['name'] for m in i['main'])}" + (f"; option {', '.join(SYS[o]['name'] for o in i['opt'])}" if i['opt'] else '') + f". {i['oneliner']}" for i in IND) + "\n- Powder distributors: full range of all three systems plus effects.\n\n## FAQ\n"

@@ -203,3 +203,8 @@ nav.main .dd>a::after{margin-left:6px}
 @media(min-width:1060px) and (max-width:1279px){nav.main{gap:18px;font-size:13.5px}.topbar .l span:nth-child(n+2){display:none}header.site .logo small{display:none}}
 .crumbs span+a::before{content:"/";margin-right:8px;opacity:.5}
 fieldset.q{border:0;padding:0;margin:0 0 28px;min-width:0}
+
+/* email in top bar keeps its case; tighten top bar on mid widths */
+.topbar a[href^="mailto"]{text-transform:none;letter-spacing:.04em}
+@media(min-width:900px) and (max-width:1279px){.topbar .l span:nth-child(n+2){display:none}.topbar .r span:first-child{display:none}}
+@media(min-width:900px) and (max-width:1279px){.topbar .r span:nth-child(2)::before{content:none}}
