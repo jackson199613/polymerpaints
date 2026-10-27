@@ -4,11 +4,12 @@ import json, os, re, html, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from content_site import SYS, FINISHES, IND, DIST, STATS, IND_PHOTOS
 IMG2 = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img2_sizes.json')))
+IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img_real.json'))))
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v2.css'
-JS = '/assets/js/polymer-v1.js'
+CSS = '/assets/css/polymer-v3.css'
+JS = '/assets/js/polymer-v2.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
 ADDR = 'No. 2 Zhuli Road, Xiangcheng District, Zhangzhou, Fujian, China'
@@ -20,14 +21,15 @@ INDMAP = {i['slug']: i for i in IND}
 
 ORG = {"@context": "https://schema.org", "@type": "Organization", "@id": BASE + "/#org",
        "name": "POLYMER", "legalName": "Fujian Polymer Industry & Trade Co., Ltd.", "alternateName": "玻利玛",
-       "url": BASE + "/", "foundingDate": "2019", "telephone": TEL, "email": EMAIL,
+       "url": BASE + "/", "logo": BASE + "/assets/img/logo-mark.svg", "foundingDate": "2019-04-22", "taxID": "91350602MA32PFWW73", "telephone": TEL, "email": EMAIL,
        "slogan": "You apply powder, we apply care.",
-       "address": {"@type": "PostalAddress", "streetAddress": "No. 2 Zhuli Road, Xiangcheng District", "addressLocality": "Zhangzhou", "addressRegion": "Fujian", "addressCountry": "CN"},
+       "address": {"@type": "PostalAddress", "streetAddress": "No. 2 Zhuli Road, Xiangcheng District", "addressLocality": "Zhangzhou", "addressRegion": "Fujian", "postalCode": "363005", "addressCountry": "CN"},
        "description": "Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system.",
        "hasCredential": [
            {"@type": "EducationalOccupationalCredential", "name": "Qualicoat Class 1 approval, polyester system PLM100611", "identifier": "P-2199", "validUntil": "2026-12-31"},
-           {"@type": "EducationalOccupationalCredential", "name": "ISO 9001 quality management system"},
-           {"@type": "EducationalOccupationalCredential", "name": "ISO 14001 environmental management system"}]}
+           {"@type": "EducationalOccupationalCredential", "name": "ISO 9001:2015 quality management system", "identifier": "05326Q01777R001", "validUntil": "2029-10-11", "recognizedBy": {"@type": "Organization", "name": "Beijing NGV Certification Center Co., Ltd."}},
+           {"@type": "EducationalOccupationalCredential", "name": "ISO 14001:2015 environmental management system", "identifier": "05326E01349R001", "validUntil": "2029-10-11", "recognizedBy": {"@type": "Organization", "name": "Beijing NGV Certification Center Co., Ltd."}}],
+       "award": ["National High-Tech Enterprise (China)", "Fujian Province Specialised, Refined, Distinctive and Innovative SME", "Fujian Province Innovative SME", "Science and Technology-based SME"]}
 
 
 def img(name, w, h, alt, sizes='100vw', small=None, lazy=True, cls=''):
@@ -63,6 +65,7 @@ def head(title, desc, path, ld=None, og='/assets/img/home/og.jpg'):
 <meta property="og:url" content="{BASE}{path}">
 <meta name="theme-color" content="#121416">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{CSS}">
@@ -86,7 +89,7 @@ def header(active=''):
   <div class="r"><span>MOQ 1,000 kg</span><span>Lead time within 10 days</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span><a href="tel:+865962600611">{TEL}</a></span></div>
 </div></div>
 <header class="site"><div class="wrap">
-  <a class="logo" href="/" aria-label="POLYMER home"><b>POLYMER</b><small>Powder coatings</small></a>
+  <a class="logo" href="/" aria-label="POLYMER home"><img src="/assets/img/logo-mark-dark.svg" width="30" height="35" alt=""><b>POLYMER</b><small>Powder coatings</small></a>
   <nav class="main" aria-label="Main">
     <div class="dd"><a href="/products/"{cur('products')}>Products</a><div class="menu wide"><div><small>By system</small>{prod}<a href="/products/#cure">Low-cure grades</a></div><div><small>Choose &amp; compare</small><a href="/finishes/">Colours &amp; finishes</a><a href="/selector/">System selector</a><a href="/selector/#matrix">Industry × system table</a></div></div></div>
     <div class="dd"><a href="/industries/"{cur('industries')}>Industries</a><div class="menu"><small>By application</small>{inds}</div></div>
@@ -113,13 +116,13 @@ def footer():
     inds = ''.join(f'<li><a href="/industries/{i["slug"]}/">{E(i["short"])}</a></li>' for i in IND)
     return f'''</main>
 <footer><div class="wrap">
-  <div><a class="logo" href="/"><b style="color:#fff">POLYMER</b><small>Powder coatings</small></a>
+  <div><a class="logo" href="/"><img src="/assets/img/logo-mark-dark.svg" width="30" height="35" alt=""><b style="color:#fff">POLYMER</b><small>Powder coatings</small></a>
     <p class="slogan">You apply powder,<br>we apply care.</p>
-    <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian, China<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:+865962600611">Tel {TEL}</a></p></div>
+    <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian 363005, China<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:+865962600611">Tel {TEL}</a></p></div>
   <div><h4>Products</h4><ul><li><a href="/products/polyester/">Polyester</a></li><li><a href="/products/hybrid/">Hybrid</a></li><li><a href="/products/epoxy/">Epoxy</a></li><li><a href="/finishes/">Colours &amp; finishes</a></li><li><a href="/selector/">System selector</a></li></ul></div>
   <div><h4>Industries</h4><ul>{inds}<li><a href="/distributors/">Distributors</a></li></ul></div>
   <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
-  <div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd. · <a href="/privacy/">Privacy &amp; cookies</a></span><span>Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
+  <div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd. · <a href="/privacy/">Privacy &amp; cookies</a></span><span>USCC 91350602MA32PFWW73 · Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
 </div></footer>
 <script src="{JS}" defer></script>
 </body>
@@ -167,6 +170,11 @@ def fig2(name, alt, cap):
     return f'<figure class="figure rv">{img(name, w, h, alt, "(min-width:1280px) 1192px, 100vw", sm)}<figcaption><b>{E(cap[0])}.</b> {E(cap[1])}</figcaption></figure>'
 
 
+def photos(items, cls='c3'):
+    figs = ''.join(f'<figure class="rv">{img(n, IMG2[n][0], IMG2[n][1], alt, "(min-width:1060px) 25vw, 50vw", IMG2[n][2])}<figcaption>{E(cap)}</figcaption></figure>' for n, alt, cap in items)
+    return f'<div class="photos {cls}">{figs}</div>'
+
+
 def chips(main, opt, extra=None):
     s = ''.join(f'<span class="chip main">{SYS[m]["name"]}</span>' for m in main)
     s += ''.join(f'<span class="chip">{SYS[o]["name"]}</span>' for o in opt)
@@ -186,6 +194,8 @@ def faq_block(slugs, dark=False):
 # ---------------------------------------------------------------- home
 def build_home():
     src = open(os.path.join(ROOT, 'build/home_main.html')).read()
+    src = src.replace('{{PHOTOS}}', photos([('real/extruder', 'Twin-screw powder coating extruder with cooling belt', 'Melt extrusion'), ('real/bonding', 'Metallic bonding machine', 'Metallic bonding'),
+                                             ('real/gloss', '60° gloss measurement on a green panel', '60° gloss check'), ('real/particle', 'Loading powder into the laser particle size analyser', 'Particle size')], 'c4'))
     write('/', 'POLYMER Powder Coatings | Epoxy, Polyester & Hybrid Powder Coatings, China',
           'Fujian Polymer manufactures epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.',
           src, ld=[{"@context": "https://schema.org", "@type": "WebSite", "name": "POLYMER Powder Coatings", "url": BASE + "/"}])
@@ -273,6 +283,12 @@ def build_finishes():
                  figure=f'<figure class="tall">{img("home/hero-panels", 1122, 1402, "Five powder-coated panels in different finishes", "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>',
                  ctas=[('Match a colour', '/request-sample/?topic=colour', 'btn-primary'), ('How colour matching works', '/how-to/prepare-colour-matching-request/', 'btn-line')])
     body += f'<section class="sec dark"><div class="wrap"><div class="atlas">{tiles}</div></div></section>'
+    pn = [(6875, 'Black fine texture'), (6890, 'Black sand texture'), (6877, 'Red sand texture'), (6886, 'Black high gloss'), (6882, 'Silver metallic, matt'), (6884, 'Silver metallic'),
+          (6885, 'Champagne metallic'), (6887, 'Gold metallic'), (6888, 'Bright gold metallic'), (6889, 'Bronze metallic'), (6881, 'Translucent lime, high gloss'), (6883, 'Translucent magenta, high gloss')]
+    body += f'''<section class="sec tight"><div class="wrap">
+  <div class="head rv"><div><p class="eyebrow">From our panel library</p><h2 class="h2">Real panels, <em>photographed in our lab.</em></h2></div><p class="lead">Sprayed and cured on aluminium profile sections. Unretouched studio photos; colour on screen is a guide, and the physical panel is the reference.</p></div>
+  {photos([(f'real/panel-{n}', c + ' powder coating on an aluminium profile section', c) for n, c in pn], 'c4 panels')}
+</div></section>'''
     body += f'''<section class="sec tight"><div class="wrap gloss" style="margin-top:0">
   {img("home/gloss-trio", 1536, 1024, "Dead matt, satin and high gloss panels", "(min-width:980px) 60vw, 100vw", 768)}
   <div><h2 class="h3">Three gloss bands.</h2><div class="bands" style="border-color:var(--line)"><div style="border-color:var(--line)">Dead matt<span style="color:var(--accent)">≤ 10</span></div><div style="border-color:var(--line)">Satin &amp; matt<span style="color:var(--accent)">11 – 80</span></div><div style="border-color:var(--line)">High gloss<span style="color:var(--accent)">≥ 90</span></div></div><p class="prose mt24">Gloss is agreed per project with a measuring condition and a physical reference, because colour, texture and film thickness all change how gloss looks.</p></div>
@@ -420,7 +436,7 @@ def build_distributors():
 </div></section>
 <section class="sec tight"><div class="wrap split">
   <div class="rv"><p class="eyebrow">Supply</p><h2 class="h3" style="margin-top:20px">Built for <em>replenishment.</em></h2></div>
-  <div class="rv"><dl class="kv"><dt>Capacity</dt><dd>5,000 t per year on 9 production lines</dd><dt>Lead time</dt><dd>Standard within 10 days; complex custom colours and large volumes confirmed per order</dd><dt>Minimum order</dt><dd>1,000 kg per order</dd><dt>Export</dt><dd>About 20 countries and regions; experienced with export documents, packing and sea freight</dd><dt>Documents</dt><dd>ISO 9001 and ISO 14001 certificates and the Qualicoat Class 1 certificate for your sales pack</dd></dl></div>
+  <div class="rv"><dl class="kv"><dt>Capacity</dt><dd>5,000 t per year on 8 production lines, plus 5 sampling lines</dd><dt>Lead time</dt><dd>Standard within 10 days; complex custom colours and large volumes confirmed per order</dd><dt>Minimum order</dt><dd>1,000 kg per order</dd><dt>Export</dt><dd>About 20 countries and regions; experienced with export documents, packing and sea freight</dd><dt>Documents</dt><dd>ISO 9001 and ISO 14001 certificates and the Qualicoat Class 1 certificate for your sales pack</dd></dl></div>
 </div></section>
 <section class="sec tight alt" id="apply"><div class="wrap form-grid">
   {form_distributor()}
@@ -491,7 +507,7 @@ def build_forms():
     write('/thanks/', 'Thank you | POLYMER', 'Your message has been received.', body, sitemap=False)
 
     docs = [('Product catalogue', 'Three systems, cure grades, gloss bands and effects'), ('Technical data sheets (TDS)', 'Per product: properties, cure conditions, storage'), ('Safety data sheets (SDS)', 'Per product: safe handling and transport'),
-            ('Qualicoat Class 1 certificate', 'Polyester system PLM100611, P-2199'), ('ISO 9001 certificate', 'Quality management system'), ('ISO 14001 certificate', 'Environmental management system'), ('Colour cards and panels', 'Physical samples for evaluation')]
+            ('Qualicoat Class 1 certificate', 'Polyester system PLM100611, P-2199, valid until 31 Dec 2026'), ('ISO 9001:2015 certificate', 'No. 05326Q01777R001, valid until 11 Oct 2029'), ('ISO 14001:2015 certificate', 'No. 05326E01349R001, valid until 11 Oct 2029'), ('SGS EU RoHS report', 'XMNEC26001081101, black powder sample, (EU) 2015/863'), ('Colour cards and panels', 'Physical samples for evaluation')]
     checks = ''.join(f'<label><input type="checkbox" name="documents" value="{E(n)}"> {E(n)}</label>' for n, _ in docs)
     cards = ''.join(f'<div class="card rv"><small>On request</small><h3 style="font-size:24px">{E(n)}</h3><p>{E(d)}</p></div>' for n, d in docs)
     dform = (form_open('documents') + common_fields() + f'<div class="row"><div class="fld"><label>Documents needed <i>*</i></label><div class="checks">{checks}</div></div></div><div class="row"><div class="fld"><label for="f-need">Products or project</label><textarea id="f-need" name="message" style="min-height:90px" placeholder="Which products or applications the documents are for"></textarea></div></div>' + form_close('Request documents'))
@@ -504,21 +520,43 @@ def build_forms():
 
 # ---------------------------------------------------------------- quality
 def build_quality():
-    tests = [('Colour measurement', 'Colour difference against the approved panel'), ('Gloss', 'Gloss band and consistency'), ('Film thickness', 'Coverage and film build on panels'), ('Particle size', 'Powder particle size distribution'),
-             ('Salt spray', 'Corrosion behaviour on panels'), ('UV accelerated ageing', 'Colour and gloss behaviour under UV'), ('Hardness', 'Surface hardness'), ('Impact', 'Resistance to impact'), ('Bend', 'Flexibility on bending'), ('Adhesion', 'Coating adhesion to the substrate')]
-    rows = ''.join(f'<tr><td><b>{a}</b></td><td>{b}</td></tr>' for a, b in tests)
+    tests = [('Colour', 'Colorimeter; visual check in a standard light box', 'Colour difference against the approved panel'), ('Gloss', '60° gloss meter', 'Gloss band and consistency'),
+             ('Film thickness', 'Electromagnetic film thickness gauge', 'Film build on test panels'), ('Particle size', 'Laser particle size analyser', 'Particle size distribution of the powder'),
+             ('Sieving', 'Screen mesh', 'Oversize particles removed before packing'), ('Appearance', 'Visual inspection', 'Surface defects on the cured film'),
+             ('Pencil hardness', 'Pencil hardness tester', 'Surface hardness'), ('Impact', 'Erichsen impact tester', 'Resistance to impact'),
+             ('Flexibility', '180° bend', 'Flexibility of the film on bending'), ('Adhesion', 'Cross-cut, 1 mm × 100 squares', 'Adhesion of the film to the substrate'),
+             ('Salt spray', 'Salt spray corrosion test chamber', 'Corrosion behaviour on panels'), ('UV ageing', 'UV accelerated weathering tester', 'Colour and gloss change under UV'),
+             ('Cure', 'Oven temperature data logger', 'Real metal temperature profile on the line'), ('Storage stability', '6 months below 30 °C', 'Powder stays free-flowing in storage')]
+    rows = ''.join(f'<tr><td><b>{a}</b></td><td>{m}</td><td>{b}</td></tr>' for a, m, b in tests)
+    labs = photos([('real/colorimeter', 'Colour measurement with a colorimeter', 'Colorimeter'), ('real/light-box', 'Standard light box for visual colour matching', 'Light box'), ('real/gloss', '60° gloss measurement on a green panel', '60° gloss'),
+                   ('real/particle', 'Loading powder into the laser particle size analyser', 'Particle size'), ('real/pencil', 'Pencil hardness test on a coated panel', 'Pencil hardness'), ('real/bending', 'Bend test on a coated panel', 'Bend test'),
+                   ('real/salt-spray', 'Salt spray corrosion test chamber', 'Salt spray'), ('real/uv-tester', 'UV accelerated weathering tester', 'UV ageing')], 'c4')
+
     body = phero([('Quality', None)], 'Every claim, <em>with its scope.</em>', 'What each certificate covers, how we test panels and batches, and how the approved version keeps repeat orders consistent.',
                  figure=f'<figure class="tall">{img("home/panel-single", 1122, 1402, "An approved test panel on a black plinth", "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>',
-                 facts=['Qualicoat Class 1 · P-2199', 'ISO 9001', 'ISO 14001'])
+                 facts=['Qualicoat Class 1 · P-2199', 'ISO 9001', 'ISO 14001', 'SGS RoHS report'])
     body += f'''<section class="sec tight"><div class="wrap">
   <div class="certs">
-   <article class="cert key rv"><small>Architectural coating approval</small><h3>Qualicoat Class 1</h3><dl><dt>Licence</dt><dd>P-2199</dd><dt>System</dt><dd>Polyester PLM100611 · gloss category 3</dd><dt>Valid</dt><dd>Until 31 Dec 2026</dd><dt>Scope</dt><dd>The approved polyester system only. Not all products or colours; no structured-texture or metallic extension; not Class 2 or 3.</dd></dl><a class="link" href="/downloads/">Request certificate</a></article>
-   <article class="cert rv"><small>Quality management</small><h3>ISO 9001</h3><dl><dt>Type</dt><dd>Management system certification, not a product approval</dd><dt>Use</dt><dd>Supplier approval and distributor packs</dd></dl><a class="link" href="/downloads/">Request certificate</a></article>
-   <article class="cert rv"><small>Environmental management</small><h3>ISO 14001</h3><dl><dt>Type</dt><dd>Management system certification, not a product approval</dd><dt>Use</dt><dd>Environmental purchasing questions</dd></dl><a class="link" href="/downloads/">Request certificate</a></article>
-  </div></div></section>
-<section class="sec tight alt"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">In-house test conditions</p><h2 class="h3" style="margin-top:20px">What we check <em>on panels and batches.</em></h2><p class="prose mt24">Used for panel evaluation, outgoing inspection and project discussions. These are internal test conditions, not third-party reports. If your project needs an independent report, tell us early.</p></div>
-  <div class="rv"><div class="tbl-wrap"><table class="tbl" style="min-width:420px"><thead><tr><th>Test</th><th>What it shows</th></tr></thead><tbody>{rows}</tbody></table></div></div>
+   <article class="cert key rv"><small>Architectural coating approval</small><h3>Qualicoat Class 1</h3><dl><dt>Licence</dt><dd>P-2199</dd><dt>System</dt><dd>Polyester PLM100611 · gloss category 3</dd><dt>Granted</dt><dd>20 Oct 2025 · Standard approval</dd><dt>Valid</dt><dd>Until 31 Dec 2026</dd><dt>Scope</dt><dd>The approved polyester system only. Not all products or colours; no structured-texture or metallic extension; not Class 2 or 3.</dd></dl><a class="link" href="/downloads/">Request certificate</a></article>
+   <article class="cert rv"><small>Quality management</small><h3>ISO 9001:2015</h3><dl><dt>Cert. no.</dt><dd>05326Q01777R001</dd><dt>Valid</dt><dd>12 Oct 2026 – 11 Oct 2029</dd><dt>Issuer</dt><dd>Beijing NGV Certification Center Co., Ltd.</dd><dt>Scope</dt><dd>Design, manufacture and sales of thermosetting powder coatings. A management system certificate, not a product approval.</dd></dl><a class="link" href="/downloads/">Request certificate</a></article>
+   <article class="cert rv"><small>Environmental management</small><h3>ISO 14001:2015</h3><dl><dt>Cert. no.</dt><dd>05326E01349R001</dd><dt>Valid</dt><dd>12 Oct 2026 – 11 Oct 2029</dd><dt>Issuer</dt><dd>Beijing NGV Certification Center Co., Ltd.</dd><dt>Scope</dt><dd>Design, manufacture and sales of thermosetting powder coatings. A management system certificate, not a product approval.</dd></dl><a class="link" href="/downloads/">Request certificate</a></article>
+  </div>
+  <p class="tbl-note">ISO certificates can be verified on the issuer’s website, www.ngv.org.cn.</p></div></section>
+<section class="sec tight"><div class="wrap split">
+  <div class="rv"><p class="eyebrow">Third-party test report</p><h2 class="h3" style="margin-top:20px">EU RoHS, <em>tested by SGS.</em></h2><p class="prose mt24">An independent laboratory report, stated with its sample. Reports for other products or other regulations can be arranged for a project.</p></div>
+  <div class="rv"><article class="cert"><small>Restricted substances</small><h3>SGS · EU RoHS</h3><dl><dt>Report</dt><dd>XMNEC26001081101 · 12 May 2026</dd><dt>Laboratory</dt><dd>SGS-CSTC Standards Technical Services Co., Ltd., Xiamen Branch</dd><dt>Standard</dt><dd>(EU) 2015/863 amending Directive 2011/65/EU Annex II: Pb, Hg, Cd, Cr(VI), PBB, PBDE, DEHP, BBP, DBP, DIBP</dd><dt>Result</dt><dd>Pass; all ten substances not detected</dd><dt>Sample</dt><dd>One black powder coating sample as submitted. It does not cover other colours or products.</dd></dl><a class="link" href="/downloads/">Request the report</a></article></div>
+</div></section>
+<section class="sec tight alt"><div class="wrap">
+  <div class="head rv"><div><p class="eyebrow">In-house laboratory</p><h2 class="h2">What we check <em>on panels and batches.</em></h2></div><p class="lead">Our technical research lab, QC lab and sample room test every new colour and every batch before release. These are internal test conditions, not third-party reports.</p></div>
+  {labs}
+  <div class="tbl-wrap rv" style="margin-top:40px"><table class="tbl" style="min-width:620px"><thead><tr><th>Test</th><th>Method / equipment</th><th>What it shows</th></tr></thead><tbody>{rows}</tbody></table></div>
+</div></section>
+<section class="sec tight"><div class="wrap split">
+  <div class="rv"><p class="eyebrow">Two checkpoints</p><h2 class="h3" style="margin-top:20px">No batch is packed <em>before it passes.</em></h2></div>
+  <div class="rv"><ol class="list">
+   <li><span>01</span><div><b>Self-check after sieving.</b> The production team checks the finished powder. A failure goes back to the formula and premix stage.</div></li>
+   <li><span>02</span><div><b>Laboratory test.</b> QC tests the batch against the approved panel. Only qualified batches are cooled, weighed, packed and put into the warehouse.</div></li>
+  </ol></div>
 </div></section>
 <section class="sec tight"><div class="wrap split">
   <div class="rv"><p class="eyebrow">The approved version</p><h2 class="h3" style="margin-top:20px">How repeat orders <em>stay the same.</em></h2></div>
@@ -531,40 +569,61 @@ def build_quality():
 </div></section>
 <section class="sec tight alt"><div class="wrap split"><div class="rv"><p class="eyebrow">Questions</p><h2 class="h3" style="margin-top:20px">About quality.</h2></div><div class="rv">{faq_block(['what-qualicoat-class-1-covers', 'in-house-testing-scope-and-limits', 'approved-panel-version-repeat-orders', 'documents-available-tds-sds-certificates'])}</div></div></section>'''
     body += cta()
-    write('/quality/', 'Quality & Certificates: Qualicoat Class 1, ISO 9001, ISO 14001 | POLYMER',
-          'Qualicoat Class 1 for polyester system PLM100611 (P-2199), ISO 9001 and ISO 14001 management systems, in-house test conditions and approved-panel version control.', body, 'quality')
+    write('/quality/', 'Quality & Certificates: Qualicoat Class 1, ISO 9001, ISO 14001, RoHS | POLYMER',
+          'Qualicoat Class 1 for polyester system PLM100611 (P-2199), ISO 9001 and ISO 14001 certificates valid to 2029, an SGS EU RoHS report, in-house laboratory tests and approved-panel version control.', body, 'quality')
 
 
 # ---------------------------------------------------------------- company
 def build_company():
     stats = ''.join(f'<div><strong>{a}</strong><span>{b}</span></div>' for a, b in STATS)
     body = phero([('Company', None)], 'Powder coatings for metal, <em>made with care.</em>',
-                 'Fujian Polymer Industry &amp; Trade Co., Ltd. was founded in 2019 in Zhangzhou, Fujian. We make thermosetting powder coatings for metal protection and decoration, and supply distributors, metal product manufacturers and coating applicators.',
+                 'Fujian Polymer Industry &amp; Trade Co., Ltd. was founded on 22 April 2019 in Zhangzhou, Fujian. We make thermosetting powder coatings for metal protection and decoration, and supply distributors, metal product manufacturers and coating applicators.',
                  figure=f'<figure class="tall">{img("home/hero-panels", 1122, 1402, "Powder-coated panels in five finishes", "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>')
     body += f'''<section class="proof" style="background:var(--night)"><div class="wrap">{stats}</div></section>
 <section class="sec tight"><div class="wrap split">
   <div class="rv"><p class="eyebrow">What we do</p><h2 class="h3" style="margin-top:20px">The right system, the matched colour, <em>on time.</em></h2></div>
   <div class="rv prose"><p>We produce three powder systems: epoxy for indoor functional parts, polyester for outdoor parts, and epoxy-polyester hybrid for indoor decorative parts. Our polyester system PLM100611 is Qualicoat Class 1 approved.</p><p>Our work starts from the customer’s part and where it will be used. We recommend the system, match the colour and finish, and record the approved panel so every batch can be checked against it. Standard lead time is within 10 days, and we do not make low-end powder.</p><h3>Who we supply</h3><ul><li>Powder importers and distributors, our main channel</li><li>Aluminium extruders, metal furniture, appliance, enclosure and equipment manufacturers</li><li>Professional coating applicators ordering from 1 t</li></ul></div>
 </div></section>
-<section class="sec tight dark"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">Where we export</p><h2 class="h2">About 20 countries <em>and regions.</em></h2></div><p class="lead">Experienced with export documents, packing and sea freight to our established markets.</p></div>
-  <div class="regions">
-   <div class="region rv"><h3>Russia &amp; CIS</h3><p>Distributors and manufacturers; colours, textures and effects that complement local supply.</p></div>
-   <div class="region rv"><h3>Latin America</h3><p>Distributors and end users in aluminium, furniture and appliance supply chains.</p></div>
-   <div class="region rv"><h3>Africa</h3><p>Importers and wholesalers serving applicators and manufacturers.</p></div>
-  </div>
+<section class="sec tight alt" id="factory"><div class="wrap">
+  <div class="head rv"><div><p class="eyebrow">Inside the factory</p><h2 class="h2">From formula <em>to warehouse.</em></h2></div><p class="lead">Eight production lines, five sampling lines for panels and small trial batches, and two bonding machines for gold, silver and other metallic effects. Monthly output up to 500 t.</p></div>
+  {photos([('real/premixer', 'Operator loading raw materials into the premixer', 'Premix'), ('real/extruder', 'Twin-screw powder coating extruder with cooling belt', 'Melt extrusion'), ('real/grinder', 'Grinding and classifying mill', 'Grinding & sieving'),
+           ('real/cone-mixer', 'Double-cone mixer', 'Cone mixer'), ('real/bonding', 'Metallic bonding machine', 'Metallic bonding'), ('real/loading', 'Forklift loading powder cartons into a container', 'Export loading')])}
+  <ol class="flow rv">
+   <li>Work out the scheme</li><li>Weigh to formula</li><li>Premix</li><li>Melt extrusion</li><li>Cool</li><li>Grind &amp; sieve</li><li class="chk">Self-check</li><li class="chk">Lab test</li><li>Weigh &amp; pack</li><li>Warehouse</li>
+  </ol>
+  <p class="tbl-note">A batch that fails the self-check or the lab test goes back to the formula stage. See <a class="link" href="/quality/">quality and testing</a>.</p>
 </div></section>
 <section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Manufacturing</p><h2 class="h3" style="margin-top:20px">Capacity <em>and control.</em></h2></div>
-  <div class="rv"><dl class="kv"><dt>Capacity</dt><dd>5,000 t per year</dd><dt>Production</dt><dd>9 production lines</dd><dt>Metallics</dt><dd>2 metallic bonding machines, which help reduce separation of metallic pigment during spraying and reclaim</dd><dt>Testing</dt><dd>Colour, gloss, film thickness, particle size, salt spray, UV accelerated ageing, hardness, impact, bend and adhesion (in-house)</dd><dt>Systems</dt><dd>ISO 9001 quality management · ISO 14001 environmental management</dd></dl><p class="tbl-note">Factory and laboratory photographs will be added here.</p></div>
+  <div class="rv"><p class="eyebrow">Company facts</p><h2 class="h3" style="margin-top:20px">Capacity, <em>people and labs.</em></h2></div>
+  <div class="rv"><dl class="kv"><dt>Founded</dt><dd>22 April 2019, Zhangzhou, Fujian</dd><dt>Capacity</dt><dd>5,000 t per year; up to 500 t per month</dd><dt>Production</dt><dd>8 production lines and 5 sampling lines</dd><dt>Metallics</dt><dd>2 metallic bonding machines, which help reduce separation of metallic pigment during spraying and reclaim</dd><dt>Laboratories</dt><dd>Technical research lab, QC lab and sample development room</dd><dt>Testing</dt><dd>Colour, 60° gloss, film thickness, particle size, salt spray, UV accelerated ageing, pencil hardness, impact, bend, cross-cut adhesion, oven temperature profiling</dd><dt>Certificates</dt><dd>Qualicoat Class 1 (P-2199) · ISO 9001:2015 · ISO 14001:2015 · SGS EU RoHS report</dd><dt>China offices</dt><dd>Fuzhou, Quanzhou, Xiamen and Longyan in Fujian; Guangdong; Zhejiang</dd></dl></div>
+</div></section>
+<section class="sec tight dark"><div class="wrap split">
+  <div class="rv"><p class="eyebrow">Recognition</p><h2 class="h3" style="margin-top:20px">Recognised <em>at home.</em></h2><p class="prose mt24" style="color:#b4b8bd">Awarded by national and Fujian provincial authorities. Certificates are available on request.</p></div>
+  <div class="rv"><ol class="list">
+   <li><span>01</span><div><b>National High-Tech Enterprise.</b> Recognised under China’s high-tech enterprise programme.</div></li>
+   <li><span>02</span><div><b>Fujian “Specialised, Refined, Distinctive and Innovative” SME.</b> Fujian Department of Industry and Information Technology, 2025–2028.</div></li>
+   <li><span>03</span><div><b>Fujian Innovative SME.</b> Fujian Department of Industry and Information Technology, 2025.</div></li>
+   <li><span>04</span><div><b>Science and Technology-based SME.</b> Registered with the Fujian Provincial Department of Science and Technology.</div></li>
+   <li><span>05</span><div><b>Utility-model patents.</b> Granted by the China National Intellectual Property Administration for production equipment and processes.</div></li>
+   <li><span>06</span><div><b>Vice-chair member.</b> Xiangcheng District Enterprise and Entrepreneur Association, Zhangzhou.</div></li>
+  </ol></div>
+</div></section>
+<section class="sec tight"><div class="wrap">
+  <div class="head rv"><div><p class="eyebrow">Where we export</p><h2 class="h2">About 20 countries <em>and regions.</em></h2></div><p class="lead">Experienced with export documents, packing and sea freight to our established markets.</p></div>
+  <div class="regions light">
+   <div class="region rv"><h3>Russia &amp; Europe</h3><p>Russia · Latvia · Turkey</p></div>
+   <div class="region rv"><h3>Latin America</h3><p>Mexico · Dominican Republic · Colombia · Peru · Brazil · Chile</p></div>
+   <div class="region rv"><h3>Middle East &amp; Africa</h3><p>Saudi Arabia · UAE · Oman · Lebanon · Kenya · Nigeria</p></div>
+   <div class="region rv"><h3>South &amp; Southeast Asia</h3><p>Sri Lanka · Vietnam · Thailand · Malaysia · Indonesia</p></div>
+  </div>
 </div></section>
 <section class="sec tight alt"><div class="wrap split">
   <div class="rv"><p class="eyebrow">Environment</p><h2 class="h3" style="margin-top:20px">Powder, <em>by nature.</em></h2></div>
-  <div class="rv prose"><p>Powder coatings are applied as a dry powder and contain no solvent carrier, and oversprayed powder can be reclaimed and reused on many lines. Our environmental management system is certified to ISO 14001.</p><p>We make no further environmental claims without data. If your purchasing team needs specific declarations, ask us and we will confirm what can be supplied for the product concerned.</p></div>
+  <div class="rv prose"><p>Powder coatings are applied as a dry powder and contain no solvent carrier, and oversprayed powder can be reclaimed and reused on many lines. Our environmental management system is certified to ISO 14001:2015, and an SGS test of a black powder sample found none of the ten EU RoHS restricted substances.</p><p>We make no further environmental claims without data. If your purchasing team needs specific declarations, ask us and we will confirm what can be supplied for the product concerned.</p></div>
 </div></section>'''
     body += cta()
     write('/company/', 'About POLYMER | Fujian Polymer Industry & Trade Co., Ltd.',
-          'Founded in 2019 in Zhangzhou, Fujian, POLYMER makes epoxy, polyester and hybrid powder coatings with 5,000 t annual capacity, 9 lines and a standard lead time within 10 days.', body, 'company')
+          'Founded in 2019 in Zhangzhou, Fujian, POLYMER makes epoxy, polyester and hybrid powder coatings with 5,000 t annual capacity, 8 production lines and a standard lead time within 10 days.', body, 'company')
 
 
 # ---------------------------------------------------------------- faq + how-to
@@ -626,12 +685,14 @@ def build_legal():
 def build_meta():
     urls = ''.join(f'<url><loc>{BASE}{p}</loc><lastmod>2026-10-27</lastmod></url>\n' for p, _ in PAGES)
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
-    facts = """- Company: Fujian Polymer Industry & Trade Co., Ltd. (brand POLYMER, 玻利玛), Zhangzhou, Fujian, China. Founded 2019.
+    facts = """- Company: Fujian Polymer Industry & Trade Co., Ltd. (brand POLYMER, 玻利玛), No. 2 Zhuli Road, Xiangcheng District, Zhangzhou, Fujian 363005, China. Founded 22 April 2019. USCC 91350602MA32PFWW73. China offices in Fuzhou, Quanzhou, Xiamen, Longyan, Guangdong and Zhejiang.
+- Recognition: National High-Tech Enterprise; Fujian Specialised, Refined, Distinctive and Innovative SME (2025–2028); Fujian Innovative SME; Science and Technology-based SME; utility-model patents.
 - Products: thermosetting powder coatings for metal — epoxy (indoor only), polyester (outdoor), epoxy-polyester hybrid (indoor decorative); standard-cure and low-cure grades.
-- Certification: Qualicoat Class 1 for polyester system PLM100611 only (licence P-2199, gloss category 3, valid until 31 Dec 2026). ISO 9001 and ISO 14001 management systems (not product approvals).
-- Capacity and supply: 5,000 t per year, 9 production lines, 2 metallic bonding machines, standard lead time within 10 days, minimum order 1,000 kg, exports to about 20 countries and regions.
+- Certification: Qualicoat Class 1 for polyester system PLM100611 only (licence P-2199, gloss category 3, valid until 31 Dec 2026). ISO 9001:2015 (No. 05326Q01777R001) and ISO 14001:2015 (No. 05326E01349R001), issued by Beijing NGV Certification Center, valid 12 Oct 2026 – 11 Oct 2029, scope: design, manufacture and sales of thermosetting powder coatings (management systems, not product approvals). SGS report XMNEC26001081101 (12 May 2026): one black powder sample passed EU RoHS (EU) 2015/863, all ten substances not detected.
+- Capacity and supply: 5,000 t per year (up to 500 t per month), 8 production lines, 5 sampling lines, 2 metallic bonding machines, standard lead time within 10 days, minimum order 1,000 kg, exports to about 20 countries and regions.
 - Colours and finishes: RAL and customer colours; high gloss ≥90, satin/matt 11–80, dead matt ≤10; smooth, sand, wrinkle, vein, fine texture, hammer tone, pattern, bonded metallic, transparent/translucent, fluorescent.
-- Testing: in-house colour, gloss, film thickness, particle size, salt spray, UV accelerated ageing, hardness, impact, bend, adhesion (internal, not third-party reports).
+- Testing (in-house): colorimeter and light box, 60° gloss meter, electromagnetic film thickness gauge, laser particle size analyser, screen-mesh sieving, pencil hardness, Erichsen impact, 180° bend, cross-cut adhesion 1 mm × 100, salt spray, UV accelerated weathering, oven temperature logging, storage stability 6 months below 30 °C.
+- Process: formula → weighing → premix → melt extrusion → cooling → grinding and sieving → self-check → lab test → weighing and packing → warehouse; failed batches return to the formula stage.
 - Not offered: Qualicoat Class 2/3, UL or flame-retardant coatings, IATF 16949, FBE/3PE pipeline or heavy-duty anticorrosion systems, orders below 1,000 kg, low-end powder.
 - Contact: sales@polymerpaints.com; Tel +86 596 2600611; https://polymerpaints.com/contact/"""
     pages = '\n'.join(f'- [{t}]({BASE}{p})' for p, t in PAGES)

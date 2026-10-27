@@ -63,7 +63,7 @@
    "q": "What is your lead time for powder coating orders?",
    "short": "Standard lead time is within 10 days. Lead time for complex custom colours and large volumes is confirmed with each order.",
    "body": [
-    "With 9 production lines and an annual capacity of 5,000 tonnes, POLYMER can usually produce a standard order within 10 days. This is the production lead time; sea or air freight to your country is additional and depends on the route and shipping schedule.",
+    "With 8 production lines, 5 sampling lines and an annual capacity of 5,000 tonnes, POLYMER can usually produce a standard order within 10 days. This is the production lead time; sea or air freight to your country is additional and depends on the route and shipping schedule.",
     "Some orders take longer and are confirmed individually: colours that need new matching work, special effects, and large orders that occupy several lines. In these cases we give you a confirmed date when the order details, approved panel and quantity are fixed.",
     "For repeat orders of an approved colour, production is made to the recorded panel version, which avoids re-matching and helps keep the schedule predictable. Telling us your reorder pattern in advance makes planning easier on both sides."
    ],
@@ -210,7 +210,7 @@
   {
    "slug": "in-house-testing-scope-and-limits",
    "q": "What testing do you carry out in-house, and what are its limits?",
-   "short": "Our in-house tests cover colour, gloss, film thickness, particle size, salt spray, UV accelerated ageing, hardness, impact, bend and adhesion. These are internal tests, not third-party reports.",
+   "short": "Our in-house tests cover colour, 60° gloss, film thickness, particle size, salt spray, UV accelerated ageing, pencil hardness, impact, 180° bend, cross-cut adhesion and storage stability. These are internal tests; separately, an SGS report confirms EU RoHS compliance for a tested black powder sample.",
    "body": [
     "We use these tests to develop and approve panels, check batches before release and support technical discussions with customers. Colour, gloss and particle size are used to keep batches consistent with the approved version; mechanical tests check that the film is flexible and adherent; salt spray and UV accelerated ageing are used to compare products under laboratory conditions.",
     "These results have limits. They are produced in-house, not by an accredited third party. Accelerated tests indicate relative performance; they do not predict an outdoor lifetime in years. Results also depend on the substrate, pretreatment, film thickness and cure used, which may differ from your line.",
@@ -450,7 +450,7 @@
     },
     {
      "k": "Storage and shelf life",
-     "v": "per TDS"
+     "v": "Storage stability tested at 6 months below 30 °C; follow the TDS for each product"
     }
    ],
    "mistakes": [
@@ -769,11 +769,11 @@
    "params": [
     {
      "k": "Storage temperature",
-     "v": "per TDS"
+     "v": "Cool, dry and ventilated; stability tested at 6 months below 30 °C (SDS: keep below 35 °C)"
     },
     {
      "k": "Shelf life",
-     "v": "per TDS"
+     "v": "6 months below 30 °C in the closed original packaging, unless the TDS states otherwise"
     },
     {
      "k": "Safety information",

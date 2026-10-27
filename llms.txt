@@ -3,12 +3,14 @@
 > Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.
 
 ## Key facts
-- Company: Fujian Polymer Industry & Trade Co., Ltd. (brand POLYMER, 玻利玛), Zhangzhou, Fujian, China. Founded 2019.
+- Company: Fujian Polymer Industry & Trade Co., Ltd. (brand POLYMER, 玻利玛), No. 2 Zhuli Road, Xiangcheng District, Zhangzhou, Fujian 363005, China. Founded 22 April 2019. USCC 91350602MA32PFWW73. China offices in Fuzhou, Quanzhou, Xiamen, Longyan, Guangdong and Zhejiang.
+- Recognition: National High-Tech Enterprise; Fujian Specialised, Refined, Distinctive and Innovative SME (2025–2028); Fujian Innovative SME; Science and Technology-based SME; utility-model patents.
 - Products: thermosetting powder coatings for metal — epoxy (indoor only), polyester (outdoor), epoxy-polyester hybrid (indoor decorative); standard-cure and low-cure grades.
-- Certification: Qualicoat Class 1 for polyester system PLM100611 only (licence P-2199, gloss category 3, valid until 31 Dec 2026). ISO 9001 and ISO 14001 management systems (not product approvals).
-- Capacity and supply: 5,000 t per year, 9 production lines, 2 metallic bonding machines, standard lead time within 10 days, minimum order 1,000 kg, exports to about 20 countries and regions.
+- Certification: Qualicoat Class 1 for polyester system PLM100611 only (licence P-2199, gloss category 3, valid until 31 Dec 2026). ISO 9001:2015 (No. 05326Q01777R001) and ISO 14001:2015 (No. 05326E01349R001), issued by Beijing NGV Certification Center, valid 12 Oct 2026 – 11 Oct 2029, scope: design, manufacture and sales of thermosetting powder coatings (management systems, not product approvals). SGS report XMNEC26001081101 (12 May 2026): one black powder sample passed EU RoHS (EU) 2015/863, all ten substances not detected.
+- Capacity and supply: 5,000 t per year (up to 500 t per month), 8 production lines, 5 sampling lines, 2 metallic bonding machines, standard lead time within 10 days, minimum order 1,000 kg, exports to about 20 countries and regions.
 - Colours and finishes: RAL and customer colours; high gloss ≥90, satin/matt 11–80, dead matt ≤10; smooth, sand, wrinkle, vein, fine texture, hammer tone, pattern, bonded metallic, transparent/translucent, fluorescent.
-- Testing: in-house colour, gloss, film thickness, particle size, salt spray, UV accelerated ageing, hardness, impact, bend, adhesion (internal, not third-party reports).
+- Testing (in-house): colorimeter and light box, 60° gloss meter, electromagnetic film thickness gauge, laser particle size analyser, screen-mesh sieving, pencil hardness, Erichsen impact, 180° bend, cross-cut adhesion 1 mm × 100, salt spray, UV accelerated weathering, oven temperature logging, storage stability 6 months below 30 °C.
+- Process: formula → weighing → premix → melt extrusion → cooling → grinding and sieving → self-check → lab test → weighing and packing → warehouse; failed batches return to the formula stage.
 - Not offered: Qualicoat Class 2/3, UL or flame-retardant coatings, IATF 16949, FBE/3PE pipeline or heavy-duty anticorrosion systems, orders below 1,000 kg, low-end powder.
 - Contact: sales@polymerpaints.com; Tel +86 596 2600611; https://polymerpaints.com/contact/
 
@@ -32,7 +34,7 @@
 - [Request a Powder Coating Sample | POLYMER](https://polymerpaints.com/request-sample/)
 - [Contact POLYMER Powder Coatings](https://polymerpaints.com/contact/)
 - [Downloads: TDS, SDS, Certificates & Catalogue | POLYMER](https://polymerpaints.com/downloads/)
-- [Quality & Certificates: Qualicoat Class 1, ISO 9001, ISO 14001 | POLYMER](https://polymerpaints.com/quality/)
+- [Quality & Certificates: Qualicoat Class 1, ISO 9001, ISO 14001, RoHS | POLYMER](https://polymerpaints.com/quality/)
 - [About POLYMER | Fujian Polymer Industry & Trade Co., Ltd.](https://polymerpaints.com/company/)
 - [Powder Coating Technical FAQ | POLYMER](https://polymerpaints.com/faq/)
 - [Powder Coating How-to Guides | POLYMER](https://polymerpaints.com/how-to/)

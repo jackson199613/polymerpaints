@@ -145,7 +145,7 @@ a.card:hover{border-color:var(--ink)}
 .result ul{margin:20px 0;border-top:1px solid #2e3337}
 .result li{list-style:none;padding:12px 0;border-bottom:1px solid #2e3337;font-size:14.5px;color:#c9ccd0}
 .result li b{color:#fff;font-weight:600}
-.result .warn{font-size:13px;color:#e8b49a;margin:-4px 0 18px}
+.result .warn{font-size:13px;color:#f4aca6;margin:-4px 0 18px}
 
 /* forms (reference: two-column, sticky aside) */
 .form-grid{display:grid;gap:40px}
@@ -208,3 +208,20 @@ fieldset.q{border:0;padding:0;margin:0 0 28px;min-width:0}
 .topbar a[href^="mailto"]{text-transform:none;letter-spacing:.04em}
 @media(min-width:900px) and (max-width:1279px){.topbar .l span:nth-child(n+2){display:none}.topbar .r span:first-child{display:none}}
 @media(min-width:900px) and (max-width:1279px){.topbar .r span:nth-child(2)::before{content:none}}
+
+/* ===== real photos (update 5) ===== */
+.photos{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:900px){.photos.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.photos.c4{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.photos figure{margin:0;min-width:0}
+.photos img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:2px;background:var(--paper-2)}
+.photos figcaption{margin-top:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.photos.panels figcaption{text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:13.5px;color:var(--ink-2)}
+.dark .photos figcaption{color:var(--night-muted)}
+.flow{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:36px;counter-reset:f}
+.flow li{counter-increment:f;font-size:13.5px;padding:9px 14px 9px 12px;border:1px solid var(--line-2);border-radius:999px;background:var(--white);color:var(--ink-2);display:flex;gap:8px;align-items:baseline}
+.flow li::before{content:counter(f,decimal-leading-zero);font-family:var(--mono);font-size:10.5px;color:var(--accent)}
+.flow li.chk{border-color:var(--accent);color:var(--ink);font-weight:600}
+.regions.light .region h3{font-size:28px}
+.regions.light .region h3{color:var(--ink)}
+.regions.light .region p{color:var(--ink-2)}
+@media(min-width:900px){.regions.light{grid-template-columns:repeat(4,minmax(0,1fr))}}

@@ -56,7 +56,7 @@ IND = [
          ('Standard outdoor profiles, windows and hardware','Polyester, high gloss, satin or matt','Weathering, resistance to yellowing, edge coverage','Chosen by colour, gloss and exposure'),
          ('Profiles that need texture or hide marks','Polyester with sand texture','Sand, wrinkle and hammer textures in the catalogue','Texture confirmed on a physical panel'),
          ('Metallic-look profiles and hardware','Polyester with bonded metallic','Metallic effects; 2 bonding machines','Effect checked at viewing angles and on your spraying conditions')],
-   caps=['Qualicoat Class 1 for polyester system PLM100611 (P-2199, valid until 31 Dec 2026).','RAL and customer colour matching, with each approved panel recorded as a version for repeat orders.','In-house UV accelerated ageing and salt spray conditions, plus colour, gloss and film thickness measurement.','5,000 t annual capacity, 9 lines and a standard lead time within 10 days.'],
+   caps=['Qualicoat Class 1 for polyester system PLM100611 (P-2199, valid until 31 Dec 2026).','RAL and customer colour matching, with each approved panel recorded as a version for repeat orders.','In-house UV accelerated ageing and salt spray conditions, plus colour, gloss and film thickness measurement.','5,000 t annual capacity, 8 production lines and a standard lead time within 10 days.'],
    verify=[('Appearance','Colour difference, gloss and texture across batches and profiles'),('Coverage','Film thickness and surface in grooves, inside corners and edges'),('Adhesion and forming','Adhesion, impact and bend'),('Weathering','UV ageing and salt spray, to your requirements'),('Documents','Qualicoat certificate and product data against your specification')],
    scope='Projects that specify Qualicoat Class 2 or Class 3, or a named brand, are outside our current approval.',
    quote='Tell us your usual colours and your target market. We make panels in your colour code first, then trial on your profiles and line.'),
@@ -137,14 +137,14 @@ IND = [
          ('Indoor decorative parts','Hybrid','Good flow, high gloss; indoor','Matched to the end user’s panel'),
          ('Indoor functional parts','Epoxy','Chemical resistance, insulation, hardness; indoor','Evaluated for chemical and wear needs'),
          ('Decorative orders','Any system with sand, wrinkle, hammer, metallic or fluorescent','Texture and special effects in the catalogue','Effect confirmed on your spray equipment')],
-   caps=['RAL and customer colour matching.','Approved panel versions; repeats produced to the same version.','9 lines and a standard lead time within 10 days.','2 bonding machines for metallic orders.'],
+   caps=['RAL and customer colour matching.','Approved panel versions; repeats produced to the same version.','8 production lines plus 5 sampling lines; standard lead time within 10 days.','2 bonding machines for metallic orders.'],
    verify=[('Colour accuracy','Colour difference and gloss against the end user’s panel'),('Application','Transfer efficiency and reclaim behaviour on your equipment'),('Repeat consistency','The same colour across batches'),('Delivery','Sampling and delivery times')],
    scope='Shops ordering below 1,000 kg per order are best served through a local distributor.',
    quote='Send us your most-used colour and your hardest one. We make panels first, record the approved version, and produce repeats to it.'),
 ]
 DIST = dict(slug='distributors', name='Powder distributors', img='apps/distributors', imgw=(1024,768))
 
-STATS=[('5,000 t','Annual capacity'),('9','Production lines'),('≤ 10 days','Standard lead time'),('~20','Export countries & regions'),('1,000 kg','Minimum order')]
+STATS=[('5,000 t','Annual capacity'),('8','Production lines'),('≤ 10 days','Standard lead time'),('~20','Export countries & regions'),('1,000 kg','Minimum order')]
 
 # second-batch in-article photos: A = parts on the line (who uses it), B = coating close-up (what is verified)
 IND_PHOTOS = {
