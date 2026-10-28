@@ -8,10 +8,17 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v9.css'
+CSS = '/assets/css/polymer-v10.css'
 JS = '/assets/js/polymer-v2.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
+WA = [('+86 158 2472 9376', '8615824729376'), ('+86 188 5021 3808', '8618850213808')]
+WA_MSG = 'Hello%20POLYMER%2C%20I%27m%20interested%20in%20your%20powder%20coatings.'
+WA_ICON = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48a.92.92 0 0 0-.67.31c-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.56.12.17 1.75 2.67 4.24 3.74.59.26 1.05.41 1.41.52.6.19 1.14.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>'
+
+
+def wa_link(i=0):
+    return f'https://wa.me/{WA[i][1]}?text={WA_MSG}'
 ADDR = 'No. 2 Zhuli Road, Xiangcheng District, Zhangzhou, Fujian, China'
 E = html.escape
 GEO = json.load(open(os.path.join(ROOT, 'build/content_geo.json')))
@@ -35,7 +42,7 @@ INDMAP = {i['slug']: i for i in IND}
 
 ORG = {"@context": "https://schema.org", "@type": "Organization", "@id": BASE + "/#org",
        "name": "POLYMER", "legalName": "Fujian Polymer Industry & Trade Co., Ltd.", "alternateName": "玻利玛",
-       "url": BASE + "/", "logo": BASE + "/assets/img/logo-mark.svg", "foundingDate": "2019-04-22", "taxID": "91350602MA32PFWW73", "telephone": TEL, "email": EMAIL,
+       "url": BASE + "/", "logo": BASE + "/assets/img/logo-mark.svg", "foundingDate": "2019-04-22", "taxID": "91350602MA32PFWW73", "telephone": TEL, "email": EMAIL, "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "telephone": t, "email": EMAIL, "availableLanguage": ["English", "Chinese"]} for t in ["+86-158-2472-9376", "+86-188-5021-3808"]],
        "slogan": "You apply powder, we apply care.",
        "address": {"@type": "PostalAddress", "streetAddress": "No. 2 Zhuli Road, Xiangcheng District", "addressLocality": "Zhangzhou", "addressRegion": "Fujian", "postalCode": "363005", "addressCountry": "CN"},
        "description": "Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system.",
@@ -134,12 +141,13 @@ def footer():
 <footer><div class="wrap">
   <div><a class="logo" href="/"><img src="/assets/img/logo-mark-dark.svg" width="30" height="35" alt=""><b style="color:#fff">POLYMER</b><small>Powder coatings</small></a>
     <p class="slogan">You apply powder,<br>we apply care.</p>
-    <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian 363005, China<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:+865962600611">Tel {TEL}</a></p></div>
+    <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian 363005, China<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:+865962600611">Tel {TEL}</a><br>WhatsApp <a href="{wa_link(0)}" rel="noopener">{WA[0][0]}</a> · <a href="{wa_link(1)}" rel="noopener">{WA[1][0]}</a></p></div>
   <div><h4>Products</h4><ul><li><a href="/products/polyester/">Polyester</a></li><li><a href="/products/hybrid/">Hybrid</a></li><li><a href="/products/epoxy/">Epoxy</a></li><li><a href="/finishes/">Colours &amp; finishes</a></li><li><a href="/selector/">System selector</a></li></ul></div>
   <div><h4>Industries</h4><ul>{inds}<li><a href="/distributors/">Distributors</a></li></ul></div>
   <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
   <div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd. · <a href="/privacy/">Privacy &amp; cookies</a></span><span>USCC 91350602MA32PFWW73 · Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
 </div></footer>
+<details class="wa-float"><summary aria-label="Chat on WhatsApp">{WA_ICON}<span>WhatsApp</span></summary><div class="wa-pop"><p>Chat with our sales team<small>Reply within one working day · UTC+8</small></p><a href="{wa_link(0)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[0][0]}</span></a><a href="{wa_link(1)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[1][0]}</span></a></div></details>
 <script src="{JS}" defer></script>
 </body>
 </html>'''
@@ -519,7 +527,7 @@ def std_aside(extra=()):
     links = [('System selector', '/selector/'), ('Colours &amp; finishes', '/finishes/'), ('Technical FAQ', '/faq/'), ('Quality &amp; certificates', '/quality/')] + list(extra)
     li = ''.join(f'<li><a href="{u}">{t}</a></li>' for t, u in links)
     return f'''<aside class="aside">
- <div class="grp"><h3>Direct contact</h3><dl><dt>Email</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd><dt>Phone</dt><dd><a href="tel:+865962600611">{TEL}</a></dd><dt>Response time</dt><dd>Within one working day, Monday to Saturday (UTC+8).</dd></dl></div>
+ <div class="grp"><h3>Direct contact</h3><dl><dt>Email</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd><dt>Phone</dt><dd><a href="tel:+865962600611">{TEL}</a></dd><dt>WhatsApp</dt><dd><a href="{wa_link(0)}" target="_blank" rel="noopener">{WA[0][0]}</a><br><a href="{wa_link(1)}" target="_blank" rel="noopener">{WA[1][0]}</a></dd><dt>Response time</dt><dd>Within one working day, Monday to Saturday (UTC+8).</dd></dl></div>
  <div class="grp"><h3>Regional coverage</h3><dl class="reg"><dd><b>Russia &amp; Europe</b> · Russia, Latvia, Turkey</dd><dd><b>Latin America</b> · Mexico, Colombia, Peru, Brazil, Chile</dd><dd><b>Middle East &amp; Africa</b> · Saudi Arabia, UAE, Oman, Kenya, Nigeria</dd><dd><b>South &amp; Southeast Asia</b> · Sri Lanka, Vietnam, Thailand, Malaysia, Indonesia</dd></dl><p>All enquiries are handled by our team in Zhangzhou, China. Tell us the destination early and we prepare export documents, packing and freight together with the samples.</p></div>
  <div class="grp"><h3>Useful before you write</h3><ul>{li}</ul></div>
 </aside>'''
@@ -692,7 +700,7 @@ def build_geo():
 <dt>Supply</dt><dd>5,000 t/year · 8 production + 5 sampling lines · MOQ 1,000 kg · standard lead time within 10 days</dd>
 <dt>Approvals</dt><dd>Qualicoat Class 1 · P-2199 (polyester PLM100611, to 31 Dec 2026) · ISO 9001:2015 · ISO 14001:2015 · SGS EU RoHS report</dd>
 <dt>Storage</dt><dd>Cool and dry · stability tested 6 months below 30 °C · not dangerous goods for transport</dd>
-<dt>Contact</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a> · {TEL} · reply within one working day</dd></dl></div>'''
+<dt>Contact</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a> · {TEL} · WhatsApp {WA[0][0]} / {WA[1][0]} · reply within one working day</dd></dl></div>'''
     cats = ''
     for i, (k, t) in enumerate(FAQ_CATS):
         slugs = [f['slug'] for f in GEO['faq'] if f.get('cat') == k]
@@ -778,7 +786,7 @@ def build_meta():
 - Testing (in-house): colorimeter and light box, 60° gloss meter, electromagnetic film thickness gauge, laser particle size analyser, screen-mesh sieving, pencil hardness, Erichsen impact, 180° bend, cross-cut adhesion 1 mm × 100, salt spray, UV accelerated weathering, oven temperature logging, storage stability 6 months below 30 °C.
 - Process: formula → weighing → premix → melt extrusion → cooling → grinding and sieving → self-check → lab test → weighing and packing → warehouse; failed batches return to the formula stage.
 - Not offered: Qualicoat Class 2/3, UL or flame-retardant coatings, IATF 16949, FBE/3PE pipeline or heavy-duty anticorrosion systems, orders below 1,000 kg, low-end powder.
-- Contact: sales@polymerpaints.com; Tel +86 596 2600611; https://polymerpaints.com/contact/"""
+- Contact: sales@polymerpaints.com; Tel +86 596 2600611; WhatsApp +86 158 2472 9376 / +86 188 5021 3808; https://polymerpaints.com/contact/"""
     pages = '\n'.join(f'- [{t}]({BASE}{p})' for p, t in PAGES)
     open(os.path.join(ROOT, 'llms.txt'), 'w').write(f"# POLYMER Powder Coatings\n\n> Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.\n\n## Key facts\n{facts}\n\n## Pages\n{pages}\n")
     full = f"# POLYMER Powder Coatings — full facts\n\n{facts}\n\n## Industry × system\n" + '\n'.join(f"- {i['name']}: main {', '.join(SYS[m]['name'] for m in i['main'])}" + (f"; option {', '.join(SYS[o]['name'] for o in i['opt'])}" if i['opt'] else '') + f". {i['oneliner']}" for i in IND) + "\n- Powder distributors: full range of all three systems plus effects.\n\n## FAQ\n"
