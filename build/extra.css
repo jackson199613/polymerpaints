@@ -545,3 +545,76 @@ html[lang="ru"] .phero h1,html[lang="ru"] .h2,html[lang="ru"] .h3{letter-spacing
 .lb button{position:absolute;top:18px;right:18px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .lb button:hover{background:rgba(255,255,255,.16)}
 @media(max-width:520px){.cert2{grid-template-columns:84px minmax(0,1fr);gap:16px;padding:18px}.c2-body small{font-size:10.5px;letter-spacing:.08em}.c2-body dl{grid-template-columns:1fr;gap:0}.c2-body dt{font-size:12px;margin-top:8px}.c2-body dt:first-child{margin-top:0}.c2-body dd{overflow-wrap:anywhere}}
+
+/* =========================================================
+   Motion v2 — page-load hero choreography, living backdrop,
+   staggered scroll reveals, image settle, heading shine.
+   Everything is off under prefers-reduced-motion.
+   ========================================================= */
+@keyframes m2Up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes m2Blur{from{opacity:0;transform:translateY(38px);filter:blur(12px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes m2Line{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes m2Shine{from{background-position:100% 0}to{background-position:0 0}}
+@keyframes m2Zoom{from{opacity:0;transform:scale(1.14)}to{opacity:1;transform:none}}
+@keyframes m2Ken{from{transform:scale(1.12)}to{transform:none}}
+@keyframes m2Wipe{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes m2Pop{0%{opacity:0;transform:translateY(10px) scale(.9)}70%{opacity:1;transform:translateY(-2px) scale(1.03)}100%{opacity:1;transform:none}}
+@keyframes m2Grid{to{background-position:56px 56px,56px 56px}}
+@keyframes m2GlowA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-90px,60px) scale(1.15)}}
+@keyframes m2GlowB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(80px,-50px) scale(.9)}}
+
+/* living backdrop (inserted by JS into dark heroes and dark bands) */
+.fx{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.fx-grid{position:absolute;inset:-56px;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(70% 80% at 30% 40%,#000 0,transparent 75%);mask-image:radial-gradient(70% 80% at 30% 40%,#000 0,transparent 75%);animation:m2Grid 16s linear infinite}
+.fx-glow{position:absolute;width:620px;height:620px;border-radius:50%;opacity:.9;will-change:transform}
+.fx-glow.r{left:-160px;top:-220px;background:radial-gradient(closest-side,rgba(200,35,26,.30),transparent);animation:m2GlowA 18s ease-in-out infinite}
+.fx-glow.b{left:38%;bottom:-300px;background:radial-gradient(closest-side,rgba(18,88,148,.34),transparent);animation:m2GlowB 22s ease-in-out infinite}
+.phero .wrap{z-index:2}
+.phero.has-bg .fx-grid{-webkit-mask-image:linear-gradient(90deg,#000 0,transparent 62%);mask-image:linear-gradient(90deg,#000 0,transparent 62%)}
+.hero>.fx{z-index:0}.hero-grid,.hero .proof,.hero .ticker{position:relative;z-index:1}
+.hero-copy{position:relative;z-index:2}
+.dark>.fx,.cta>.fx{z-index:0}.dark>.wrap,.cta>.wrap{position:relative;z-index:2}
+
+/* inner-page hero entrance */
+.phero .crumbs{animation:m2Up .7s cubic-bezier(.2,.7,.2,1) .05s both}
+.phero h1{animation:m2Blur 1s cubic-bezier(.2,.7,.2,1) .15s both}
+.phero .lead{animation:m2Up .8s cubic-bezier(.2,.7,.2,1) .42s both}
+.phero .facts span{animation:m2Pop .6s cubic-bezier(.2,.7,.2,1) both}
+.phero .facts span:nth-child(1){animation-delay:.6s}.phero .facts span:nth-child(2){animation-delay:.68s}.phero .facts span:nth-child(3){animation-delay:.76s}.phero .facts span:nth-child(4){animation-delay:.84s}.phero .facts span:nth-child(5){animation-delay:.92s}
+.phero .hero-ctas{animation:m2Up .8s cubic-bezier(.2,.7,.2,1) .7s both}
+.phero figure{animation:m2Wipe 1.2s cubic-bezier(.7,0,.2,1) .2s both}
+.phero figure img{animation:m2Zoom 1.8s cubic-bezier(.2,.7,.2,1) .2s both}
+.phero .bg-img{animation:m2Ken 3.2s cubic-bezier(.2,.7,.2,1) both}
+
+/* homepage hero entrance (paused while the intro plays) */
+.js .hero .eyebrow{animation:m2Up .7s cubic-bezier(.2,.7,.2,1) .05s both}
+.js .hero .eyebrow::before{transform-origin:left;animation:m2Line .8s ease .2s both}
+.js .hero .h1{animation:m2Blur 1.1s cubic-bezier(.2,.7,.2,1) .12s both}
+.js .hero .lead{animation:m2Up .8s cubic-bezier(.2,.7,.2,1) .45s both}
+.js .hero .hero-ctas{animation:m2Up .8s cubic-bezier(.2,.7,.2,1) .6s both}
+.js .hero .proof .wrap>div{animation:m2Up .7s cubic-bezier(.2,.7,.2,1) both}
+.js .hero .proof .wrap>div:nth-child(1){animation-delay:.75s}.js .hero .proof .wrap>div:nth-child(2){animation-delay:.83s}.js .hero .proof .wrap>div:nth-child(3){animation-delay:.91s}.js .hero .proof .wrap>div:nth-child(4){animation-delay:.99s}.js .hero .proof .wrap>div:nth-child(5){animation-delay:1.07s}
+
+/* italic accent words: light sweep once */
+.phero h1 em,.hero .h1 em{background:linear-gradient(100deg,var(--accent-hi) 0%,var(--accent-hi) 40%,#ffd9d4 50%,var(--accent-hi) 60%,var(--accent-hi) 100%);background-size:260% 100%;background-position:0 0;-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em;margin-right:-.08em;animation:m2Shine 1.8s cubic-bezier(.3,.6,.2,1) 1s both}
+.js .hero .h1 em{animation-delay:1.1s}
+.rv .h2 em{background:linear-gradient(100deg,currentColor 0%,currentColor 40%,#ff9b91 50%,currentColor 60%,currentColor 100%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;padding-right:.08em;margin-right:-.08em;transition:background-position 1.6s cubic-bezier(.3,.6,.2,1) .35s}
+.rv.in .h2 em,.rv.in.h2 em{background-position:0 0}
+.dark .rv .h2 em,.cta .h2 em{color:var(--accent-hi)}
+
+/* scroll reveal v2: deeper rise, eyebrow line draws, images settle */
+.js .rv{transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.js .rv .eyebrow::before,.js .rv.eyebrow::before{transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.2,.7,.2,1) .25s}
+.js .rv.in .eyebrow::before,.js .rv.in.eyebrow::before{transform:scaleX(1)}
+.js .rv :is(figure,.sys-img,.c2-media,.ins-thumb) img{scale:1.1;transition:scale 1.8s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1),filter .6s}
+.js .rv.in :is(figure,.sys-img,.c2-media,.ins-thumb) img{scale:1}
+.js .rv.ind figure,.js .rv.tile,.js .rv figure{overflow:hidden}
+
+@media(prefers-reduced-motion:reduce){
+ .fx{display:none}
+ .phero *,.phero,.js .hero *,.phero .bg-img{animation:none!important}
+ .phero h1 em,.hero .h1 em,.rv .h2 em{background:none;-webkit-text-fill-color:currentColor;color:var(--accent-hi)}
+ .rv .h2 em{color:var(--accent)}
+ .js .rv :is(figure,.sys-img,.c2-media,.ins-thumb) img{scale:1;transition:none}
+ .js .rv .eyebrow::before{transform:none;transition:none}
+}
