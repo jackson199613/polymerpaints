@@ -8,7 +8,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v6.css'
+CSS = '/assets/css/polymer-v8.css'
 JS = '/assets/js/polymer-v2.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -110,7 +110,8 @@ def header(active=''):
     <a href="/finishes/"{cur('finishes')}>Finishes</a>
     <a href="/distributors/"{cur('distributors')}>Distributors</a>
     <a href="/quality/"{cur('quality')}>Quality</a>
-    <div class="dd"><a href="/faq/"{cur('resources')}>Resources</a><div class="menu"><a href="/faq/">Technical FAQ</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/selector/">System selector</a></div></div>
+    <a href="/faq/"{cur('faq')}>FAQ</a>
+    <div class="dd"><a href="/how-to/"{cur('resources')}>Resources</a><div class="menu"><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/selector/">System selector</a><a href="/faq/">FAQ · 40 answers</a></div></div>
     <a href="/company/"{cur('company')}>Company</a>
     <a href="/contact/"{cur('contact')}>Contact</a>
   </nav>
@@ -120,6 +121,7 @@ def header(active=''):
 <nav class="mnav" id="mnav" aria-label="Mobile">
   <h4>Products</h4><a href="/products/">All products</a>{prod}<a href="/finishes/">Colours &amp; finishes</a><a href="/selector/">System selector</a>
   <h4>Industries</h4>{mob_inds}
+  <h4>FAQ</h4><a href="/faq/">FAQ · 40 answers</a>
   <h4>Company</h4><a href="/quality/">Quality &amp; certificates</a><a href="/company/">About POLYMER</a><a href="/faq/">Technical FAQ</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/contact/">Contact</a>
   <a class="btn btn-primary" href="/request-sample/">Request a sample</a>
 </nav>
@@ -682,21 +684,27 @@ def build_geo():
     for i, (k, t) in enumerate(FAQ_CATS):
         slugs = [f['slug'] for f in GEO['faq'] if f.get('cat') == k]
         cats += f'<section class="fq-cat rv" id="t-{k}"><p class="eyebrow">{i + 1:02d} · {cnt[k]} answers</p><h2 class="h3">{E(t)}</h2>{faq_block(slugs)}</section>'
-    body = phero([('Resources', None), ('Technical FAQ', None)], 'Powder coating questions, <em>answered.</em>',
+        if k == 'colour':
+            cats += ('<figure class="fq-band rv"><img src="/assets/img/intro/palette-900.webp" srcset="/assets/img/intro/palette-900.webp 900w, /assets/img/intro/palette.webp 1672w" sizes="(min-width:1060px) 860px, 100vw" width="1672" height="941" loading="lazy" alt="A fan of powder-coated colour panels in reds, blues, greys, metallics and greens">'
+                     '<figcaption><p class="eyebrow">Colour library</p><p class="fq-band-t">Matched on a physical panel, <em>not on a screen.</em></p><a class="link" href="/finishes/">Colours &amp; finishes</a></figcaption></figure>')
+        if k == 'quality':
+            labs = ''.join(f'<figure>{img(n, IMG2[n][0], IMG2[n][1], alt, "(min-width:1060px) 210px, 50vw", IMG2[n][2])}<figcaption>{c}</figcaption></figure>' for n, alt, c in
+                           [('real/colorimeter', 'Colour measurement with a colorimeter', 'Colour'), ('real/gloss', '60° gloss measurement on a panel', '60° gloss'), ('real/particle', 'Laser particle size analysis', 'Particle size'), ('real/bending', 'Bend test on a coated panel', 'Bend test')])
+            cats += f'<div class="fq-lab rv"><div class="fq-lab-h"><p class="eyebrow">Inside our laboratory · real photos</p><p class="fq-band-t">Every batch is tested <em>before it is packed.</em></p><a class="link" href="/quality/">Quality &amp; testing</a></div><div class="fq-lab-g">{labs}</div></div>'
+    body = phero([('FAQ', None)], 'Powder coating questions, <em>answered.</em>',
                  f'{n} answers about POLYMER powder coatings: systems, colour and effects, orders and supply, certificates, samples, the company and distributor cooperation. Short answer first, then the detail and the page behind it.',
                  facts=[f'{n} answers', '7 topics', 'Updated 27 October 2026'], ctas=[('Ask our team', '/contact/', 'btn-primary'), ('How-to guides', '/how-to/', 'btn-line')])
     body += f'''<section class="sec tight"><div class="wrap fq-layout">
   <aside class="fq-toc"><p class="eyebrow">Topics</p><label class="fq-search"><span class="hp">Search questions</span><input type="search" id="fq-q" placeholder="Search questions…" autocomplete="off"></label><nav aria-label="FAQ topics">{toc}</nav></aside>
   <div class="fq-main">{glance}{cats}<p class="fq-none" id="fq-none" hidden>No question matches your search. <a class="link" href="/contact/">Ask our team</a></p>
-   <section class="fq-spec rv" id="specialist"><p class="eyebrow">When to talk to our team directly</p><h2 class="h3">Some answers depend <em>on your part.</em></h2>
+   <section class="fq-spec rv" id="specialist">{img("home/cta-powder", 1916, 821, "", small=960).replace('<img ', '<img class="bg" ')}<div class="fq-spec-in"><p class="eyebrow">When to talk to our team directly</p><h2 class="h3">Some answers depend <em>on your part.</em></h2>
     <ul><li>Volume pricing and annual supply</li><li>Projects that name Qualicoat or another specification</li><li>Custom colours, textures and metallic effects from your sample</li><li>Distributor ranges and regional terms</li><li>Documents for a tender or supplier approval file</li></ul>
-    <div class="hero-ctas"><a class="btn btn-primary" href="/contact/">Send project details {ARROW}</a><a class="btn btn-line" href="/request-sample/">Request a sample</a></div></section>
+    <div class="hero-ctas"><a class="btn btn-primary" href="/contact/">Send project details {ARROW}</a><a class="btn btn-line" href="/request-sample/">Request a sample</a></div></div></section>
   </div></div></section>
 <script>(function(){{var q=document.getElementById('fq-q');if(!q)return;var ds=[].slice.call(document.querySelectorAll('.fq-cat details')),cs=[].slice.call(document.querySelectorAll('.fq-cat')),no=document.getElementById('fq-none');
 q.addEventListener('input',function(){{var v=q.value.trim().toLowerCase(),hit=0;ds.forEach(function(d){{var m=!v||d.textContent.toLowerCase().indexOf(v)>-1;d.hidden=!m;if(m)hit++;if(v&&m&&v.length>2)d.open=true}});cs.forEach(function(c){{c.hidden=!c.querySelector('details:not([hidden])')}});no.hidden=hit>0;var g=document.querySelector('.fq-glance');if(g)g.hidden=!!v}});
 if(location.hash){{var t=document.getElementById(location.hash.slice(1));if(t&&t.tagName==='DETAILS'){{t.open=true;}}}}}})();</script>'''
-    body += cta()
-    write('/faq/', 'Powder Coating FAQ: Systems, Colours, MOQ, Certificates & Samples | POLYMER', f'{n} answers on POLYMER powder coatings: choosing epoxy, polyester or hybrid, Qualicoat Class 1 scope, ISO certificates, RoHS, MOQ, lead time, colour matching, samples, export and distributors.', body, 'resources',
+    write('/faq/', 'Powder Coating FAQ: Systems, Colours, MOQ, Certificates & Samples | POLYMER', f'{n} answers on POLYMER powder coatings: choosing epoxy, polyester or hybrid, Qualicoat Class 1 scope, ISO certificates, RoHS, MOQ, lead time, colour matching, samples, export and distributors.', body, 'faq',
           ld=[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": qa}])
 
     cards = ''.join(f'<a class="card rv" href="/how-to/{h["slug"]}/"><small>How-to · {len(h["steps"])} steps</small><h3 style="font-size:26px">{E(h["title"])}</h3><p>{E(h["summary"])}</p><span class="link">Read guide</span></a>' for h in GEO['howto'])

@@ -350,3 +350,31 @@ html.pi-on body{overflow:hidden}
 .fq-spec ul{margin:22px 0 28px;display:grid;gap:10px}
 .fq-spec li{list-style:none;padding-left:22px;position:relative;color:var(--ink-2)}
 .fq-spec li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:1px;background:var(--accent)}
+/* FAQ image breaks */
+.fq-band{position:relative;margin:64px 0 0;border-radius:3px;overflow:hidden;background:#0e0f11;min-height:280px;display:flex;align-items:flex-end}
+.fq-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 50%}
+.fq-band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,11,13,.92) 0,rgba(10,11,13,.6) 42%,rgba(10,11,13,0) 75%)}
+.fq-band figcaption{position:relative;z-index:1;padding:34px 36px;max-width:440px;color:#fff}
+.fq-band .eyebrow,.fq-lab .eyebrow{color:#9ca1a7}
+.fq-band-t{font-family:var(--serif);font-size:clamp(26px,2.6vw,36px);line-height:1.08;margin:14px 0 18px;color:#fff}
+.fq-band-t em{font-style:italic;color:var(--accent-hi)}
+.fq-band .link,.fq-lab .link{color:#fff}
+@media(max-width:700px){.fq-band{min-height:360px}.fq-band::after{background:linear-gradient(180deg,rgba(10,11,13,0) 20%,rgba(10,11,13,.92) 75%)}}
+.fq-lab{margin-top:64px;background:var(--ink);border-radius:3px;padding:32px 34px;color:#fff}
+.fq-lab-h .fq-band-t{margin-bottom:16px}
+.fq-lab-g{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:26px}
+@media(min-width:800px){.fq-lab-g{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.fq-lab-g figure{margin:0;min-width:0}
+.fq-lab-g img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:2px}
+.fq-lab-g figcaption{margin-top:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#9ca1a7}
+.fq-spec{position:relative;overflow:hidden;background:#0e0f11;border:0;color:#fff;padding:0}
+.fq-spec img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center}
+.fq-spec::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,15,17,.94) 0,rgba(14,15,17,.8) 50%,rgba(14,15,17,.15) 85%)}
+@media(max-width:979px){.fq-spec::after{background:linear-gradient(180deg,rgba(14,15,17,.75),rgba(14,15,17,.95) 55%)}}
+.fq-spec-in{position:relative;z-index:1;padding:44px 40px;max-width:620px}
+.fq-spec .eyebrow{color:#d9b0ab}
+.fq-spec .h3{color:#fff}
+.fq-spec li{color:#c9ccd0}
+/* nav with FAQ item (update 12) */
+@media(min-width:1280px) and (max-width:1439px){nav.main{gap:20px}header.site .logo small{display:none}}
+@media(min-width:1060px) and (max-width:1279px){nav.main{gap:14px;font-size:13px}header.site .wrap{gap:16px}.hdr-cta{padding:0 14px;font-size:13px}}
