@@ -10,8 +10,8 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v16.css'
-JS = '/assets/js/polymer-v5.js'
+CSS = '/assets/css/polymer-v17.css'
+JS = '/assets/js/polymer-v6.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
 WA = [('+86 158 2472 9376', '8615824729376'), ('+86 188 5021 3808', '8618850213808')]
@@ -251,7 +251,7 @@ CERTS = [
   'rows': [('No.', '05326E01349R001'), ('Valid', '12 Oct 2026 – 11 Oct 2029')],
   'more': [('Scope', 'Environmental management of the design, manufacture and sales of thermosetting powder coatings. Not a product approval.'), ('Issuer', 'Beijing NGV Certification Center Co., Ltd.')],
   'short': ('Scope', 'Design, manufacture and sales of thermosetting powder coatings')},
- {'k': 'sgs', 'tag': 'Third-party test report', 'name': 'SGS · EU RoHS', 'img': None, 'pdf': None,
+ {'k': 'sgs-rohs', 'tag': 'Third-party test report', 'name': 'SGS · EU RoHS', 'img': (1400, 1980), 'pdf': None, 'pages': 7,
   'rows': [('Report', 'XMNEC26001081101'), ('Issued', '12 May 2026')],
   'more': [('Result', 'Pass: all ten substances of (EU) 2015/863 not detected'), ('Sample', 'One black powder coating sample as submitted; it does not cover other colours or products.'), ('Laboratory', 'SGS-CSTC Standards Technical Services Co., Ltd., Xiamen Branch')],
   'short': ('Result', 'Pass, black powder sample; all ten substances not detected')},
@@ -267,10 +267,11 @@ def cert_cards(detail=False, lazy=True):
         dl = ''.join(f'<dt>{E(a)}</dt><dd>{E(b)}</dd>' for a, b in rows)
         if c['img']:
             w, h = c['img']
-            big = f'/assets/img/cert/{c["k"]}-1400.webp'
-            thumb = (f'<button type="button" class="c2-thumb" data-lb="{big}" data-lb-w="{w}" data-lb-h="{h}" data-lb-cap="{E(c["name"])}" aria-label="View the {E(c["name"])} certificate">'
-                     f'<img src="/assets/img/cert/{c["k"]}-520.webp" width="520" height="{round(520 * h / w)}" alt="{E(c["name"])} certificate of Fujian Polymer Industry &amp; Trade Co., Ltd."{" loading=lazy" if lazy else ""}><span class="c2-zoom">{EYE_ICON}</span></button>')
-            act = f'<button type="button" class="c2-btn" data-lb="{big}" data-lb-w="{w}" data-lb-h="{h}" data-lb-cap="{E(c["name"])}">{EYE_ICON}View certificate</button><a class="c2-btn" href="{c["pdf"]}" download>{DL_ICON}PDF</a>'
+            big = f'/assets/img/cert/{c["k"]}-p1-1400.webp' if c.get('pages') else f'/assets/img/cert/{c["k"]}-1400.webp'
+            pg = (' data-lb-pages="' + '|'.join(f'/assets/img/cert/{c["k"]}-p{i}-1400.webp' for i in range(1, c['pages'] + 1)) + '"') if c.get('pages') else ''
+            thumb = (f'<button type="button" class="c2-thumb" data-lb="{big}"{pg} data-lb-w="{w}" data-lb-h="{h}" data-lb-cap="{E(c["name"])}" aria-label="View the {E(c["name"])} {'report' if c.get('pages') else 'certificate'}">'
+                     f'<img src="/assets/img/cert/{c["k"]}-520.webp" width="520" height="{round(520 * h / w)}" alt="{E(c["name"])} {'test report' if c.get('pages') else 'certificate'} of Fujian Polymer Industry &amp; Trade Co., Ltd."{" loading=lazy" if lazy else ""}><span class="c2-zoom">{EYE_ICON}</span></button>')
+            act = f'<button type="button" class="c2-btn" data-lb="{big}"{pg} data-lb-w="{w}" data-lb-h="{h}" data-lb-cap="{E(c["name"])}">{EYE_ICON}{"View full report" if c.get("pages") else "View certificate"}</button>' + (f'<a class="c2-btn" href="{c["pdf"]}" download>{DL_ICON}PDF</a>' if c['pdf'] else f'<span class="c2-note">{c["pages"]} pages</span>')
         else:
             thumb = '<div class="c2-thumb c2-doc" aria-hidden="true"><span class="d-h"></span><span class="d-l"></span><span class="d-l"></span><span class="d-l s"></span><span class="d-t"></span><span class="d-l"></span><span class="d-l s"></span><b>RoHS<br>(EU) 2015/863</b><em>PASS</em></div>'
             act = '<a class="c2-btn" href="/downloads/?doc=SGS%20RoHS%20report">Request the report →</a>'
@@ -649,7 +650,7 @@ def build_quality():
     body += f'''<section class="sec tight"><div class="wrap">
   <div class="head rv"><div><p class="eyebrow">Certificates &amp; reports</p><h2 class="h2">Every claim has <em>a certificate number.</em></h2></div><p class="lead">Click a certificate to see it full size, or download the PDF. Each one applies to the scope printed on it.</p></div>
   {cert_cards(detail=True)}
-  <p class="tbl-note">ISO certificates can be verified on the issuer’s website, www.ngv.org.cn, or by scanning the QR code on the certificate. The SGS report is sent on request for a specific project.</p></div></section>
+  <p class="tbl-note">ISO certificates can be verified on the issuer’s website, www.ngv.org.cn, or by scanning the QR code on the certificate. The SGS report covers the sample tested; reports for other products can be arranged for a project.</p></div></section>
 <section class="sec tight alt"><div class="wrap">
   <div class="head rv"><div><p class="eyebrow">In-house laboratory</p><h2 class="h2">What we check <em>on panels and batches.</em></h2></div><p class="lead">Our technical research lab, QC lab and sample room test every new colour and every batch before release. These are internal test conditions, not third-party reports.</p></div>
   {labs}

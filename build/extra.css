@@ -618,3 +618,10 @@ html[lang="ru"] .phero h1,html[lang="ru"] .h2,html[lang="ru"] .h3{letter-spacing
  .js .rv :is(figure,.sys-img,.c2-media,.ins-thumb) img{scale:1;transition:none}
  .js .rv .eyebrow::before{transform:none;transition:none}
 }
+.lb .lb-x{position:absolute;top:18px;right:18px}
+.lb .lb-nav{position:absolute;top:50%;margin-top:-24px;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;font-size:28px;line-height:1;cursor:pointer}
+.lb .lb-nav.prev{left:3vw;right:auto;top:50%}.lb .lb-nav.next{right:3vw;left:auto;top:50%}
+.lb .lb-nav:hover{background:rgba(255,255,255,.16)}
+.lb.multi img{cursor:pointer}
+.c2-note{font-size:13px;color:var(--muted);align-self:center}
+@media(max-width:700px){.lb .lb-nav{top:auto;bottom:18px;margin-top:0}}
