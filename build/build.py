@@ -8,7 +8,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v8.css'
+CSS = '/assets/css/polymer-v9.css'
 JS = '/assets/js/polymer-v2.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -148,7 +148,7 @@ def footer():
 def cta(title='Send us your most-used colour <em>and your hardest one.</em>', text='Tell us the part, environment, process and expected volume. We reply with a proposed system and a sample plan. Orders from 1,000 kg.', btn=('Send project details', '/contact/'), btn2=('Request a sample', '/request-sample/')):
     return f'''
 <section class="cta" aria-label="Start a project">
-  {img("home/cta-powder", 1916, 821, "", small=960).replace('<img ', '<img class="bg" ')}
+  {bgimg('cta-red')}
   <div class="wrap">
     <p class="eyebrow" style="color:#d9b0ab">Start a project</p>
     <h2 class="h2">{title}</h2>
@@ -158,14 +158,20 @@ def cta(title='Send us your most-used colour <em>and your hardest one.</em>', te
 </section>'''
 
 
-def phero(crumbs, h1, lead, figure='', facts=None, ctas=None):
+PH_BG = {'Industries': 'industries', 'System selector': 'selector', 'Contact': 'contact', 'FAQ': 'resources', 'How-to guides': 'resources', 'How-to': 'resources'}
+
+
+def phero(crumbs, h1, lead, figure='', facts=None, ctas=None, bg=None):
+    if bg is None and not figure:
+        names = [n for n, u in crumbs]
+        bg = next((PH_BG[n] for n in names if n in PH_BG and (n != 'Industries' or len(crumbs) == 1)), None)
     cr = '<a href="/">Home</a>' + ''.join((f'<a href="{u}">{E(n)}</a>' if u else f'<span>{E(n)}</span>') for n, u in crumbs)
     fx = ('<div class="facts">' + ''.join(f'<span>{E(f)}</span>' for f in facts) + '</div>') if facts else ''
     ct = ''
     if ctas:
         ct = '<div class="hero-ctas">' + ''.join(f'<a class="btn {c}" href="{u}">{t}{" " + ARROW if c == "btn-primary" else ""}</a>' for t, u, c in ctas) + '</div>'
     return f'''
-<section class="phero{' has-img' if figure else ''}">
+<section class="phero{' has-img' if figure else ''}{' has-bg' if bg else ''}">{bgimg(bg, lazy=False) if bg else ''}
   <div class="wrap">
     <div><nav class="crumbs" aria-label="Breadcrumb">{cr}</nav><h1>{h1}</h1><p class="lead">{lead}</p>{fx}{ct}</div>
     {figure}
@@ -179,6 +185,13 @@ def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.j
     os.makedirs(os.path.dirname(fp), exist_ok=True)
     open(fp, 'w').write(out)
     if sitemap: PAGES.append((path, title))
+
+
+def bgimg(name, lazy=True):
+    sm = 640 if name == 'cta-red' else 960
+    w, h = (1024, 1024) if name == 'cta-red' else (1916, 821)
+    return (f'<img class="bg-img bg-{name}" src="/assets/img/bg/{name}-{sm}.webp" srcset="/assets/img/bg/{name}-{sm}.webp {sm}w, /assets/img/bg/{name}.webp {w}w" '
+            f'sizes="100vw" width="{w}" height="{h}" alt=""{" loading=lazy" if lazy else " fetchpriority=high"}>')
 
 
 def fig2(name, alt, cap):
@@ -275,11 +288,11 @@ def build_products():
         indcards = ''.join(f'<a class="ind rv" href="/industries/{x}/"><figure>{img(INDMAP[x]["img"], *INDMAP[x]["imgw"], INDMAP[x]["name"], "(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw")}</figure><span class="n">{INDMAP[x]["n"]}</span><h3>{E(INDMAP[x]["short"])}</h3></a>' for x in s['inds'] if x in INDMAP)
         extra = ''
         if k == 'polyester':
-            extra = '''<section class="sec tight dark"><div class="wrap split">
+            extra = '''<section class="sec dark qc-band">''' + bgimg('qualicoat') + '''<div class="wrap"><div class="qc-in">
   <div class="rv"><p class="eyebrow">Architectural approval</p><h2 class="h3" style="margin-top:20px;color:#fff">Qualicoat Class 1, <em style="color:var(--accent-hi)">with its scope.</em></h2></div>
   <div class="rv"><dl class="kv" style="border-color:var(--night-line)">
    <dt>Licence</dt><dd style="color:#e8eaec">P-2199</dd><dt>System</dt><dd style="color:#e8eaec">Polyester PLM100611, gloss category 3</dd><dt>Valid</dt><dd style="color:#e8eaec">Until 31 December 2026</dd><dt>Scope</dt><dd style="color:#e8eaec">The approved polyester system only. Not all products or colours; no structured-texture or metallic extension; not Class 2 or Class 3.</dd></dl>
-   <p class="mt24"><a class="link" href="/quality/">Quality &amp; certificates</a></p></div></div></section>'''
+   <p class="mt24"><a class="link" href="/quality/">Quality &amp; certificates</a></p></div></div></div></section>'''
         faqs = {'polyester': ['which-powder-system-outdoor-indoor', 'what-qualicoat-class-1-covers'],
                 'hybrid': ['can-hybrid-powder-be-used-outdoors', 'which-powder-system-outdoor-indoor'],
                 'epoxy': ['why-epoxy-yellows-indoor-only', 'which-powder-system-outdoor-indoor']}[k]
@@ -697,7 +710,7 @@ def build_geo():
     body += f'''<section class="sec tight"><div class="wrap fq-layout">
   <aside class="fq-toc"><p class="eyebrow">Topics</p><label class="fq-search"><span class="hp">Search questions</span><input type="search" id="fq-q" placeholder="Search questions…" autocomplete="off"></label><nav aria-label="FAQ topics">{toc}</nav></aside>
   <div class="fq-main">{glance}{cats}<p class="fq-none" id="fq-none" hidden>No question matches your search. <a class="link" href="/contact/">Ask our team</a></p>
-   <section class="fq-spec rv" id="specialist">{img("home/cta-powder", 1916, 821, "", small=960).replace('<img ', '<img class="bg" ')}<div class="fq-spec-in"><p class="eyebrow">When to talk to our team directly</p><h2 class="h3">Some answers depend <em>on your part.</em></h2>
+   <section class="fq-spec rv" id="specialist">{bgimg('cta-red')}<div class="fq-spec-in"><p class="eyebrow">When to talk to our team directly</p><h2 class="h3">Some answers depend <em>on your part.</em></h2>
     <ul><li>Volume pricing and annual supply</li><li>Projects that name Qualicoat or another specification</li><li>Custom colours, textures and metallic effects from your sample</li><li>Distributor ranges and regional terms</li><li>Documents for a tender or supplier approval file</li></ul>
     <div class="hero-ctas"><a class="btn btn-primary" href="/contact/">Send project details {ARROW}</a><a class="btn btn-line" href="/request-sample/">Request a sample</a></div></div></section>
   </div></div></section>

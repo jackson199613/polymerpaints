@@ -378,3 +378,24 @@ html.pi-on body{overflow:hidden}
 /* nav with FAQ item (update 12) */
 @media(min-width:1280px) and (max-width:1439px){nav.main{gap:20px}header.site .logo small{display:none}}
 @media(min-width:1060px) and (max-width:1279px){nav.main{gap:14px;font-size:13px}header.site .wrap{gap:16px}.hdr-cta{padding:0 14px;font-size:13px}}
+
+/* ===== background images (update 13) ===== */
+.phero.has-bg{background:#0b0c0e}
+.phero .bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;z-index:0}
+.phero.has-bg::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(11,12,14,.96) 0,rgba(11,12,14,.85) 38%,rgba(11,12,14,.25) 70%,rgba(11,12,14,0) 100%)}
+.phero.has-bg .wrap{z-index:2;padding-top:72px;padding-bottom:88px}
+@media(min-width:980px){.phero.has-bg .wrap{min-height:440px;align-content:center}.phero.has-bg .wrap>div{max-width:620px}}
+@media(max-width:979px){.phero .bg-img{height:58%;top:auto;bottom:0;object-position:72% center;opacity:.55}.phero.has-bg::before{background:linear-gradient(180deg,rgba(11,12,14,1) 35%,rgba(11,12,14,.55) 100%)}}
+/* CTA with square red powder photo, right aligned */
+.cta .bg-img{position:absolute;top:0;right:0;bottom:0;left:auto;height:100%;width:auto;max-width:none;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 40%);mask-image:linear-gradient(90deg,transparent 0,#000 40%)}
+@media(max-width:979px){.cta .bg-img{width:100%;height:100%;object-position:70% center;-webkit-mask-image:none;mask-image:none;opacity:.6}}
+.fq-spec .bg-img{position:absolute;top:0;right:0;bottom:0;height:100%;width:auto;max-width:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 45%);mask-image:linear-gradient(90deg,transparent 0,#000 45%)}
+@media(max-width:979px){.fq-spec .bg-img{width:100%;object-fit:cover;opacity:.5;-webkit-mask-image:none;mask-image:none}}
+/* polyester Qualicoat band */
+.qc-band{position:relative;overflow:hidden;background:#0b0c0e}
+.qc-band .bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center}
+.qc-band::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,12,14,.97) 0,rgba(11,12,14,.88) 45%,rgba(11,12,14,.2) 75%,rgba(11,12,14,0) 100%)}
+.qc-band .wrap{position:relative;z-index:1}
+.qc-in{max-width:600px;display:grid;gap:28px}
+@media(max-width:979px){.qc-band .bg-img{opacity:.35}.qc-band::before{background:rgba(11,12,14,.6)}}
+@media(max-width:979px){.phero .bg-img{opacity:.8}.phero.has-bg::before{background:linear-gradient(180deg,rgba(11,12,14,1) 40%,rgba(11,12,14,.45) 100%)}.cta .bg-img{opacity:.85;object-position:85% center}.cta::after{background:linear-gradient(180deg,rgba(14,15,17,.55),rgba(14,15,17,.92) 55%)}}
