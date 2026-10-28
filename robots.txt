@@ -1,3 +1,4 @@
 User-agent: *
-Disallow: /
-# Preview build. Remove this block before launch.
+Allow: /
+
+Sitemap: https://polymerpaints.com/sitemap.xml
