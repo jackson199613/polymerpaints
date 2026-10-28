@@ -8,8 +8,8 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v10.css'
-JS = '/assets/js/polymer-v2.js'
+CSS = '/assets/css/polymer-v11.css'
+JS = '/assets/js/polymer-v3.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
 WA = [('+86 158 2472 9376', '8615824729376'), ('+86 188 5021 3808', '8618850213808')]
