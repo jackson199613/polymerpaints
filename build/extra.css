@@ -454,3 +454,24 @@ html[lang="ru"] .topbar .lng a[hreflang="ru"],html[lang="es"] .topbar .lng a[hre
 .lang-certs .cert.key p{color:#c9ccd0}
 html[lang="ru"] .phero h1,html[lang="ru"] .h2,html[lang="ru"] .h3{letter-spacing:0}
 .topbar .lng{margin-right:18px;padding-right:18px;border-right:1px solid var(--night-line)}
+
+/* ---------- insights ---------- */
+.ins-card{padding:0;overflow:hidden;display:flex;flex-direction:column}
+.ins-card .ins-thumb{aspect-ratio:3/2;overflow:hidden;background:var(--paper);margin:-1px -1px 0}
+.ins-card .ins-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.ins-card:hover .ins-thumb img{transform:scale(1.04)}
+.ins-card>small,.ins-card>h3,.ins-card>p,.ins-card>.link{margin-left:28px;margin-right:28px}
+.ins-card>small{margin-top:24px}.ins-card>h3{font-size:25px}.ins-card>.link{margin-bottom:28px;margin-top:auto;padding-top:14px}
+.ins-aside{align-self:start}
+@media(min-width:980px){.ins-aside{position:sticky;top:96px}}
+.ins-toc{list-style:none;counter-reset:t;margin-top:16px;display:grid;gap:2px;border-left:1px solid var(--line)}
+.ins-toc li{counter-increment:t}
+.ins-toc a{display:block;padding:7px 0 7px 16px;font-size:14.5px;color:var(--ink-2);margin-left:-1px;border-left:2px solid transparent;transition:color .2s,border-color .2s}
+.ins-toc a::before{content:counter(t,decimal-leading-zero);font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:10px}
+.ins-toc a:hover{color:var(--ink);border-left-color:var(--accent)}
+.ins-rel{list-style:none;margin-top:12px;display:grid;gap:10px}
+.ins-tbl{margin:26px 0 8px}
+.ins-tbl .tbl{min-width:600px}
+.article h2[id]{scroll-margin-top:96px}
+.article p+p{margin-top:14px}
+@media(min-width:1060px){.ins-grid .ins-card:first-child{grid-column:span 2}.ins-grid .ins-card:first-child .ins-thumb{aspect-ratio:2/1}}

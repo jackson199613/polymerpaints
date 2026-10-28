@@ -4,12 +4,13 @@ import json, os, re, html, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from content_site import SYS, FINISHES, IND, DIST, STATS, IND_PHOTOS
 from content_i18n import T as I18N
+from content_insights import ARTICLES
 IMG2 = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img2_sizes.json')))
 IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img_real.json'))))
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v12.css'
+CSS = '/assets/css/polymer-v13.css'
 JS = '/assets/js/polymer-v3.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -124,7 +125,7 @@ def header(active=''):
     <a href="/distributors/"{cur('distributors')}>Distributors</a>
     <a href="/quality/"{cur('quality')}>Quality</a>
     <a href="/faq/"{cur('faq')}>FAQ</a>
-    <div class="dd"><a href="/how-to/"{cur('resources')}>Resources</a><div class="menu"><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/selector/">System selector</a><a href="/faq/">FAQ · 40 answers</a></div></div>
+    <div class="dd"><a href="/how-to/"{cur('resources')}>Resources</a><div class="menu"><a href="/insights/">Insights · buyer articles</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/selector/">System selector</a><a href="/faq/">FAQ · 40 answers</a></div></div>
     <a href="/company/"{cur('company')}>Company</a>
     <a href="/contact/"{cur('contact')}>Contact</a>
   </nav>
@@ -136,7 +137,7 @@ def header(active=''):
   <h4>Industries</h4>{mob_inds}
   <h4>FAQ</h4><a href="/faq/">FAQ · 40 answers</a>
   <h4>Language</h4><a href="/">English</a><a href="/ru/" lang="ru">Русский</a><a href="/es/" lang="es">Español</a>
-  <h4>Company</h4><a href="/quality/">Quality &amp; certificates</a><a href="/company/">About POLYMER</a><a href="/faq/">Technical FAQ</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/contact/">Contact</a>
+  <h4>Company</h4><a href="/quality/">Quality &amp; certificates</a><a href="/company/">About POLYMER</a><a href="/faq/">Technical FAQ</a><a href="/insights/">Insights</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/contact/">Contact</a>
   <a class="btn btn-primary" href="/request-sample/">Request a sample</a>
 </nav>
 <main id="main">'''
@@ -151,7 +152,7 @@ def footer():
     <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian 363005, China<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:+865962600611">Tel {TEL}</a><br>WhatsApp <a href="{wa_link(0)}" rel="noopener">{WA[0][0]}</a> · <a href="{wa_link(1)}" rel="noopener">{WA[1][0]}</a></p></div>
   <div><h4>Products</h4><ul><li><a href="/products/polyester/">Polyester</a></li><li><a href="/products/hybrid/">Hybrid</a></li><li><a href="/products/epoxy/">Epoxy</a></li><li><a href="/finishes/">Colours &amp; finishes</a></li><li><a href="/selector/">System selector</a></li></ul></div>
   <div><h4>Industries</h4><ul>{inds}<li><a href="/distributors/">Distributors</a></li></ul></div>
-  <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
+  <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/insights/">Insights</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
   <div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd. · <a href="/privacy/">Privacy &amp; cookies</a></span><span>USCC 91350602MA32PFWW73 · Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
 </div></footer>
 <details class="wa-float"><summary aria-label="Chat on WhatsApp">{WA_ICON}<span>WhatsApp</span></summary><div class="wa-pop"><p>Chat with our sales team<small>Reply within one working day · UTC+8</small></p><a href="{wa_link(0)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[0][0]}</span></a><a href="{wa_link(1)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[1][0]}</span></a></div></details>
@@ -173,7 +174,7 @@ def cta(title='Send us your most-used colour <em>and your hardest one.</em>', te
 </section>'''
 
 
-PH_BG = {'Industries': 'industries', 'System selector': 'selector', 'Contact': 'contact', 'FAQ': 'resources', 'How-to guides': 'resources', 'How-to': 'resources'}
+PH_BG = {'Insights': 'resources', 'Industries': 'industries', 'System selector': 'selector', 'Contact': 'contact', 'FAQ': 'resources', 'How-to guides': 'resources', 'How-to': 'resources'}
 
 
 def phero(crumbs, h1, lead, figure='', facts=None, ctas=None, bg=None):
@@ -761,6 +762,54 @@ if(location.hash){{var t=document.getElementById(location.hash.slice(1));if(t&&t
         write(f'/how-to/{h["slug"]}/', f'{h["title"]} | POLYMER Powder Coatings', h['summary'], body, 'resources', ld=[ld])
 
 
+# ---------------------------------------------------------------- insights (articles)
+def _fmt_date(d):
+    y, m, dd = d.split('-'); return f"{int(dd)} {['January','February','March','April','May','June','July','August','September','October','November','December'][int(m)-1]} {y}"
+
+
+def build_insights():
+    cards = ''
+    for a in ARTICLES:
+        n, w, h, sm, alt = a['img']
+        cards += f'<a class="card ins-card rv" href="/insights/{a["slug"]}/"><div class="ins-thumb">{img(n, w, h, alt, "(min-width:1060px) 33vw, 100vw", sm)}</div><small>Insight · {a["mins"]} min read</small><h3>{E(a["title"])}</h3><p>{E(a["desc"])}</p><span class="link">Read article</span></a>'
+    body = phero([('Resources', None), ('Insights', None)], 'Insights <em>for powder buyers.</em>', 'Plain-language articles for purchasing, technical and distribution teams: choosing a system, sourcing from China, reading certificates and specifying effects.',
+                 facts=[f'{len(ARTICLES)} articles', 'Written by our technical team', 'Updated ' + _fmt_date(max(a['date'] for a in ARTICLES))])
+    body += f'<section class="sec tight"><div class="wrap"><div class="cards c3 ins-grid">{cards}</div></div></section>' + cta()
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "POLYMER Insights", "url": BASE + "/insights/",
+          "hasPart": [{"@type": "Article", "headline": a['title'], "url": f"{BASE}/insights/{a['slug']}/"} for a in ARTICLES]}
+    write('/insights/', 'Powder Coating Insights for Buyers | POLYMER', 'Articles for powder coating buyers: polyester vs epoxy vs hybrid, sourcing from China, Qualicoat Class 1, bonded metallics and textured finishes.', body, 'resources', ld=[ld])
+
+    for i, a in enumerate(ARTICLES):
+        n, w, h, sm, alt = a['img']
+        fig = f'<figure>{img(n, w, h, alt, "(min-width:980px) 45vw, 100vw", sm, lazy=False)}</figure>'
+        body = phero([('Resources', None), ('Insights', '/insights/'), (a['short'], None)], E(a['title']), E(a['lead']), figure=fig,
+                     facts=[_fmt_date(a['date']), f'{a["mins"]} min read', 'POLYMER technical team'])
+        toc = ''.join(f'<li><a href="#s{k+1}">{E(sec[0])}</a></li>' for k, sec in enumerate(a['sections']))
+        art = ''
+        for k, sec in enumerate(a['sections']):
+            art += f'<h2 id="s{k+1}">{E(sec[0])}</h2>' + ''.join(f'<p>{E(p)}</p>' for p in sec[1])
+            if len(sec) > 2:
+                rows = sec[2]
+                th = ''.join(f'<th>{E(c)}</th>' for c in rows[0])
+                tb = ''.join('<tr>' + ''.join((f'<td><b>{E(c)}</b></td>' if j == 0 else f'<td>{E(c)}</td>') for j, c in enumerate(r)) + '</tr>' for r in rows[1:])
+                art += f'<div class="tbl-wrap ins-tbl"><table class="tbl"><thead><tr>{th}</tr></thead><tbody>{tb}</tbody></table></div>'
+        rel = ''.join(f'<li><a class="link" href="{u}">{E(t)}</a></li>' for t, u in a['related'])
+        others = [ARTICLES[(i + k) % len(ARTICLES)] for k in (1, 2, 3)]
+        more = ''.join(f'<a class="card rv" href="/insights/{b["slug"]}/"><small>Insight · {b["mins"]} min</small><h3 style="font-size:24px">{E(b["title"])}</h3><span class="link">Read</span></a>' for b in others)
+        body += f'''<section class="sec tight"><div class="wrap split ins-split">
+  <aside class="rv ins-aside"><p class="eyebrow">In this article</p><ol class="ins-toc">{toc}</ol><h3 class="h3" style="font-size:24px;margin-top:36px">Related on this site</h3><ul class="ins-rel">{rel}</ul></aside>
+  <article class="article rv">{art}
+   <div class="aside-cta"><h3>Talk to our technical team</h3><p>Send the part, environment, target colour and your oven conditions. We reply with a proposed system and a sample plan. Orders from 1,000 kg.</p><a class="btn btn-primary" href="/contact/">Send project details {ARROW}</a></div>
+  </article>
+</div></section>
+<section class="sec tight"><div class="wrap"><p class="eyebrow">More insights</p><div class="cards c3 mt24">{more}</div></div></section>'''
+        ld = {"@context": "https://schema.org", "@type": "Article", "headline": a['title'], "description": a['desc'],
+              "datePublished": a['date'], "dateModified": a['date'], "inLanguage": "en",
+              "image": f"{BASE}/assets/img/{n}.webp", "mainEntityOfPage": f"{BASE}/insights/{a['slug']}/",
+              "author": {"@id": BASE + "/#org"}, "publisher": {"@id": BASE + "/#org"}}
+        write(f'/insights/{a["slug"]}/', f'{a["short"]} | POLYMER Insights', a['desc'], body, 'resources', ld=[ld], og=f'/assets/img/{n}.webp')
+
+
 # ---------------------------------------------------------------- legal + 404
 def build_legal():
     body = phero([('Privacy & cookies', None)], 'Privacy <em>&amp; cookies.</em>', 'How we handle the details you send us through this website. Last updated 27 October 2026.')
@@ -798,6 +847,7 @@ def build_meta():
     open(os.path.join(ROOT, 'llms.txt'), 'w').write(f"# POLYMER Powder Coatings\n\n> Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.\n\n## Key facts\n{facts}\n\n## Pages\n{pages}\n")
     full = f"# POLYMER Powder Coatings — full facts\n\n{facts}\n\n## Industry × system\n" + '\n'.join(f"- {i['name']}: main {', '.join(SYS[m]['name'] for m in i['main'])}" + (f"; option {', '.join(SYS[o]['name'] for o in i['opt'])}" if i['opt'] else '') + f". {i['oneliner']}" for i in IND) + "\n- Powder distributors: full range of all three systems plus effects.\n\n## FAQ\n"
     full += '\n'.join(f"### {f['q']}\n{f['short']} {' '.join(f['body'])}\n" for f in GEO['faq'])
+    full += '\n## Insights\n' + '\n'.join(f"### {a['title']}\n{a['lead']}\n" + '\n'.join(f"{sec[0]}: {' '.join(sec[1])}" for sec in a['sections']) + '\n' for a in ARTICLES)
     full += '\n## How-to guides\n' + '\n'.join(f"### {h['title']}\n{h['summary']}\n" + '\n'.join(f"{k+1}. {s['name']}: {s['text']}" for k, s in enumerate(h['steps'])) + '\n' for h in GEO['howto'])
     open(os.path.join(ROOT, 'llms-full.txt'), 'w').write(full)
 
@@ -849,5 +899,5 @@ def build_lang(code):
 if __name__ == '__main__':
     build_css()
     build_home(); build_products(); build_finishes(); build_selector(); build_industries(); build_distributors()
-    build_forms(); build_quality(); build_company(); build_geo(); build_legal(); build_lang('ru'); build_lang('es'); build_meta()
+    build_forms(); build_quality(); build_company(); build_geo(); build_insights(); build_legal(); build_lang('ru'); build_lang('es'); build_meta()
     print(len(PAGES), 'pages')
