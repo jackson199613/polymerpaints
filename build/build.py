@@ -158,7 +158,7 @@ def phero(crumbs, h1, lead, figure='', facts=None, ctas=None):
 
 
 def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.jpg', sitemap=True, extra_head='', pre=''):
-    out = head(title, desc, path, ld, og, extra_head) + pre + header(active) + body + footer()
+    out = head(title, desc, path, ld, og, extra_head + ('' if sitemap else '<meta name="robots" content="noindex">\n')) + pre + header(active) + body + footer()
     fp = os.path.join(ROOT, path.strip('/'), 'index.html') if path.endswith('/') else os.path.join(ROOT, path.strip('/'))
     os.makedirs(os.path.dirname(fp), exist_ok=True)
     open(fp, 'w').write(out)
@@ -702,7 +702,7 @@ def build_legal():
 </div></section>'''
     write('/privacy/', 'Privacy & Cookies | POLYMER', 'How POLYMER handles personal data submitted through this website, and our cookie policy.', body)
 
-    out = head('Page not found | POLYMER', 'The page you are looking for does not exist.', '/404.html') + header() + phero([('Not found', None)], 'This page <em>is not here.</em>', 'The link may be old or mistyped.', ctas=[('Back to home', '/', 'btn-primary'), ('Products', '/products/', 'btn-line')]) + footer()
+    out = head('Page not found | POLYMER', 'The page you are looking for does not exist.', '/404.html', extra='<meta name="robots" content="noindex">\n') + header() + phero([('Not found', None)], 'This page <em>is not here.</em>', 'The link may be old or mistyped.', ctas=[('Back to home', '/', 'btn-primary'), ('Products', '/products/', 'btn-line')]) + footer()
     open(os.path.join(ROOT, '404.html'), 'w').write(out)
 
 
