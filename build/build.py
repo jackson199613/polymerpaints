@@ -10,8 +10,8 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v14.css'
-JS = '/assets/js/polymer-v3.js'
+CSS = '/assets/css/polymer-v15.css'
+JS = '/assets/js/polymer-v4.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
 WA = [('+86 158 2472 9376', '8615824729376'), ('+86 188 5021 3808', '8618850213808')]
@@ -236,9 +236,50 @@ def faq_block(slugs, dark=False):
     return out + '</div>'
 
 
+# ---------------------------------------------------------------- certificate cards (image + data + PDF)
+CERTS = [
+ {'k': 'qualicoat', 'tag': 'Architectural coating approval', 'name': 'Qualicoat Class 1', 'img': (1400, 1976), 'pdf': '/assets/docs/polymer-qualicoat-p2199.pdf',
+  'rows': [('Licence', 'P-2199'), ('System', 'Polyester PLM100611 · gloss category 3'), ('Valid', '20 Oct 2025 – 31 Dec 2026')],
+  'more': [('Scope', 'The approved polyester system only. No structured-texture or metallic extension; not Class 2 or 3.'), ('Issuer', 'QUALICOAT, Zurich')],
+  'short': ('Scope', 'The approved polyester system only')},
+ {'k': 'iso9001', 'tag': 'Quality management system', 'name': 'ISO 9001:2015', 'img': (1400, 1980), 'pdf': '/assets/docs/polymer-iso9001-2015.pdf',
+  'rows': [('No.', '05326Q01777R001'), ('Valid', '12 Oct 2026 – 11 Oct 2029')],
+  'more': [('Scope', 'Design, manufacture and sales of thermosetting powder coatings. A management system certificate, not a product approval.'), ('Issuer', 'Beijing NGV Certification Center Co., Ltd.')],
+  'short': ('Scope', 'Design, manufacture and sales of thermosetting powder coatings')},
+ {'k': 'iso14001', 'tag': 'Environmental management system', 'name': 'ISO 14001:2015', 'img': (1400, 1980), 'pdf': '/assets/docs/polymer-iso14001-2015.pdf',
+  'rows': [('No.', '05326E01349R001'), ('Valid', '12 Oct 2026 – 11 Oct 2029')],
+  'more': [('Scope', 'Environmental management of the design, manufacture and sales of thermosetting powder coatings. Not a product approval.'), ('Issuer', 'Beijing NGV Certification Center Co., Ltd.')],
+  'short': ('Scope', 'Design, manufacture and sales of thermosetting powder coatings')},
+ {'k': 'sgs', 'tag': 'Third-party test report', 'name': 'SGS · EU RoHS', 'img': None, 'pdf': None,
+  'rows': [('Report', 'XMNEC26001081101'), ('Issued', '12 May 2026')],
+  'more': [('Result', 'Pass: all ten substances of (EU) 2015/863 not detected'), ('Sample', 'One black powder coating sample as submitted; it does not cover other colours or products.'), ('Laboratory', 'SGS-CSTC Standards Technical Services Co., Ltd., Xiamen Branch')],
+  'short': ('Result', 'Pass, black powder sample; all ten substances not detected')},
+]
+DL_ICON = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M8 2v8m0 0 3.2-3.2M8 10 4.8 6.8M3 13h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+EYE_ICON = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M1.5 8S4 3.5 8 3.5 14.5 8 14.5 8 12 12.5 8 12.5 1.5 8 1.5 8Z" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="8" r="2" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>'
+
+
+def cert_cards(detail=False, lazy=True):
+    out = ''
+    for c in CERTS:
+        rows = c['rows'] + (c['more'] if detail else [c['short']])
+        dl = ''.join(f'<dt>{E(a)}</dt><dd>{E(b)}</dd>' for a, b in rows)
+        if c['img']:
+            w, h = c['img']
+            big = f'/assets/img/cert/{c["k"]}-1400.webp'
+            thumb = (f'<button type="button" class="c2-thumb" data-lb="{big}" data-lb-w="{w}" data-lb-h="{h}" data-lb-cap="{E(c["name"])}" aria-label="View the {E(c["name"])} certificate">'
+                     f'<img src="/assets/img/cert/{c["k"]}-520.webp" width="520" height="{round(520 * h / w)}" alt="{E(c["name"])} certificate of Fujian Polymer Industry &amp; Trade Co., Ltd."{" loading=lazy" if lazy else ""}><span class="c2-zoom">{EYE_ICON}</span></button>')
+            act = f'<button type="button" class="c2-btn" data-lb="{big}" data-lb-w="{w}" data-lb-h="{h}" data-lb-cap="{E(c["name"])}">{EYE_ICON}View certificate</button><a class="c2-btn" href="{c["pdf"]}" download>{DL_ICON}PDF</a>'
+        else:
+            thumb = '<div class="c2-thumb c2-doc" aria-hidden="true"><span class="d-h"></span><span class="d-l"></span><span class="d-l"></span><span class="d-l s"></span><span class="d-t"></span><span class="d-l"></span><span class="d-l s"></span><b>RoHS<br>(EU) 2015/863</b><em>PASS</em></div>'
+            act = '<a class="c2-btn" href="/downloads/?doc=SGS%20RoHS%20report">Request the report →</a>'
+        out += f'<article class="cert2 rv"><div class="c2-media">{thumb}</div><div class="c2-body"><small>{E(c["tag"])}</small><h3>{E(c["name"])}</h3><dl>{dl}</dl><div class="c2-act">{act}</div></div></article>'
+    return f'<div class="certs2{" detail" if detail else ""}">{out}</div>'
+
+
 # ---------------------------------------------------------------- home
 def build_home():
-    src = open(os.path.join(ROOT, 'build/home_main.html')).read()
+    src = open(os.path.join(ROOT, 'build/home_main.html')).read().replace('{{CERTS}}', cert_cards())
     src = src.replace('{{PHOTOS}}', photos([('real/extruder', 'Twin-screw powder coating extruder with cooling belt', 'Melt extrusion'), ('real/bonding', 'Metallic bonding machine', 'Metallic bonding'),
                                              ('real/gloss', '60° gloss measurement on a green panel', '60° gloss check'), ('real/particle', 'Loading powder into the laser particle size analyser', 'Particle size')], 'c4'))
     lp = json.load(open(os.path.join(ROOT, 'build/logo_paths.json')))
@@ -577,12 +618,12 @@ def build_forms():
     write('/thanks/', 'Thank you | POLYMER', 'Your message has been received.', body, sitemap=False)
 
     docs = [('Product catalogue', 'Three systems, cure grades, gloss bands and effects'), ('Technical data sheets (TDS)', 'Per product: properties, cure conditions, storage'), ('Safety data sheets (SDS)', 'Per product: safe handling and transport'),
-            ('Qualicoat Class 1 certificate', 'Polyester system PLM100611, P-2199, valid until 31 Dec 2026'), ('ISO 9001:2015 certificate', 'No. 05326Q01777R001, valid until 11 Oct 2029'), ('ISO 14001:2015 certificate', 'No. 05326E01349R001, valid until 11 Oct 2029'), ('SGS EU RoHS report', 'XMNEC26001081101, black powder sample, (EU) 2015/863'), ('Colour cards and panels', 'Physical samples for evaluation')]
+            ('Colour cards and panels', 'Physical samples for evaluation')]
     cards = ''.join(f'<div class="card rv"><small>On request</small><h3 style="font-size:24px">{E(n)}</h3><p>{E(d)}</p></div>' for n, d in docs)
-    dform = std_form('documents', 'Request documents', 'Which documents you need (catalogue, TDS, SDS, Qualicoat, ISO or the SGS report) and for which products, colours or project.')
-    body = phero([('Resources', '/faq/'), ('Downloads', None)], 'Documents for <em>your approval file.</em>', 'Catalogue, TDS, SDS and certificates are sent by email on request, so each file matches the product you are evaluating and the latest version.',
+    dform = std_form('documents', 'Request documents', 'Which documents you need (catalogue, TDS, SDS or the SGS report) and for which products, colours or project.')
+    body = phero([('Resources', '/faq/'), ('Downloads', None)], 'Documents for <em>your approval file.</em>', 'Download our certificates now. Catalogue, TDS, SDS and the SGS report are sent by email on request, so each file matches the product you are evaluating and the latest version.',
                  figure=f'<figure>{img("ind/distributors-b", 1536, 1024, "Colour panels, colour card and powder sample", "(min-width:980px) 45vw, 100vw", 768, lazy=False)}</figure>', facts=['TDS', 'SDS', 'Certificates', 'Catalogue'])
-    body += f'<section class="sec tight"><div class="wrap"><div class="cards c4">{cards}</div></div></section><section class="sec tight alt"><div class="wrap form-grid">{dform}{aside}</div></section>'
+    body += f'<section class="sec tight"><div class="wrap"><div class="head rv"><div><p class="eyebrow">Certificates</p><h2 class="h3" style="margin-top:18px">Download <em>now.</em></h2></div></div>{cert_cards()}</div></section><section class="sec tight" style="padding-top:0"><div class="wrap"><div class="head rv"><div><p class="eyebrow">On request</p><h2 class="h3" style="margin-top:18px">Product documents <em>by email.</em></h2></div></div><div class="cards c4">{cards}</div></div></section><section class="sec tight alt"><div class="wrap form-grid">{dform}{aside}</div></section>'
     body += cta()
     write('/downloads/', 'Downloads: TDS, SDS, Certificates & Catalogue | POLYMER', 'Request powder coating technical data sheets, safety data sheets, ISO and Qualicoat certificates and the product catalogue.', body, 'resources')
 
@@ -605,16 +646,9 @@ def build_quality():
                  figure=f'<figure class="tall">{img("home/panel-single", 1122, 1402, "An approved test panel on a black plinth", "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>',
                  facts=['Qualicoat Class 1 · P-2199', 'ISO 9001', 'ISO 14001', 'SGS RoHS report'])
     body += f'''<section class="sec tight"><div class="wrap">
-  <div class="certs">
-   <article class="cert key rv"><small>Architectural coating approval</small><h3>Qualicoat Class 1</h3><dl><dt>Licence</dt><dd>P-2199</dd><dt>System</dt><dd>Polyester PLM100611 · gloss category 3</dd><dt>Granted</dt><dd>20 Oct 2025 · Standard approval</dd><dt>Valid</dt><dd>Until 31 Dec 2026</dd><dt>Scope</dt><dd>The approved polyester system only. Not all products or colours; no structured-texture or metallic extension; not Class 2 or 3.</dd></dl><a class="link" href="/downloads/">Request certificate</a></article>
-   <article class="cert rv"><small>Quality management</small><h3>ISO 9001:2015</h3><dl><dt>Cert. no.</dt><dd>05326Q01777R001</dd><dt>Valid</dt><dd>12 Oct 2026 – 11 Oct 2029</dd><dt>Issuer</dt><dd>Beijing NGV Certification Center Co., Ltd.</dd><dt>Scope</dt><dd>Design, manufacture and sales of thermosetting powder coatings. A management system certificate, not a product approval.</dd></dl><a class="link" href="/downloads/">Request certificate</a></article>
-   <article class="cert rv"><small>Environmental management</small><h3>ISO 14001:2015</h3><dl><dt>Cert. no.</dt><dd>05326E01349R001</dd><dt>Valid</dt><dd>12 Oct 2026 – 11 Oct 2029</dd><dt>Issuer</dt><dd>Beijing NGV Certification Center Co., Ltd.</dd><dt>Scope</dt><dd>Design, manufacture and sales of thermosetting powder coatings. A management system certificate, not a product approval.</dd></dl><a class="link" href="/downloads/">Request certificate</a></article>
-  </div>
-  <p class="tbl-note">ISO certificates can be verified on the issuer’s website, www.ngv.org.cn.</p></div></section>
-<section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Third-party test report</p><h2 class="h3" style="margin-top:20px">EU RoHS, <em>tested by SGS.</em></h2><p class="prose mt24">An independent laboratory report, stated with its sample. Reports for other products or other regulations can be arranged for a project.</p></div>
-  <div class="rv"><article class="cert"><small>Restricted substances</small><h3>SGS · EU RoHS</h3><dl><dt>Report</dt><dd>XMNEC26001081101 · 12 May 2026</dd><dt>Laboratory</dt><dd>SGS-CSTC Standards Technical Services Co., Ltd., Xiamen Branch</dd><dt>Standard</dt><dd>(EU) 2015/863 amending Directive 2011/65/EU Annex II: Pb, Hg, Cd, Cr(VI), PBB, PBDE, DEHP, BBP, DBP, DIBP</dd><dt>Result</dt><dd>Pass; all ten substances not detected</dd><dt>Sample</dt><dd>One black powder coating sample as submitted. It does not cover other colours or products.</dd></dl><a class="link" href="/downloads/">Request the report</a></article></div>
-</div></section>
+  <div class="head rv"><div><p class="eyebrow">Certificates &amp; reports</p><h2 class="h2">Every claim has <em>a certificate number.</em></h2></div><p class="lead">Click a certificate to see it full size, or download the PDF. Each one applies to the scope printed on it.</p></div>
+  {cert_cards(detail=True)}
+  <p class="tbl-note">ISO certificates can be verified on the issuer’s website, www.ngv.org.cn, or by scanning the QR code on the certificate. The SGS report is sent on request for a specific project.</p></div></section>
 <section class="sec tight alt"><div class="wrap">
   <div class="head rv"><div><p class="eyebrow">In-house laboratory</p><h2 class="h2">What we check <em>on panels and batches.</em></h2></div><p class="lead">Our technical research lab, QC lab and sample room test every new colour and every batch before release. These are internal test conditions, not third-party reports.</p></div>
   {labs}
