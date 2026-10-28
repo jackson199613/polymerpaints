@@ -67,6 +67,81 @@ We start on a non-exclusive basis and discuss regional cooperation once there ar
 ### What testing do you carry out in-house, and what are its limits?
 Our in-house tests cover colour, 60° gloss, film thickness, particle size, salt spray, UV accelerated ageing, pencil hardness, impact, 180° bend, cross-cut adhesion and storage stability. These are internal tests; separately, an SGS report confirms EU RoHS compliance for a tested black powder sample. We use these tests to develop and approve panels, check batches before release and support technical discussions with customers. Colour, gloss and particle size are used to keep batches consistent with the approved version; mechanical tests check that the film is flexible and adherent; salt spray and UV accelerated ageing are used to compare products under laboratory conditions. These results have limits. They are produced in-house, not by an accredited third party. Accelerated tests indicate relative performance; they do not predict an outdoor lifetime in years. Results also depend on the substrate, pretreatment, film thickness and cure used, which may differ from your line. For a project, we recommend testing on your own parts with your process. If an independent report is required, tell us at the enquiry stage.
 
+### What types of powder coatings does POLYMER make?
+Three thermosetting systems: polyester for outdoor parts, epoxy-polyester hybrid for indoor decorative parts and epoxy for indoor functional parts, each in standard-cure and low-cure grades. Every system is available in RAL and custom colours, three gloss bands (dead matt ≤ 10, satin and matt 11–80, high gloss ≥ 90) and ten surface effects, from smooth and sand texture to hammer tone, bonded metallic, transparent and fluorescent. We recommend the system from where the part will be used, then match the colour and finish on a physical panel.
+
+### Which powder should I use for aluminium profiles and facades?
+A weather-resistant polyester. For projects that require the Qualicoat label, we supply our Qualicoat Class 1 approved polyester system PLM100611. Polyester is our outdoor system for aluminium windows, doors, curtain walls and architectural hardware. The Qualicoat approval (licence P-2199, valid until 31 December 2026) covers the approved system only, not every polyester product or colour. Tell us the profile alloy, pretreatment, colour, gloss and whether the project specification names Qualicoat, and we confirm the right product before panels are made.
+
+### Is your epoxy powder suitable for pipelines or heavy-duty anti-corrosion?
+No. Our epoxy is a decorative and functional powder for indoor metal parts. We do not make FBE or 3PE pipeline coatings or heavy-duty anti-corrosion systems. Pure epoxy gives very good adhesion, chemical resistance and electrical insulation indoors, but it chalks and yellows under UV, so it is not used for direct outdoor exposure. If your part needs a specified anti-corrosion system, tell us the standard and environment and we will say honestly whether we can support it.
+
+### Do you supply powder for automotive parts and wheels?
+Selectively. We evaluate automotive parts and wheels project by project. We do not hold IATF 16949. For aftermarket wheels, accessories and non-critical parts we can propose a polyester or hybrid system and match the colour and metallic effect on panels. If your customer requires IATF 16949 or an OEM approval, tell us at the start so you can decide whether a selective project makes sense.
+
+### Do you offer UL-listed or flame-retardant coatings for electrical enclosures?
+No. We supply polyester for outdoor cabinets and hybrid or epoxy for indoor cabinets, but we do not offer UL-listed or flame-retardant powder. For distribution boxes, control cabinets and energy-storage housings we match the colour, texture and gloss, typically RAL 7035 light grey in a fine texture. If your enclosure specification requires UL or flame retardancy, those requirements need a supplier that holds them.
+
+### Do you have RAL and Pantone colour cards?
+Yes. We work from RAL K7 and Pantone references and can match other colour systems or a physical sample. A colour code is a starting point; the physical panel is the reference. We send matched panels for approval and record the approved version for repeat orders. Distributors can ask for colour cards and panels as part of the starter pack.
+
+### How do you measure gloss?
+With a 60° gloss meter on cured panels, reported in three bands: dead matt ≤ 10, satin and matt 11–80, high gloss ≥ 90. Gloss changes with colour, texture, film thickness and cure, so we agree the measuring condition and a physical reference with you for each project.
+
+### How do I get a price quotation?
+Send the part and substrate, where it is used, the system if known, colour and gloss, and your expected volume through the contact form or to sales@polymerpaints.com. Our team replies within one working day, Monday to Saturday (UTC+8), with a proposed system and a sample plan. Prices are quoted per product and colour once the specification is clear.
+
+### What payment terms do you accept?
+Payment terms are agreed per order and confirmed in the quotation and pro-forma invoice. Ask about payment terms when you request a quotation, together with the destination and the Incoterms you prefer.
+
+### Which trade terms do you support, and do you handle export shipping?
+Incoterms are confirmed per order. We are experienced with export documents, packing and sea freight to about 20 countries and regions. Tell us the destination port or delivery address early, so documents, packing and freight can be prepared together with the samples and the first order.
+
+### Can I start with a trial before a large order?
+Yes. The usual route is matched panels or sample powder, a trial on your own line, then a first order from 1,000 kg made to the approved version. The approved panel, with its system, colour, gloss, texture, film thickness and cure, becomes the reference for every repeat order.
+
+### How much powder can you supply each month?
+Our capacity is 5,000 t per year, up to 500 t per month, on 8 production lines plus 5 sampling lines. Standard orders are usually produced within 10 days. Complex custom colours and large volumes have their lead time confirmed per order.
+
+### How long can powder be stored, and how is it shipped?
+Store powder cool, dry and ventilated. Storage stability is tested at 6 months below 30 °C; the SDS asks for storage below 35 °C. The powder is not classified as dangerous goods for transport. Keep cartons closed and away from heat and direct sun, and let cold powder reach room temperature before opening. Low-cure grades are more sensitive to heat, so rotate stock first in, first out. Packing format is confirmed with the quotation.
+
+### Which ISO certificates do you hold?
+ISO 9001:2015 (No. 05326Q01777R001) and ISO 14001:2015 (No. 05326E01349R001), issued by Beijing NGV Certification Center and valid from 12 October 2026 to 11 October 2029. The scope is the design, manufacture and sales of thermosetting powder coatings. These are management system certificates, not product approvals, and can be verified on the issuer's website, www.ngv.org.cn.
+
+### Are your powder coatings RoHS compliant?
+An SGS report (XMNEC26001081101, 12 May 2026) found a black powder sample compliant with EU RoHS (EU) 2015/863, with all ten restricted substances not detected. The report covers the sample tested, not every colour or product. If your project needs a report for a specific colour, or for REACH or another regulation, tell us at the enquiry stage and we will confirm what can be arranged.
+
+### What is your quality control process?
+Every batch passes two checkpoints before packing: a production self-check after sieving and a laboratory test against the approved panel. The laboratory checks colour with a colorimeter and light box, 60° gloss, film thickness, particle size, appearance, pencil hardness, impact, 180° bend and cross-cut adhesion. A batch that fails goes back to the formula and premix stage.
+
+### Which approvals do you not hold?
+We do not hold Qualicoat Class 2 or Class 3, UL, IATF 16949 or food-contact approvals. We state this plainly so your approval file stays clean. If a project needs one of these, tell us early and we will say whether we can help.
+
+### What do I receive when I request a sample?
+Panels sprayed in the matched colour and finish, or sample powder for a trial on your line, depending on what you need to evaluate. Each panel is recorded with its system, colour, gloss, texture, film thickness and cure, so the version you approve can be reproduced. Product documents are sent with the sample on request.
+
+### Why should I run a line trial before ordering?
+Because your pretreatment, spray equipment, film thickness and oven decide the final result as much as the powder does. Spray the sample on real parts, measure the actual metal temperature with an oven data logger and check appearance, adhesion and impact against your own acceptance criteria.
+
+### Who is POLYMER?
+Fujian Polymer Industry & Trade Co., Ltd. is a thermosetting powder coating manufacturer founded on 22 April 2019 in Zhangzhou, Fujian, China. We have a technical research lab, a QC lab and a sample development room, and are recognised as a National High-Tech Enterprise and a Fujian “Specialised, Refined, Distinctive and Innovative” SME. Sales offices in China cover Fuzhou, Quanzhou, Xiamen, Longyan, Guangdong and Zhejiang.
+
+### Which countries do you export to?
+About 20 countries and regions across Russia and Europe, Latin America, the Middle East and Africa, and South and Southeast Asia. They include Russia, Latvia, Turkey, Mexico, the Dominican Republic, Colombia, Peru, Brazil, Chile, Saudi Arabia, the UAE, Oman, Lebanon, Kenya, Nigeria, Sri Lanka, Vietnam, Thailand, Malaysia and Indonesia.
+
+### What production equipment and laboratory do you have?
+Premixers and cone mixers, twin-screw extruders, grinding and sieving mills, 2 metallic bonding machines, and an in-house laboratory. The laboratory has a colorimeter and standard light box, gloss meter, film thickness gauge, laser particle size analyser, salt spray chamber, UV accelerated weathering tester, pencil hardness, impact and bend testers, and an oven temperature data logger.
+
+### How quickly do you reply?
+Within one working day, Monday to Saturday (UTC+8). Email sales@polymerpaints.com, call +86 596 2600611 or use the contact form. A described part gets a proposed system and a sample plan in the first reply.
+
+### Can I become an exclusive distributor?
+We start non-exclusive, then discuss regional terms once repeat orders and end-user trials show results. Tell us your market, the end users you serve and your expected monthly volume, and we propose a first range.
+
+### What is in the distributor starter pack?
+The product catalogue, certificates, colour cards and coated panels, so you can present the range to applicators and manufacturers. We then support end-user screening and sample trials: you bring the part, we match the colour and record the approved version.
+
 ## How-to guides
 ### How to choose between epoxy, polyester and hybrid powder coatings
 Pick the powder system from the part's service environment first, then refine by appearance and functional needs.

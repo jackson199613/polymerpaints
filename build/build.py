@@ -8,13 +8,27 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v5.css'
+CSS = '/assets/css/polymer-v6.css'
 JS = '/assets/js/polymer-v2.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
 ADDR = 'No. 2 Zhuli Road, Xiangcheng District, Zhangzhou, Fujian, China'
 E = html.escape
 GEO = json.load(open(os.path.join(ROOT, 'build/content_geo.json')))
+GEO['faq'] += json.load(open(os.path.join(ROOT, 'build/content_faq2.json')))
+_FAQ_META = {  # category + source page for the original 15 answers
+    'which-powder-system-outdoor-indoor': ('products', ['Products', '/products/']), 'can-hybrid-powder-be-used-outdoors': ('products', ['Hybrid', '/products/hybrid/']),
+    'why-epoxy-yellows-indoor-only': ('products', ['Epoxy', '/products/epoxy/']), 'when-to-use-low-cure-powder': ('products', ['Low-cure grades', '/products/#cure']),
+    'colour-matching-ral-or-sample': ('colour', ['Colours & finishes', '/finishes/']), 'available-finishes-and-effects': ('colour', ['Colours & finishes', '/finishes/']),
+    'what-is-bonded-metallic-powder': ('colour', ['Metallic finishes', '/finishes/#metallic']), 'approved-panel-version-repeat-orders': ('colour', ['Quality & testing', '/quality/']),
+    'minimum-order-quantity': ('orders', ['Contact', '/contact/']), 'powder-coating-lead-time': ('orders', ['About POLYMER', '/company/']),
+    'what-qualicoat-class-1-covers': ('quality', ['Quality & certificates', '/quality/']), 'in-house-testing-scope-and-limits': ('quality', ['Quality & testing', '/quality/']),
+    'documents-available-tds-sds-certificates': ('quality', ['Downloads', '/downloads/']), 'how-to-request-a-sample': ('samples', ['Request a sample', '/request-sample/']),
+    'distributor-cooperation-terms': ('distributors', ['Distributors', '/distributors/'])}
+for _f in GEO['faq']:
+    if _f['slug'] in _FAQ_META: _f['cat'], _f['src'] = _FAQ_META[_f['slug']]
+FAQ_CATS = [('products', 'Products & systems'), ('colour', 'Colour, gloss & effects'), ('orders', 'Orders, supply & shipping'), ('quality', 'Certificates & quality'),
+            ('samples', 'Samples & trials'), ('company', 'Company & export'), ('distributors', 'Distributors & importers')]
 PAGES = []  # (path, title) for sitemap
 ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h10M9 4l4 4-4 4"/></svg>'
 INDMAP = {i['slug']: i for i in IND}
@@ -187,7 +201,7 @@ def faq_block(slugs, dark=False):
     out = '<div class="faq">'
     for f in items:
         body = ''.join(f'<p>{E(p)}</p>' for p in f['body'])
-        out += f'<details id="{f["slug"]}"><summary>{E(f["q"])}</summary><div class="a"><p class="short">{E(f["short"])}</p>{body}<p class="basis">Basis: {E(f["basis"])}</p></div></details>'
+        out += f'<details id="{f["slug"]}"><summary>{E(f["q"])}</summary><div class="a"><p class="short">{E(f["short"])}</p>{body}<p class="basis">Basis: {E(f["basis"])}{f' · <a href="{f["src"][1]}">{E(f["src"][0])} →</a>' if f.get("src") else ''}</p></div></details>'
     return out + '</div>'
 
 
@@ -653,11 +667,36 @@ def build_company():
 # ---------------------------------------------------------------- faq + how-to
 def build_geo():
     qa = [{"@type": "Question", "name": f['q'], "acceptedAnswer": {"@type": "Answer", "text": f['short'] + ' ' + ' '.join(f['body'])}} for f in GEO['faq']]
-    body = phero([('Resources', None), ('Technical FAQ', None)], 'Questions buyers <em>ask first.</em>', 'Short answers first, then the detail and what each answer is based on.',
-                 ctas=[('How-to guides', '/how-to/', 'btn-line')])
-    body += f'<section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">{len(GEO["faq"])} answers</p><h2 class="h3" style="margin-top:20px">Systems, colour, supply <em>and documents.</em></h2><p class="prose mt24">Not covered here? <a class="link" href="/contact/">Ask our team</a></p></div><div class="rv">{faq_block([f["slug"] for f in GEO["faq"]])}</div></div></section>'
+    n = len(GEO['faq'])
+    cnt = {k: sum(1 for f in GEO['faq'] if f.get('cat') == k) for k, _ in FAQ_CATS}
+    toc = ''.join(f'<a href="#t-{k}"><span>{E(t)}</span><b>{cnt[k]}</b></a>' for k, t in FAQ_CATS) + '<a class="spec" href="#specialist"><span>Talk to our team</span><b>→</b></a>'
+    glance = f'''<div class="fq-glance rv"><p class="eyebrow">POLYMER at a glance</p><dl>
+<dt>Company</dt><dd>Fujian Polymer Industry &amp; Trade Co., Ltd., Zhangzhou, China · founded 22 April 2019</dd>
+<dt>Systems</dt><dd>Polyester (outdoor) · Epoxy-polyester hybrid (indoor decorative) · Epoxy (indoor functional) · standard &amp; low-cure</dd>
+<dt>Finishes</dt><dd>RAL &amp; custom colours · 3 gloss bands · 10 surface effects · bonded metallics on 2 machines</dd>
+<dt>Supply</dt><dd>5,000 t/year · 8 production + 5 sampling lines · MOQ 1,000 kg · standard lead time within 10 days</dd>
+<dt>Approvals</dt><dd>Qualicoat Class 1 · P-2199 (polyester PLM100611, to 31 Dec 2026) · ISO 9001:2015 · ISO 14001:2015 · SGS EU RoHS report</dd>
+<dt>Storage</dt><dd>Cool and dry · stability tested 6 months below 30 °C · not dangerous goods for transport</dd>
+<dt>Contact</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a> · {TEL} · reply within one working day</dd></dl></div>'''
+    cats = ''
+    for i, (k, t) in enumerate(FAQ_CATS):
+        slugs = [f['slug'] for f in GEO['faq'] if f.get('cat') == k]
+        cats += f'<section class="fq-cat rv" id="t-{k}"><p class="eyebrow">{i + 1:02d} · {cnt[k]} answers</p><h2 class="h3">{E(t)}</h2>{faq_block(slugs)}</section>'
+    body = phero([('Resources', None), ('Technical FAQ', None)], 'Powder coating questions, <em>answered.</em>',
+                 f'{n} answers about POLYMER powder coatings: systems, colour and effects, orders and supply, certificates, samples, the company and distributor cooperation. Short answer first, then the detail and the page behind it.',
+                 facts=[f'{n} answers', '7 topics', 'Updated 27 October 2026'], ctas=[('Ask our team', '/contact/', 'btn-primary'), ('How-to guides', '/how-to/', 'btn-line')])
+    body += f'''<section class="sec tight"><div class="wrap fq-layout">
+  <aside class="fq-toc"><p class="eyebrow">Topics</p><label class="fq-search"><span class="hp">Search questions</span><input type="search" id="fq-q" placeholder="Search questions…" autocomplete="off"></label><nav aria-label="FAQ topics">{toc}</nav></aside>
+  <div class="fq-main">{glance}{cats}<p class="fq-none" id="fq-none" hidden>No question matches your search. <a class="link" href="/contact/">Ask our team</a></p>
+   <section class="fq-spec rv" id="specialist"><p class="eyebrow">When to talk to our team directly</p><h2 class="h3">Some answers depend <em>on your part.</em></h2>
+    <ul><li>Volume pricing and annual supply</li><li>Projects that name Qualicoat or another specification</li><li>Custom colours, textures and metallic effects from your sample</li><li>Distributor ranges and regional terms</li><li>Documents for a tender or supplier approval file</li></ul>
+    <div class="hero-ctas"><a class="btn btn-primary" href="/contact/">Send project details {ARROW}</a><a class="btn btn-line" href="/request-sample/">Request a sample</a></div></section>
+  </div></div></section>
+<script>(function(){{var q=document.getElementById('fq-q');if(!q)return;var ds=[].slice.call(document.querySelectorAll('.fq-cat details')),cs=[].slice.call(document.querySelectorAll('.fq-cat')),no=document.getElementById('fq-none');
+q.addEventListener('input',function(){{var v=q.value.trim().toLowerCase(),hit=0;ds.forEach(function(d){{var m=!v||d.textContent.toLowerCase().indexOf(v)>-1;d.hidden=!m;if(m)hit++;if(v&&m&&v.length>2)d.open=true}});cs.forEach(function(c){{c.hidden=!c.querySelector('details:not([hidden])')}});no.hidden=hit>0;var g=document.querySelector('.fq-glance');if(g)g.hidden=!!v}});
+if(location.hash){{var t=document.getElementById(location.hash.slice(1));if(t&&t.tagName==='DETAILS'){{t.open=true;}}}}}})();</script>'''
     body += cta()
-    write('/faq/', 'Powder Coating Technical FAQ | POLYMER', 'Answers on choosing epoxy, polyester or hybrid, Qualicoat Class 1 scope, MOQ, lead time, colour matching, effects, low-cure, documents and testing.', body, 'resources',
+    write('/faq/', 'Powder Coating FAQ: Systems, Colours, MOQ, Certificates & Samples | POLYMER', f'{n} answers on POLYMER powder coatings: choosing epoxy, polyester or hybrid, Qualicoat Class 1 scope, ISO certificates, RoHS, MOQ, lead time, colour matching, samples, export and distributors.', body, 'resources',
           ld=[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": qa}])
 
     cards = ''.join(f'<a class="card rv" href="/how-to/{h["slug"]}/"><small>How-to · {len(h["steps"])} steps</small><h3 style="font-size:26px">{E(h["title"])}</h3><p>{E(h["summary"])}</p><span class="link">Read guide</span></a>' for h in GEO['howto'])
