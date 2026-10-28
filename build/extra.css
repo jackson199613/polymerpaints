@@ -443,3 +443,14 @@ a.card:hover{transform:translateY(-4px);box-shadow:0 18px 40px -20px rgba(0,0,0,
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none}.btn-primary::after{display:none}.card{transition:none}a.card:hover{transform:none}}
 @media(min-width:980px){.hero-img img{scale:1.08}}
 .hero-img{overflow:hidden}.hdr-cta{flex-shrink:0;white-space:nowrap}.btn{flex-shrink:0}
+/* language switch + RU/ES pages (update 15) */
+.topbar .lng{display:inline-flex;gap:10px}
+.topbar .lng a{color:var(--night-muted)}
+.topbar .lng a:hover{color:#fff}
+.topbar .l span.lng::before,.topbar .l span.lng+span::before{content:none}
+html[lang="ru"] .topbar .lng a[hreflang="ru"],html[lang="es"] .topbar .lng a[hreflang="es"],html[lang="en"] .topbar .lng a[hreflang="en"]{color:#fff}
+.lng-en{margin-top:22px;font-size:14px}.lng-en a{color:#b4b8bd;text-decoration:underline;text-underline-offset:3px}
+.lang-certs .cert p{font-size:14.5px;color:var(--ink-2);margin-top:6px}
+.lang-certs .cert.key p{color:#c9ccd0}
+html[lang="ru"] .phero h1,html[lang="ru"] .h2,html[lang="ru"] .h3{letter-spacing:0}
+.topbar .lng{margin-right:18px;padding-right:18px;border-right:1px solid var(--night-line)}

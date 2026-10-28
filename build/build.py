@@ -3,12 +3,13 @@
 import json, os, re, html, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from content_site import SYS, FINISHES, IND, DIST, STATS, IND_PHOTOS
+from content_i18n import T as I18N
 IMG2 = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img2_sizes.json')))
 IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'img_real.json'))))
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v11.css'
+CSS = '/assets/css/polymer-v12.css'
 JS = '/assets/js/polymer-v3.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -60,7 +61,12 @@ def img(name, w, h, alt, sizes='100vw', small=None, lazy=True, cls=''):
             f'width="{w}" height="{h}"{" loading=lazy" if lazy else " fetchpriority=high"} alt="{E(alt)}">')
 
 
-def head(title, desc, path, ld=None, og='/assets/img/home/og.jpg', extra=''):
+LANG_ALT = {'/': 'en', '/ru/': 'ru', '/es/': 'es'}
+
+
+def head(title, desc, path, ld=None, og='/assets/img/home/og.jpg', extra='', lang='en'):
+    if path in LANG_ALT:
+        extra = ''.join(f'<link rel="alternate" hreflang="{l}" href="{BASE}{u}">\n' for u, l in LANG_ALT.items()) + f'<link rel="alternate" hreflang="x-default" href="{BASE}/">\n' + extra
     lds = [ORG] + (ld or [])
     if path != '/':
         crumbs = [{"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/"}]
@@ -72,7 +78,7 @@ def head(title, desc, path, ld=None, og='/assets/img/home/og.jpg', extra=''):
         lds.append({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": crumbs})
     ldtxt = '\n'.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
     return f'''<!doctype html>
-<html lang="en">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -106,7 +112,7 @@ def header(active=''):
     return f'''
 <a class="hp" href="#main">Skip to content</a>
 <div class="topbar"><div class="wrap">
-  <div class="l"><span>Qualicoat Class 1 polyester system</span><span>ISO 9001</span><span>ISO 14001</span></div>
+  <div class="l"><span class="lng"><a href="/" hreflang="en">EN</a><a href="/ru/" hreflang="ru" lang="ru">RU</a><a href="/es/" hreflang="es" lang="es">ES</a></span><span>Qualicoat Class 1 polyester system</span><span>ISO 9001</span><span>ISO 14001</span></div>
   <div class="r"><span>MOQ 1,000 kg</span><span>Lead time within 10 days</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span><a href="tel:+865962600611">{TEL}</a></span></div>
 </div></div>
 <header class="site"><div class="wrap">
@@ -129,6 +135,7 @@ def header(active=''):
   <h4>Products</h4><a href="/products/">All products</a>{prod}<a href="/finishes/">Colours &amp; finishes</a><a href="/selector/">System selector</a>
   <h4>Industries</h4>{mob_inds}
   <h4>FAQ</h4><a href="/faq/">FAQ · 40 answers</a>
+  <h4>Language</h4><a href="/">English</a><a href="/ru/" lang="ru">Русский</a><a href="/es/" lang="es">Español</a>
   <h4>Company</h4><a href="/quality/">Quality &amp; certificates</a><a href="/company/">About POLYMER</a><a href="/faq/">Technical FAQ</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/contact/">Contact</a>
   <a class="btn btn-primary" href="/request-sample/">Request a sample</a>
 </nav>
@@ -187,8 +194,8 @@ def phero(crumbs, h1, lead, figure='', facts=None, ctas=None, bg=None):
 </section>'''
 
 
-def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.jpg', sitemap=True, extra_head='', pre=''):
-    out = head(title, desc, path, ld, og, extra_head + ('' if sitemap else '<meta name="robots" content="noindex">\n')) + pre + header(active) + body + footer()
+def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.jpg', sitemap=True, extra_head='', pre='', lang='en'):
+    out = head(title, desc, path, ld, og, extra_head + ('' if sitemap else '<meta name="robots" content="noindex">\n'), lang) + pre + header(active) + body + footer()
     fp = os.path.join(ROOT, path.strip('/'), 'index.html') if path.endswith('/') else os.path.join(ROOT, path.strip('/'))
     os.makedirs(os.path.dirname(fp), exist_ok=True)
     open(fp, 'w').write(out)
@@ -802,8 +809,45 @@ def build_css():
     open(os.path.join(ROOT, CSS.lstrip('/')), 'w').write(ff + '\n' + home + '\n' + extra)
 
 
+# ---------------------------------------------------------------- RU / ES landing pages
+def build_lang(code):
+    L = I18N[code]; f = L['f']; a = L['aside']; nm = f'contact-{code}'
+    fig = f'<figure class="tall">{img("home/hero-panels", 1122, 1402, "", "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>'
+    ct = f'<div class="hero-ctas"><a class="btn btn-primary" href="#contact">{L["cta1"]} {ARROW}</a><a class="btn btn-line" href="{wa_link(0)}" target="_blank" rel="noopener">{L["cta2"]}</a></div><p class="lng-en"><a href="/">{L["en"]} →</a></p>'
+    body = f'''<section class="phero has-img"><div class="wrap"><div><nav class="crumbs" aria-label="Breadcrumb"><a href="/">POLYMER</a><span>{L["name"]}</span></nav><p class="eyebrow" style="margin-top:24px">{L["eyebrow"]}</p><h1>{L["h1"]}</h1><p class="lead">{L["lead"]}</p>{ct}</div>{fig}</div></section>
+<section class="proof" style="background:var(--night)"><div class="wrap">{''.join(f'<div><strong>{x}</strong><span>{y}</span></div>' for x, y in L["stats"])}</div></section>'''
+    cards = ''.join(f'<a class="card rv" href="{u}"><small>{e}</small><h3>{n}{"<span class=badge>Qualicoat</span>" if u.endswith("polyester/") else ""}</h3><p>{t}</p><span class="link">{L["more"]}</span></a>' for n, e, t, u in L['sys'])
+    body += f'''<section class="sec"><div class="wrap"><div class="head rv"><div><p class="eyebrow">{L["sys_eyebrow"]}</p><h2 class="h2">{L["sys_h"]}</h2></div><p class="lead">{L["sys_lead"]}</p></div><div class="cards c3">{cards}</div></div></section>'''
+    tiles = ''.join(f'<div class="tile rv"><figure>{img("finish/" + k, 800, 800, L["fin"][k], "(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw", 400)}</figure><h3>{L["fin"][k]}</h3></div>' for k, _, _ in FINISHES)
+    bands = ''.join(f'<div>{n}<span>{v}</span></div>' for n, v in L['gloss'])
+    body += f'''<section class="sec dark"><div class="wrap"><div class="head rv"><div><p class="eyebrow">{L["fin_eyebrow"]}</p><h2 class="h2">{L["fin_h"]}</h2></div><p class="lead">{L["fin_lead"]}</p></div><div class="atlas">{tiles}</div>
+ <div class="gloss rv">{img("home/gloss-trio", 1536, 1024, "", "(min-width:980px) 60vw, 100vw", 768)}<div><div class="bands">{bands}</div></div></div></div></section>'''
+    steps = ''.join(f'<li><span>{i + 1:02d}</span><div><b>{h}.</b> {t}</div></li>' for i, (h, t) in enumerate(L['proc']))
+    body += f'''<section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">{L["proc_eyebrow"]}</p><h2 class="h3" style="margin-top:20px">{L["proc_h"]}</h2></div><div class="rv"><ol class="list">{steps}</ol></div></div></section>'''
+    certs = ''.join(f'<article class="cert{" key" if i == 0 else ""} rv"><h3>{h}</h3><p>{t}</p></article>' for i, (h, t) in enumerate(L['certs']))
+    labs = photos([(n, c, c) for n, c in zip(['real/colorimeter', 'real/gloss', 'real/particle', 'real/bending'], L['lab_caps'])], 'c4')
+    body += f'''<section class="sec tight alt"><div class="wrap"><div class="head rv"><div><p class="eyebrow">{L["q_eyebrow"]}</p><h2 class="h2">{L["q_h"]}</h2></div><p class="lead">{L["lab"]}</p></div><div class="certs lang-certs">{certs}</div><div style="margin-top:28px">{labs}</div></div></section>'''
+    fac = photos([(n, c, c) for n, c in zip(['real/premixer', 'real/extruder', 'real/grinder', 'real/cone-mixer', 'real/bonding', 'real/loading'], L['fac_caps'])])
+    body += f'''<section class="sec tight"><div class="wrap"><div class="head rv"><div><p class="eyebrow">{L["fac_eyebrow"]}</p><h2 class="h2">{L["fac_h"]}</h2></div><p class="lead">{L["fac_lead"]}</p></div>{fac}</div></section>'''
+    dsteps = ''.join(f'<li><span>{i + 1:02d}</span><div><b>{h}</b> · {t}</div></li>' for i, (h, t) in enumerate(L['dist']))
+    body += f'''<section class="sec tight dark"><div class="wrap split"><div class="rv"><p class="eyebrow">{L["dist_eyebrow"]}</p><h2 class="h3" style="margin-top:20px;color:#fff">{L["dist_h"]}</h2><p class="prose mt24" style="color:#b4b8bd">{L["dist_lead"]}</p></div><div class="rv"><ol class="list">{dsteps}</ol></div></div></section>'''
+    faq = ''.join(f'<details><summary>{q}</summary><div class="a"><p>{t}</p></div></details>' for q, t in L['faq'])
+    body += f'''<section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">FAQ</p><h2 class="h3" style="margin-top:20px">{L["faq_h"]}</h2><p class="prose mt24"><a class="link" href="/faq/">FAQ · 40 answers (EN)</a></p></div><div class="rv"><div class="faq">{faq}</div></div></div></section>'''
+    roles = ''.join(f'<option>{r}</option>' for r in f['roles'])
+    form = f'''<form class="f" name="{nm}" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="{nm}"><input type="hidden" name="language" value="{code}"><p class="hp"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+<div class="row two"><div class="fld"><label for="{nm}-name">{f["name"]} <i>*</i></label><input id="{nm}-name" name="name" autocomplete="name" required></div><div class="fld"><label for="{nm}-co">{f["company"]} <i>*</i></label><input id="{nm}-co" name="company" autocomplete="organization" required></div></div>
+<div class="row two"><div class="fld"><label for="{nm}-mail">{f["email"]} <i>*</i></label><input id="{nm}-mail" type="email" name="email" autocomplete="email" required></div><div class="fld"><label for="{nm}-country">{f["country"]} <i>*</i></label><input id="{nm}-country" name="country" autocomplete="country-name" required></div></div>
+<div class="row two"><div class="fld"><label for="{nm}-role">{f["role"]}</label><select id="{nm}-role" name="role"><option value="">{f["select"]}</option>{roles}</select></div></div>
+<div class="row"><div class="fld"><label for="{nm}-need">{f["need"]} <i>*</i></label><textarea id="{nm}-need" name="message" required placeholder="{E(f["ph"])}"></textarea></div></div>
+<label class="consent"><input type="checkbox" name="consent" required> <span>{f["consent"]} <i>*</i></span></label>
+<div class="submit"><button class="btn btn-primary" type="submit">{f["btn"]}</button></div><p class="form-note">{f["note"]}</p></form>'''
+    aside = f'''<aside class="aside"><div class="grp"><h3>{a["h"]}</h3><dl><dt>{a["email"]}</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd><dt>{a["phone"]}</dt><dd><a href="tel:+865962600611">{TEL}</a></dd><dt>{a["wa"]}</dt><dd><a href="{wa_link(0)}" target="_blank" rel="noopener">{WA[0][0]}</a><br><a href="{wa_link(1)}" target="_blank" rel="noopener">{WA[1][0]}</a></dd><dt>{a["resp"]}</dt><dd>{a["resp_v"]}</dd></dl></div></aside>'''
+    body += f'''<section class="sec tight alt" id="contact"><div class="wrap"><div class="head rv"><div><p class="eyebrow">{L["c_eyebrow"]}</p><h2 class="h2">{L["c_h"]}</h2></div><p class="lead">{L["c_lead"]}</p></div><div class="form-grid">{form}{aside}</div></div></section>'''
+    write(L['path'], L['title'], L['desc'], body, lang=code)
+
+
 if __name__ == '__main__':
     build_css()
     build_home(); build_products(); build_finishes(); build_selector(); build_industries(); build_distributors()
-    build_forms(); build_quality(); build_company(); build_geo(); build_legal(); build_meta()
+    build_forms(); build_quality(); build_company(); build_geo(); build_legal(); build_lang('ru'); build_lang('es'); build_meta()
     print(len(PAGES), 'pages')
