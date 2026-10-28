@@ -10,7 +10,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v13.css'
+CSS = '/assets/css/polymer-v14.css'
 JS = '/assets/js/polymer-v3.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -113,8 +113,8 @@ def header(active=''):
     return f'''
 <a class="hp" href="#main">Skip to content</a>
 <div class="topbar"><div class="wrap">
-  <div class="l"><span class="lng"><a href="/" hreflang="en">EN</a><a href="/ru/" hreflang="ru" lang="ru">RU</a><a href="/es/" hreflang="es" lang="es">ES</a></span><span>Qualicoat Class 1 polyester system</span><span>ISO 9001</span><span>ISO 14001</span></div>
-  <div class="r"><span>MOQ 1,000 kg</span><span>Lead time within 10 days</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span><a href="tel:+865962600611">{TEL}</a></span></div>
+  <div class="l"><span class="lng"><a href="/" hreflang="en">EN</a><a href="/ru/" hreflang="ru" lang="ru">RU</a><a href="/es/" hreflang="es" lang="es">ES</a></span><span>Qualicoat Class 1 polyester</span><span>ISO 9001</span><span>ISO 14001</span></div>
+  <div class="r"><span>MOQ 1,000 kg</span><span>Lead time within 10 days</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span class="tb-wa"><a href="{wa_link(0)}" target="_blank" rel="noopener">{WA_ICON}WhatsApp {WA[0][0]}</a></span><span class="tb-wa2"><a href="{wa_link(1)}" target="_blank" rel="noopener">{WA[1][0]}</a></span></div>
 </div></div>
 <header class="site"><div class="wrap">
   <a class="logo" href="/" aria-label="POLYMER home"><img src="/assets/img/logo-mark-dark.svg" width="30" height="35" alt=""><b>POLYMER</b><small>Powder coatings</small></a>
