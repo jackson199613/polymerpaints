@@ -27,3 +27,20 @@
   to = "/404.html"
   status = 404
   force = true
+
+# Form auto-reply (netlify/functions/submission-created.mjs). Set SMTP_USER and SMTP_PASS in Netlify.
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# function source and package files are not web pages
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+[[redirects]]
+  from = "/package.json"
+  to = "/404.html"
+  status = 404
+  force = true

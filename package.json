@@ -1,0 +1,8 @@
+{
+  "name": "polymerpaints",
+  "private": true,
+  "description": "Static site; the only dependency is for the form auto-reply function.",
+  "dependencies": {
+    "nodemailer": "6.9.16"
+  }
+}
