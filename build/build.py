@@ -10,7 +10,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v18.css'
+CSS = '/assets/css/polymer-v19.css'
 JS = '/assets/js/polymer-v6.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
