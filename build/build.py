@@ -66,19 +66,20 @@ def img(name, w, h, alt, sizes='100vw', small=None, lazy=True, cls=''):
 
 
 LANG_ALT = {'/': 'en', '/ru/': 'ru', '/es/': 'es'}
+_CRUMB = {}
 
 
 def head(title, desc, path, ld=None, og='/assets/img/home/og.jpg', extra='', lang='en'):
     if path in LANG_ALT:
         extra = ''.join(f'<link rel="alternate" hreflang="{l}" href="{BASE}{u}">\n' for u, l in LANG_ALT.items()) + f'<link rel="alternate" hreflang="x-default" href="{BASE}/">\n' + extra
     lds = [ORG] + (ld or [])
-    if path != '/':
+    if path != '/404.html':
         crumbs = [{"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/"}]
         parts = [p for p in path.strip('/').split('/') if p]
         acc = ''
         for i, p in enumerate(parts):
             acc += '/' + p
-            crumbs.append({"@type": "ListItem", "position": i + 2, "name": p.replace('-', ' ').title(), "item": BASE + acc + '/'})
+            crumbs.append({"@type": "ListItem", "position": i + 2, "name": _CRUMB.get(acc + '/', p.replace('-', ' ').capitalize()), "item": BASE + acc + '/'})
         lds.append({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": crumbs})
     ldtxt = '\n'.join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in lds)
     return f'''<!doctype html>
@@ -237,6 +238,13 @@ def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.j
           "description": desc, "inLanguage": lang, "datePublished": pub, "dateModified": mod,
           "isPartOf": {"@type": "WebSite", "name": "POLYMER Powder Coatings", "url": BASE + "/"}, "publisher": {"@id": BASE + "/#org"}}
     ld = (list(ld) if ld else []) + ([wp] if sitemap else [])
+    if _PAGE_FAQ and not any(isinstance(x, dict) and x.get("@type") == "FAQPage" for x in ld):
+        seen = set(); qa = []
+        for q, a in _PAGE_FAQ:
+            if q not in seen:
+                seen.add(q); qa.append({"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}})
+        ld.append({"@context": "https://schema.org", "@type": "FAQPage", "@id": BASE + path + "#faq", "inLanguage": lang, "mainEntity": qa})
+    _PAGE_FAQ.clear()
     for x in ld:
         if isinstance(x, dict) and x.get("@type") == "Article":
             x["dateModified"] = mod
@@ -282,10 +290,15 @@ def chips(main, opt, extra=None):
     return f'<div class="chips">{s}</div>'
 
 
+HOME_FAQ = ['which-powder-system-outdoor-indoor', 'minimum-order-quantity', 'powder-coating-lead-time', 'what-qualicoat-class-1-covers', 'colour-matching-ral-or-sample', 'how-to-request-a-sample']
+_PAGE_FAQ = []   # (question, answer text) shown on the page being built -> FAQPage schema in write()
+
+
 def faq_block(slugs, dark=False):
     items = [f for f in GEO['faq'] if f['slug'] in slugs]
     out = '<div class="faq">'
     for f in items:
+        _PAGE_FAQ.append((f['q'], ' '.join([f['short']] + list(f['body']))))
         body = ''.join(f'<p>{E(p)}</p>' for p in f['body'])
         out += f'<details id="{f["slug"]}"><summary>{E(f["q"])}</summary><div class="a"><p class="short">{E(f["short"])}</p>{body}<p class="basis">Basis: {E(f["basis"])}{f' · <a href="{f["src"][1]}">{E(f["src"][0])} →</a>' if f.get("src") else ''}</p></div></details>'
     return out + '</div>'
@@ -333,9 +346,37 @@ def cert_cards(detail=False, lazy=True):
     return f'<div class="certs2{" detail" if detail else ""}">{out}</div>'
 
 
+
+def _home_howto():
+    """GEO-S06: the five-step 'approved version' process exactly as shown on the home page"""
+    h = open(os.path.join(ROOT, 'build/home_main.html')).read()
+    steps = re.findall(r'<li><span>\d+</span><div><b>(.*?)</b><p>(.*?)</p></div></li>', h.split('class="vers"')[1].split('</ol>')[0])
+    return {"@context": "https://schema.org", "@type": "HowTo", "@id": BASE + "/#approved-version",
+            "name": "How POLYMER keeps repeat batches true to your approved panel",
+            "description": "Five steps from part description to repeat orders that follow the approved reference panel. Lead times for complex custom colours and large volumes are confirmed per order.",
+            "step": [{"@type": "HowToStep", "position": i + 1, "name": html.unescape(a), "text": html.unescape(b), "url": BASE + "/#pr-title"} for i, (a, b) in enumerate(steps)]}
+
+
+def _home_latest_ld():
+    news_new = sorted([n for n in NEWS if n['slug'] != 'specification-guide-white-paper'], key=lambda n: n['event'], reverse=True)[0]
+    items = [{"@type": "TechArticle", "headline": WP['title'], "url": BASE + WP_URL, "datePublished": WP['date'], "author": {"@id": BASE + "/#org"}, "publisher": {"@id": BASE + "/#org"}, "image": BASE + "/assets/img/home/sample-kit.webp"},
+             {"@type": "Article", "headline": ARTICLES[0]['title'], "url": f"{BASE}/insights/{ARTICLES[0]['slug']}/", "datePublished": ARTICLES[0]['date'], "author": {"@id": BASE + "/#org"}, "publisher": {"@id": BASE + "/#org"}, "image": f"{BASE}/assets/img/{ARTICLES[0]['img'][0]}.webp"},
+             {"@type": "NewsArticle", "headline": news_new['title'], "url": f"{BASE}/news/{news_new['slug']}/", "datePublished": news_new['published'], "author": {"@id": BASE + "/#org"}, "publisher": {"@id": BASE + "/#org"}, "image": BASE + "/assets/img/home/og.jpg"}]
+    return {"@context": "https://schema.org", "@type": "ItemList", "name": "Latest from POLYMER", "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": x} for i, x in enumerate(items)]}
+
+
 # ---------------------------------------------------------------- home
 def build_home():
     src = open(os.path.join(ROOT, 'build/home_main.html')).read().replace('{{CERTS}}', cert_cards())
+    # GEO-S04: visible FAQ on the home page (answers are the FAQ page's own text; FAQPage schema is generated from it)
+    hf = faq_block(HOME_FAQ)
+    src = src.replace('{{HOME_FAQ}}', f'<section class="sec tight" aria-labelledby="hfaq-title"><div class="wrap split"><div class="rv"><p class="eyebrow">Questions</p><h2 class="h2" id="hfaq-title" style="margin-top:20px">What do buyers ask <em>before ordering?</em></h2><p class="lead" style="margin-top:20px">Short answers to the questions purchasing teams ask first. All 40 answers are on the <a href="/faq/">FAQ page</a>.</p></div><div class="rv">{hf}</div></div></section>')
+    # GEO-S05: latest publications on the home page
+    news_new = sorted([n for n in NEWS if n['slug'] != 'specification-guide-white-paper'], key=lambda n: n['event'], reverse=True)[0]
+    latest = [('White paper', WP['title'], WP['desc'], WP_URL), ('Insight', ARTICLES[0]['title'], ARTICLES[0]['desc'], f'/insights/{ARTICLES[0]["slug"]}/'),
+              ('News', news_new['title'], news_new['desc'], f'/news/{news_new["slug"]}/')]
+    cards = ''.join(f'<a class="card rv" href="{u}"><small>{k}</small><h3 style="font-size:24px">{E(t)}</h3><p>{E(d)}</p><span class="link">Read</span></a>' for k, t, d, u in latest)
+    src = src.replace('{{HOME_LATEST}}', f'<section class="sec tight alt" aria-labelledby="latest-title"><div class="wrap"><div class="head rv"><div><p class="eyebrow">Resources</p><h2 class="h2" id="latest-title">What is new <em>from POLYMER?</em></h2></div><p class="lead">Technical guidance, buyer articles and company news. <a href="/news/feed.xml">RSS feed</a>.</p></div><div class="cards c3 mt24">{cards}</div></div></section>')
     src = src.replace('{{PHOTOS}}', photos([('real/extruder', 'Twin-screw powder coating extruder with cooling belt', 'Melt extrusion'), ('real/bonding', 'Metallic bonding machine', 'Metallic bonding'),
                                              ('real/gloss', '60° gloss measurement on a green panel', '60° gloss check'), ('real/particle', 'Loading powder into the laser particle size analyser', 'Particle size')], 'c4'))
     lp = json.load(open(os.path.join(ROOT, 'build/logo_paths.json')))
@@ -358,10 +399,38 @@ def build_home():
           '<script src="/assets/js/intro-v1.js" defer></script>\n')
     write('/', 'POLYMER Powder Coatings | Epoxy, Polyester & Hybrid Powder Coatings, China',
           'Fujian Polymer manufactures epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.',
-          src, ld=[{"@context": "https://schema.org", "@type": "WebSite", "name": "POLYMER Powder Coatings", "url": BASE + "/"}], extra_head=hs, pre=intro)
+          src, ld=[{"@context": "https://schema.org", "@type": "WebSite", "name": "POLYMER Powder Coatings", "url": BASE + "/"}, products_list_ld(), _home_howto(), _home_latest_ld()], extra_head=hs, pre=intro)
 
 
 # ---------------------------------------------------------------- products
+
+# ---------------------------------------------------------------- Product schema (GEO-S03). No offers/ratings: no public prices or reviews exist.
+_RESIN = {'polyester': 'Polyester resin', 'hybrid': 'Epoxy and polyester resins', 'epoxy': 'Epoxy resin'}
+_USE = {'polyester': 'Outdoor and UV-exposed metal parts', 'hybrid': 'Indoor decorative metal parts', 'epoxy': 'Indoor functional metal parts (indoor use only)'}
+
+
+def product_ld(k, ctx=True):
+    s = SYS[k]
+    props = [("Service environment", _USE[k]), ("Cure grades", "Standard cure and low cure"),
+             ("Gloss levels (60°)", "High gloss ≥90, satin and matt 11–80, dead matt ≤10"),
+             ("Surface effects", ", ".join(f[1] for f in FINISHES)), ("Colours", "RAL, Pantone and customer samples"),
+             ("Minimum order quantity", "1,000 kg"), ("Standard lead time", "Within 10 days; complex custom colours and large volumes confirmed per order"),
+             ("Typical parts", s['parts'].rstrip('.'))]
+    if k == 'polyester':
+        props.append(("Qualicoat", "Class 1 approval P-2199 for polyester system PLM100611 only, gloss category 3, valid until 31 Dec 2026"))
+    d = {"@type": "Product", "@id": BASE + s['url'] + "#product", "name": f"POLYMER {s['title'].lower().replace('powder coatings', 'powder coating')}".replace('Polymer', 'POLYMER'),
+         "url": BASE + s['url'], "description": s['lead'], "image": f"{BASE}/assets/img/{s['img']}.webp",
+         "brand": {"@id": BASE + "/#brand"}, "manufacturer": {"@id": BASE + "/#org"},
+         "category": "Thermosetting powder coatings", "material": _RESIN[k],
+         "additionalProperty": [{"@type": "PropertyValue", "name": a, "value": b} for a, b in props]}
+    if ctx: d = {"@context": "https://schema.org", **d}
+    return d
+
+
+def products_list_ld():
+    return {"@context": "https://schema.org", "@type": "ItemList", "name": "POLYMER powder coating systems",
+            "itemListElement": [{"@type": "ListItem", "position": i + 1, "item": product_ld(k, ctx=False)} for i, k in enumerate(SYS)]}
+
 def build_products():
     cards = ''
     for k, s in SYS.items():
@@ -393,7 +462,7 @@ def build_products():
 </div></section>'''
     body += cta()
     write('/products/', 'Powder Coating Products: Polyester, Hybrid & Epoxy | POLYMER',
-          'Polyester for outdoor parts, epoxy-polyester hybrid for indoor decorative parts and epoxy for indoor functional parts, in RAL and custom colours, ten effects and standard or low-cure grades.', body, 'products')
+          'Polyester for outdoor parts, epoxy-polyester hybrid for indoor decorative parts and epoxy for indoor functional parts, in RAL and custom colours, ten effects and standard or low-cure grades.', body, 'products', ld=[products_list_ld()])
 
     for k, s in SYS.items():
         w, h = s['imgw']
@@ -432,7 +501,7 @@ def build_products():
 </div></section>
 <section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">Questions</p><h2 class="h3" style="margin-top:20px">What should you check <em>before you specify?</em></h2></div><div class="rv">{faq_block(faqs)}</div></div></section>'''
         body += cta(btn=('Send project details', '/contact/'), btn2=(f'Request a {s["name"].lower()} sample', f'/request-sample/?system={s["name"]}'))
-        write(s['url'], f'{s["title"]} | POLYMER', s['lead'], body, 'products')
+        write(s['url'], f'{s["title"]} | POLYMER', s['lead'], body, 'products', ld=[product_ld(k)])
 
 
 # ---------------------------------------------------------------- finishes
@@ -1121,6 +1190,7 @@ def build_lang(code):
     dsteps = ''.join(f'<li><span>{i + 1:02d}</span><div><b>{h}</b> · {t}</div></li>' for i, (h, t) in enumerate(L['dist']))
     body += f'''<section class="sec tight dark"><div class="wrap split"><div class="rv"><p class="eyebrow">{L["dist_eyebrow"]}</p><h2 class="h3" style="margin-top:20px;color:#fff">{L["dist_h"]}</h2><p class="prose mt24" style="color:#b4b8bd">{L["dist_lead"]}</p></div><div class="rv"><ol class="list">{dsteps}</ol></div></div></section>'''
     faq = ''.join(f'<details><summary>{q}</summary><div class="a"><p>{t}</p></div></details>' for q, t in L['faq'])
+    _PAGE_FAQ.extend((html.unescape(re.sub('<[^>]+>', '', q)), html.unescape(re.sub('<[^>]+>', '', t))) for q, t in L['faq'])
     body += f'''<section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">FAQ</p><h2 class="h3" style="margin-top:20px">{L["faq_h"]}</h2><p class="prose mt24"><a class="link" href="/faq/">FAQ · 40 answers (EN)</a></p></div><div class="rv"><div class="faq">{faq}</div></div></div></section>'''
     roles = ''.join(f'<option>{r}</option>' for r in f['roles'])
     form = f'''<form class="f" name="{nm}" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field"><input type="hidden" name="form-name" value="{nm}"><input type="hidden" name="language" value="{code}"><p class="hp"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -1135,7 +1205,22 @@ def build_lang(code):
     write(L['path'], L['title'], L['desc'], body, lang=code)
 
 
+def _crumb_names():
+    d = {'/products/': 'Products', '/industries/': 'Industries', '/insights/': 'Insights', '/how-to/': 'How-to guides', '/news/': 'News',
+         '/white-paper/': 'White paper', '/finishes/': 'Colours & finishes', '/selector/': 'System selector', '/distributors/': 'Distributors',
+         '/quality/': 'Quality & certificates', '/company/': 'About POLYMER', '/downloads/': 'Downloads', '/request-sample/': 'Request a sample',
+         '/contact/': 'Contact', '/faq/': 'FAQ', '/privacy/': 'Privacy & cookies', '/ru/': 'Русский', '/es/': 'Español', '/thanks/': 'Thank you'}
+    d.update({x['url']: x['title'] for x in SYS.values()})
+    d.update({f'/industries/{i["slug"]}/': i['name'] for i in IND})
+    d.update({f'/insights/{a["slug"]}/': a['short'] for a in ARTICLES})
+    d.update({f'/how-to/{h["slug"]}/': h['title'] for h in GEO['howto']})
+    d.update({f'/news/{n["slug"]}/': n['short'] for n in NEWS})
+    d[WP_URL] = WP['short'][:1].upper() + WP['short'][1:]
+    return d
+
+
 if __name__ == '__main__':
+    _CRUMB.update(_crumb_names())
     build_css()
     build_home(); build_products(); build_finishes(); build_selector(); build_industries(); build_distributors()
     build_forms(); build_quality(); build_company(); build_geo(); build_insights(); build_whitepaper(); build_news(); build_rss(); build_legal(); build_lang('ru'); build_lang('es'); build_meta()
