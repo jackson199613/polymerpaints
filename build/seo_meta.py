@@ -56,3 +56,15 @@ KEYWORDS = {
 }
 
 TITLE = {'/privacy/': 'Privacy & Cookies Notice | POLYMER Powder Coatings'}
+
+# GEO-C07: content dates. UPDATED = date of the last site-wide content review; bump it whenever pages change.
+UPDATED = '2026-11-05'
+PUBLISHED_DEFAULT = '2026-10-27'          # full site v1 went live
+PUBLISHED_PREFIX = {'/insights/': '2026-10-28', '/ru/': '2026-10-28', '/es/': '2026-10-28'}
+
+
+def published(path):
+    for p, d in PUBLISHED_PREFIX.items():
+        if path.startswith(p):
+            return d
+    return PUBLISHED_DEFAULT

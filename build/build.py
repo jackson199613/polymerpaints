@@ -147,7 +147,7 @@ def header(active=''):
 <main id="main">'''
 
 
-def footer():
+def footer(datebar=''):
     inds = ''.join(f'<li><a href="/industries/{i["slug"]}/">{E(i["short"])}</a></li>' for i in IND)
     return f'''</main>
 <footer><div class="wrap">
@@ -157,7 +157,7 @@ def footer():
   <div><h4>Products</h4><ul><li><a href="/products/polyester/">Polyester</a></li><li><a href="/products/hybrid/">Hybrid</a></li><li><a href="/products/epoxy/">Epoxy</a></li><li><a href="/finishes/">Colours &amp; finishes</a></li><li><a href="/selector/">System selector</a></li></ul></div>
   <div><h4>Industries</h4><ul>{inds}<li><a href="/distributors/">Distributors</a></li></ul></div>
   <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/insights/">Insights</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
-  <div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd. · <a href="/privacy/">Privacy &amp; cookies</a></span><span>USCC 91350602MA32PFWW73 · Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
+  {datebar}<div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd. · <a href="/privacy/">Privacy &amp; cookies</a></span><span>USCC 91350602MA32PFWW73 · Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
 </div></footer>
 <details class="wa-float"><summary aria-label="Chat on WhatsApp">{WA_ICON}<span>WhatsApp</span></summary><div class="wa-pop"><p>Chat with our sales team<small>Reply within one working day · UTC+8</small></p><a href="{wa_link(0)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[0][0]}</span></a><a href="{wa_link(1)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[1][0]}</span></a></div></details>
 <script src="{JS}" defer></script>
@@ -206,7 +206,19 @@ def _mincss(c):
     return c.replace(';}', '}').strip() + '\n'
 
 
-from seo_meta import DESC as _SEO_DESC, KEYWORDS as _SEO_KW, TITLE as _SEO_TITLE
+from seo_meta import DESC as _SEO_DESC, KEYWORDS as _SEO_KW, TITLE as _SEO_TITLE, UPDATED as _UPDATED, published as _published
+
+_MON = {'en': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        'ru': ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'],
+        'es': ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']}
+_DLBL = {'en': ('Published', 'Last updated'), 'ru': ('Опубликовано', 'Обновлено'), 'es': ('Publicado', 'Actualizado')}
+
+
+def _datebar(pub, mod, lang):
+    m = _MON.get(lang, _MON['en']); a, b = _DLBL.get(lang, _DLBL['en'])
+    f = lambda d: f'{int(d[8:])} {m[int(d[5:7]) - 1]} {d[:4]}'
+    return f'<p class="page-date">{a} <time datetime="{pub}">{f(pub)}</time> · {b} <time datetime="{mod}">{f(mod)}</time></p>'
+
 
 
 def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.jpg', sitemap=True, extra_head='', pre='', lang='en'):
@@ -219,7 +231,16 @@ def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.j
     kw = _SEO_KW.get(path)
     if kw:
         extra_head = f'<meta name="keywords" content="{E(kw)}">\n' + extra_head
-    out = head(title, desc, path, ld, og, extra_head + ('' if sitemap else '<meta name="robots" content="noindex">\n'), lang) + pre + header(active) + body + footer()
+    pub, mod = _published(path), _UPDATED
+    wp = {"@context": "https://schema.org", "@type": "WebPage", "@id": BASE + path + "#webpage", "url": BASE + path, "name": title,
+          "description": desc, "inLanguage": lang, "datePublished": pub, "dateModified": mod,
+          "isPartOf": {"@type": "WebSite", "name": "POLYMER Powder Coatings", "url": BASE + "/"}, "publisher": {"@id": BASE + "/#org"}}
+    ld = (list(ld) if ld else []) + ([wp] if sitemap else [])
+    for x in ld:
+        if isinstance(x, dict) and x.get("@type") == "Article":
+            x["dateModified"] = mod
+    extra_head = f'<meta property="article:modified_time" content="{mod}">\n' + extra_head
+    out = head(title, desc, path, ld, og, extra_head + ('' if sitemap else '<meta name="robots" content="noindex">\n'), lang) + pre + header(active) + body + footer(_datebar(pub, mod, lang) if sitemap else '')
     fp = os.path.join(ROOT, path.strip('/'), 'index.html') if path.endswith('/') else os.path.join(ROOT, path.strip('/'))
     os.makedirs(os.path.dirname(fp), exist_ok=True)
     open(fp, 'w').write(out)
@@ -354,12 +375,12 @@ def build_products():
     for k, s in SYS.items():
         rows += f'<tr><td><b>{s["name"]}</b></td><td>{s["env"]}</td><td>{E("; ".join(s["props"][:3]))}</td><td>{E(s["parts"].split(",")[0] + ", " + s["parts"].split(",")[1].strip())} …</td></tr>'
     body += f'''<section class="sec tight alt"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">Compare</p><h2 class="h2">The three systems <em>side by side.</em></h2></div><p class="lead">The environment decides the chemistry. Final suitability is confirmed on your part and line.</p></div>
+  <div class="head rv"><div><p class="eyebrow">Compare</p><h2 class="h2">How do the three systems <em>compare?</em></h2></div><p class="lead">The environment decides the chemistry. Final suitability is confirmed on your part and line.</p></div>
   <div class="tbl-wrap rv"><table class="tbl"><thead><tr><th>System</th><th>Environment</th><th>Key properties (catalogue)</th><th>Typical parts</th></tr></thead><tbody>{rows}</tbody></table></div>
   <p class="tbl-note">Epoxy and hybrid are for indoor use. Qualicoat Class 1 applies to polyester system PLM100611 only.</p>
 </div></section>
 <section class="sec tight" id="cure"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Shared across all systems</p><h2 class="h3" style="margin-top:20px">Cure, gloss, colour <em>and powder.</em></h2></div>
+  <div class="rv"><p class="eyebrow">Shared across all systems</p><h2 class="h3" style="margin-top:20px">What are the cure, gloss <em>and powder properties?</em></h2></div>
   <div class="rv"><dl class="kv">
     <dt>Cure grades</dt><dd>Standard cure and low-cure grades in every system. Low-cure is considered for lines that need a lower oven temperature or faster line speed; it is confirmed against your actual oven profile. Cure conditions are on each product’s TDS.</dd>
     <dt>Gloss</dt><dd>High gloss ≥ 90 · satin and matt 11–80 · dead matt ≤ 10, as specified by you.</dd>
@@ -381,7 +402,7 @@ def build_products():
         extra = ''
         if k == 'polyester':
             extra = '''<section class="sec dark qc-band">''' + bgimg('qualicoat') + '''<div class="wrap"><div class="qc-in">
-  <div class="rv"><p class="eyebrow">Architectural approval</p><h2 class="h3" style="margin-top:20px;color:#fff">Qualicoat Class 1, <em style="color:var(--accent-hi)">with its scope.</em></h2></div>
+  <div class="rv"><p class="eyebrow">Architectural approval</p><h2 class="h3" style="margin-top:20px;color:#fff">What does Qualicoat Class 1 <em style="color:var(--accent-hi)">cover here?</em></h2></div>
   <div class="rv"><dl class="kv" style="border-color:var(--night-line)">
    <dt>Licence</dt><dd style="color:#e8eaec">P-2199</dd><dt>System</dt><dd style="color:#e8eaec">Polyester PLM100611, gloss category 3</dd><dt>Valid</dt><dd style="color:#e8eaec">Until 31 December 2026</dd><dt>Scope</dt><dd style="color:#e8eaec">The approved polyester system only. Not all products or colours; no structured-texture or metallic extension; not Class 2 or Class 3.</dd></dl>
    <p class="mt24"><a class="link" href="/quality/">Quality &amp; certificates</a></p></div></div></div></section>'''
@@ -392,23 +413,23 @@ def build_products():
                      facts=[s['env'], 'Standard & low-cure', 'Ten effects', 'MOQ 1,000 kg'],
                      ctas=[(f'Request a {s["name"].lower()} sample', f'/request-sample/?system={s["name"]}', 'btn-primary'), ('Ask for the TDS', '/downloads/', 'btn-line')])
         body += f'''<section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Properties</p><h2 class="h3" style="margin-top:20px">What {s["name"].lower()} <em>is good at.</em></h2><p class="prose mt24">Typical properties from our product catalogue. Values for each grade are on its technical data sheet.</p></div>
+  <div class="rv"><p class="eyebrow">Properties</p><h2 class="h3" style="margin-top:20px">What is {s["name"].lower()} powder coating <em>good at?</em></h2><p class="prose mt24">Typical properties from our product catalogue. Values for each grade are on its technical data sheet.</p></div>
   <div class="rv"><ol class="list">{props}</ol></div>
 </div></section>
 <section class="sec tight alt"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Where it is used</p><h2 class="h3" style="margin-top:20px">Typical parts.</h2></div>
+  <div class="rv"><p class="eyebrow">Where it is used</p><h2 class="h3" style="margin-top:20px">Which parts is it used on?</h2></div>
   <div class="rv"><p class="prose">{E(s["parts"])}</p><div class="note-box">{E(s["limits"])}</div></div>
 </div></section>
 {extra}
 <section class="sec tight"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">Options</p><h2 class="h3" style="margin-top:20px">Colour, gloss, effect <em>and cure.</em></h2></div><p class="lead">RAL or your sample · high gloss ≥ 90, satin and matt 11–80, dead matt ≤ 10 · ten surface effects · standard or low-cure.</p></div>
+  <div class="head rv"><div><p class="eyebrow">Options</p><h2 class="h3" style="margin-top:20px">Which colours, gloss levels <em>and cure options?</em></h2></div><p class="lead">RAL or your sample · high gloss ≥ 90, satin and matt 11–80, dead matt ≤ 10 · ten surface effects · standard or low-cure.</p></div>
   <div class="atlas" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">{''.join(f'<a class="tile rv" href="/finishes/#{fk}" style="color:var(--ink)"><figure>{img("finish/" + fk, 800, 800, fn + " finish", "200px", 400)}</figure><h3 style="color:var(--ink)">{fn}</h3></a>' for fk, fn, _ in FINISHES)}</div>
 </div></section>
 <section class="sec tight alt"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">Industries</p><h2 class="h3" style="margin-top:20px">Where we recommend {s["name"].lower()}.</h2></div></div>
+  <div class="head rv"><div><p class="eyebrow">Industries</p><h2 class="h3" style="margin-top:20px">Where do we recommend {s["name"].lower()}?</h2></div></div>
   <div class="inds">{indcards}</div>
 </div></section>
-<section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">Questions</p><h2 class="h3" style="margin-top:20px">Before you specify.</h2></div><div class="rv">{faq_block(faqs)}</div></div></section>'''
+<section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">Questions</p><h2 class="h3" style="margin-top:20px">What should you check <em>before you specify?</em></h2></div><div class="rv">{faq_block(faqs)}</div></div></section>'''
         body += cta(btn=('Send project details', '/contact/'), btn2=(f'Request a {s["name"].lower()} sample', f'/request-sample/?system={s["name"]}'))
         write(s['url'], f'{s["title"]} | POLYMER', s['lead'], body, 'products')
 
@@ -416,7 +437,7 @@ def build_products():
 # ---------------------------------------------------------------- finishes
 def build_finishes():
     tiles = ''.join(f'<div class="tile rv" id="{k}"><figure>{img("finish/" + k, 800, 800, n + " powder coating, macro", "(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw", 400)}</figure><h3>{n}</h3><p style="text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:13.5px">{E(d)}</p></div>' for k, n, d in FINISHES)
-    body = phero([('Colours & finishes', None)], 'Ten surface effects, <em>one approved version.</em>',
+    body = phero([('Colours & finishes', None)], 'Which finishes can you get <em>in powder coating?</em>',
                  'RAL shades and customer samples in every effect, across all three systems. Each finish is confirmed on a physical panel under your spraying conditions, then recorded as the version for repeat orders.',
                  figure=f'<figure class="tall">{img("home/hero-panels", 1122, 1402, "Five powder-coated panels in different finishes", "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>',
                  ctas=[('Match a colour', '/request-sample/?topic=colour', 'btn-primary'), ('How colour matching works', '/how-to/prepare-colour-matching-request/', 'btn-line')])
@@ -424,15 +445,15 @@ def build_finishes():
     pn = [(6875, 'Black fine texture'), (6890, 'Black sand texture'), (6877, 'Red sand texture'), (6886, 'Black high gloss'), (6882, 'Silver metallic, matt'), (6884, 'Silver metallic'),
           (6885, 'Champagne metallic'), (6887, 'Gold metallic'), (6888, 'Bright gold metallic'), (6889, 'Bronze metallic'), (6881, 'Translucent lime, high gloss'), (6883, 'Translucent magenta, high gloss')]
     body += f'''<section class="sec tight"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">From our panel library</p><h2 class="h2">Real panels, <em>photographed in our lab.</em></h2></div><p class="lead">Sprayed and cured on aluminium profile sections. Unretouched studio photos; colour on screen is a guide, and the physical panel is the reference.</p></div>
+  <div class="head rv"><div><p class="eyebrow">From our panel library</p><h2 class="h2">What do the finishes look like <em>on real panels?</em></h2></div><p class="lead">Sprayed and cured on aluminium profile sections. Unretouched studio photos; colour on screen is a guide, and the physical panel is the reference.</p></div>
   {photos([(f'real/panel-{n}', c + ' powder coating on an aluminium profile section', c) for n, c in pn], 'c4 panels')}
 </div></section>'''
     body += f'''<section class="sec tight"><div class="wrap gloss" style="margin-top:0">
   {img("home/gloss-trio", 1536, 1024, "Dead matt, satin and high gloss panels", "(min-width:980px) 60vw, 100vw", 768)}
-  <div><h2 class="h3">Three gloss bands.</h2><div class="bands" style="border-color:var(--line)"><div style="border-color:var(--line)">Dead matt<span style="color:var(--accent)">≤ 10</span></div><div style="border-color:var(--line)">Satin &amp; matt<span style="color:var(--accent)">11 – 80</span></div><div style="border-color:var(--line)">High gloss<span style="color:var(--accent)">≥ 90</span></div></div><p class="prose mt24">Gloss is agreed per project with a measuring condition and a physical reference, because colour, texture and film thickness all change how gloss looks.</p></div>
+  <div><h2 class="h3">Which gloss levels are available?</h2><div class="bands" style="border-color:var(--line)"><div style="border-color:var(--line)">Dead matt<span style="color:var(--accent)">≤ 10</span></div><div style="border-color:var(--line)">Satin &amp; matt<span style="color:var(--accent)">11 – 80</span></div><div style="border-color:var(--line)">High gloss<span style="color:var(--accent)">≥ 90</span></div></div><p class="prose mt24">Gloss is agreed per project with a measuring condition and a physical reference, because colour, texture and film thickness all change how gloss looks.</p></div>
 </div></section>
 <section class="sec tight alt"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">How we confirm a finish</p><h2 class="h3" style="margin-top:20px">Colour code <em>plus a physical sample.</em></h2></div>
+  <div class="rv"><p class="eyebrow">How we confirm a finish</p><h2 class="h3" style="margin-top:20px">How do you order <em>a matched colour?</em></h2></div>
   <div class="rv"><div class="tbl-wrap"><table class="tbl" style="min-width:520px"><thead><tr><th>Choice</th><th>Best way to specify</th><th>What we check</th></tr></thead><tbody>
    <tr><td><b>Colour</b></td><td>Colour code and a physical sample; your current powder as a reference if you have one</td><td>Sample condition, light source, film thickness and colour-difference tolerance</td></tr>
    <tr><td><b>Gloss</b></td><td>The measuring and acceptance condition, plus a physical reference</td><td>How colour, texture and film affect the visual result</td></tr>
@@ -441,7 +462,7 @@ def build_finishes():
   </tbody></table></div>
   <p class="tbl-note">Each panel is linked to its system, colour, gloss, texture, film thickness and cure. Samples, trial orders and bulk supply all refer to the same approved version.</p></div>
 </div></section>
-<section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">Questions</p><h2 class="h3" style="margin-top:20px">About finishes.</h2></div><div class="rv">{faq_block(['available-finishes-and-effects', 'what-is-bonded-metallic-powder', 'colour-matching-ral-or-sample', 'approved-panel-version-repeat-orders'])}</div></div></section>'''
+<section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">Questions</p><h2 class="h3" style="margin-top:20px">What do buyers ask <em>about finishes?</em></h2></div><div class="rv">{faq_block(['available-finishes-and-effects', 'what-is-bonded-metallic-powder', 'colour-matching-ral-or-sample', 'approved-panel-version-repeat-orders'])}</div></div></section>'''
     body += cta(btn=('Match a colour', '/request-sample/?topic=colour'), btn2=('Send project details', '/contact/'))
     write('/finishes/', 'Powder Coating Colours & Finishes: Textures, Metallics, Gloss | POLYMER',
           'Ten powder coating effects including sand, wrinkle, hammer tone, bonded metallic, transparent and fluorescent, in three gloss bands, RAL and custom colours.', body, 'finishes')
@@ -482,7 +503,7 @@ def build_selector():
   <script type="application/json" id="sel-data">{json.dumps(data, ensure_ascii=False)}</script>
 </div></section>
 <section class="sec tight alt" id="matrix"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">Industry × system</p><h2 class="h2">Which system <em>for which industry.</em></h2></div><p class="lead">● main recommendation · ○ option for specific parts or environments · — not recommended. Epoxy indoors, polyester outdoors, hybrid for indoor decorative parts.</p></div>
+  <div class="head rv"><div><p class="eyebrow">Industry × system</p><h2 class="h2">Which system <em>for which industry?</em></h2></div><p class="lead">● main recommendation · ○ option for specific parts or environments · — not recommended. Epoxy indoors, polyester outdoors, hybrid for indoor decorative parts.</p></div>
   <div class="tbl-wrap rv"><table class="tbl"><thead><tr><th>Industry</th><th>Epoxy</th><th>Polyester</th><th>Hybrid</th></tr></thead><tbody>{rows}</tbody></table></div>
   <p class="tbl-note">A starting point only. Final suitability depends on your part, pretreatment, film thickness, cure conditions, specification and a line trial.</p>
 </div></section>'''
@@ -495,7 +516,7 @@ def build_selector():
 def build_industries():
     cards = ''.join(f'<a class="ind rv" href="/industries/{i["slug"]}/"><figure>{img(i["img"], *i["imgw"], i["name"], "(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw")}</figure><span class="n">{i["n"]}</span><h3>{E(i["short"])}</h3>{chips(i["main"], i["opt"], "Selective" if i.get("selective") else None)}</a>' for i in IND)
     cards += f'<a class="ind rv" href="/distributors/"><figure>{img(DIST["img"], *DIST["imgw"], "Powder distribution warehouse", "(min-width:1060px) 25vw, (min-width:640px) 50vw, 100vw")}</figure><span class="n">08</span><h3>Powder distributors</h3><div class="chips"><span class="chip main">Full range</span></div></a>'
-    body = phero([('Industries', None)], 'Eight industries, <em>matched part by part.</em>',
+    body = phero([('Industries', None)], 'Which industries <em>do we supply?</em>',
                  'Each solution sets out the buyer’s problems, the system we propose, what we can support and what we verify on your part before bulk supply.',
                  ctas=[('Use the selector', '/selector/', 'btn-primary'), ('Industry × system table', '/selector/#matrix', 'btn-line')])
     body += f'<section class="sec"><div class="wrap"><div class="inds">{cards}</div><p class="ind-note">Recommendations are a starting point. Final suitability depends on your part, pretreatment, film thickness, cure, specification and a line trial.</p></div></section>'
@@ -520,19 +541,19 @@ def build_industries():
   <div class="rv"><p class="prose">{E(i["intro"])}</p></div>
 </div></section>
 <section class="sec tight alt"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Buyer problems</p><h2 class="h3" style="margin-top:20px">What usually <em>goes wrong.</em></h2></div>
+  <div class="rv"><p class="eyebrow">Buyer problems</p><h2 class="h3" style="margin-top:20px">What usually <em>goes wrong?</em></h2></div>
   <div class="rv"><ol class="list">{probs}</ol></div>
 </div><div class="wrap">{fig2("ind/" + IND_PHOTOS[i["slug"]][0] + "-a", i["name"] + " parts on a powder coating line", IND_PHOTOS[i["slug"]][1])}</div></section>
 <section class="sec tight"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">Recommended systems</p><h2 class="h3" style="margin-top:20px">By part and environment.</h2></div><p class="lead">Based on our product catalogue. Suitability is confirmed on your part, film thickness, cure and specification.</p></div>
+  <div class="head rv"><div><p class="eyebrow">Recommended systems</p><h2 class="h3" style="margin-top:20px">Which system <em>for which part?</em></h2></div><p class="lead">Based on our product catalogue. Suitability is confirmed on your part, film thickness, cure and specification.</p></div>
   <div class="tbl-wrap rv"><table class="tbl"><thead><tr><th>Need / use</th><th>Recommended</th><th>Basis</th><th>How we start</th></tr></thead><tbody>{recs}</tbody></table></div>
 </div></section>
 <section class="sec tight dark"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">What we bring</p><h2 class="h3" style="margin-top:20px;color:#fff">Capabilities <em style="color:var(--accent-hi)">you can use.</em></h2></div>
+  <div class="rv"><p class="eyebrow">What we bring</p><h2 class="h3" style="margin-top:20px;color:#fff">Which capabilities <em style="color:var(--accent-hi)">can you use?</em></h2></div>
   <div class="rv"><ol class="list">{caps}</ol></div>
 </div></section>
 <section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">What is verified</p><h2 class="h3" style="margin-top:20px">Before bulk supply.</h2><p class="prose mt24">From need to bulk: needs → selection and colour → sample evaluation on your line → order confirmation → ongoing supply to the approved version.</p></div>
+  <div class="rv"><p class="eyebrow">What is verified</p><h2 class="h3" style="margin-top:20px">What do we verify <em>before bulk supply?</em></h2><p class="prose mt24">From need to bulk: needs → selection and colour → sample evaluation on your line → order confirmation → ongoing supply to the approved version.</p></div>
   <div class="rv"><div class="tbl-wrap"><table class="tbl" style="min-width:420px"><thead><tr><th>Check</th><th>Focus</th></tr></thead><tbody>{ver}</tbody></table></div><div class="note-box"><b>Scope.</b> {E(i["scope"])}</div></div>
 </div><div class="wrap">{fig2("ind/" + IND_PHOTOS[i["slug"]][0] + "-b", i["name"] + " coating close-up", IND_PHOTOS[i["slug"]][2])}</div></section>
 <section class="sec tight alt"><div class="wrap center rv" style="max-width:860px"><p class="eyebrow" style="justify-content:center">How to start</p><p class="h3" style="margin-top:20px">“{E(i["quote"])}”</p></div></section>'''
@@ -543,7 +564,7 @@ def build_industries():
 # ---------------------------------------------------------------- distributors
 def build_distributors():
     fig = f'<figure>{img(DIST["img"], *DIST["imgw"], "Powder coating distribution warehouse with colour panels", "(min-width:980px) 45vw, 100vw", lazy=False)}</figure>'
-    body = phero([('Distributors', None)], 'One source for <em>your whole market.</em>',
+    body = phero([('Distributors', None)], 'Why do distributors <em>source from POLYMER?</em>',
                  'Importers and wholesalers are our main channel. We supply polyester, hybrid and epoxy plus the effects series, so you can serve applicators and manufacturers from one supplier and replenish within 10 days.',
                  figure=fig, facts=['Full range', 'Lead time ≤ 10 days', 'Non-exclusive start', 'MOQ 1,000 kg'],
                  ctas=[('Become a distributor', '#apply', 'btn-primary'), ('Downloads', '/downloads/', 'btn-line')])
@@ -555,16 +576,16 @@ def build_distributors():
            ('Colour cards, panels and documents', 'All end users', 'Showing and quoting to end users')]
     rows = ''.join(f'<tr><td><b>{E(a)}</b></td><td>{E(b)}</td><td>{E(c)}</td></tr>' for a, b, c in kit)
     body += f'''<section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Distributor problems</p><h2 class="h3" style="margin-top:20px">What we help <em>you solve.</em></h2></div>
+  <div class="rv"><p class="eyebrow">Distributor problems</p><h2 class="h3" style="margin-top:20px">What problems <em>do we help you solve?</em></h2></div>
   <div class="rv"><ol class="list">{''.join(f'<li><span>{k+1:02d}</span><div>{E(p)}</div></li>' for k, p in enumerate(probs))}</ol></div>
 </div><div class="wrap">{fig2("ind/distributors-a", "Pallets of powder cartons beside a shipping container", IND_PHOTOS["distributors"][1])}</div></section>
 <section class="sec tight alt"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">First range</p><h2 class="h3" style="margin-top:20px">Product and material mix.</h2></div><p class="lead">Built around your end-user structure: the three systems, the effects series and custom colours.</p></div>
+  <div class="head rv"><div><p class="eyebrow">First range</p><h2 class="h3" style="margin-top:20px">Which products can <em>a distributor stock?</em></h2></div><p class="lead">Built around your end-user structure: the three systems, the effects series and custom colours.</p></div>
   <div class="tbl-wrap rv"><table class="tbl"><thead><tr><th>Product / material</th><th>End uses</th><th>Sales angle</th></tr></thead><tbody>{rows}</tbody></table></div>
   {fig2("ind/distributors-b", "Distributor starter kit with panels, colour card and powder sample", IND_PHOTOS["distributors"][2])}
 </div></section>
 <section class="sec tight dark"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Working together</p><h2 class="h3" style="margin-top:20px;color:#fff">Four steps, <em style="color:var(--accent-hi)">from pack to repeat orders.</em></h2></div>
+  <div class="rv"><p class="eyebrow">Working together</p><h2 class="h3" style="margin-top:20px;color:#fff">How does <em style="color:var(--accent-hi)">a partnership start?</em></h2></div>
   <div class="rv"><ol class="list">
    <li><span>01</span><div><b>Starter pack.</b> Catalogue, certificates, colour cards, panels and application limits, so you can screen end users without over-promising.</div></li>
    <li><span>02</span><div><b>End-user screening.</b> A list of applicators, aluminium, furniture, cabinet and appliance makers with coating lines and colour needs.</div></li>
@@ -573,7 +594,7 @@ def build_distributors():
   </ol></div>
 </div></section>
 <section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Supply</p><h2 class="h3" style="margin-top:20px">Built for <em>replenishment.</em></h2></div>
+  <div class="rv"><p class="eyebrow">Supply</p><h2 class="h3" style="margin-top:20px">How does <em>replenishment work?</em></h2></div>
   <div class="rv"><dl class="kv"><dt>Capacity</dt><dd>5,000 t per year on 8 production lines, plus 5 sampling lines</dd><dt>Lead time</dt><dd>Standard within 10 days; complex custom colours and large volumes confirmed per order</dd><dt>Minimum order</dt><dd>1,000 kg per order</dd><dt>Export</dt><dd>About 20 countries and regions; experienced with export documents, packing and sea freight</dd><dt>Documents</dt><dd>ISO 9001 and ISO 14001 certificates and the Qualicoat Class 1 certificate for your sales pack</dd></dl></div>
 </div></section>
 <section class="sec tight alt" id="apply"><div class="wrap form-grid">
@@ -618,7 +639,7 @@ def std_aside(extra=()):
 
 
 WHY = '''<section class="sec tight alt"><div class="wrap">
- <div class="head rv"><div><p class="eyebrow">Before samples ship</p><h2 class="h2">What we ask for, <em>and why.</em></h2></div><p class="lead">A described part gets a matched panel and a system recommendation. A bare colour code gets a guess.</p></div>
+ <div class="head rv"><div><p class="eyebrow">Before samples ship</p><h2 class="h2">What do we need <em>before samples ship?</em></h2></div><p class="lead">A described part gets a matched panel and a system recommendation. A bare colour code gets a guess.</p></div>
  <div class="cards c4">
  <div class="card rv"><small>Part</small><h3 style="font-size:24px">What it is</h3><p>Use, substrate, size and a photo or sample. This decides the system.</p></div>
  <div class="card rv"><small>Environment</small><h3 style="font-size:24px">Where it lives</h3><p>Indoor or outdoor, humidity, coastal, chemicals, temperature.</p></div>
@@ -681,23 +702,23 @@ def build_quality():
                  figure=f'<figure class="tall">{img("home/panel-single", 1122, 1402, "An approved test panel on a black plinth", "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>',
                  facts=['Qualicoat Class 1 · P-2199', 'ISO 9001', 'ISO 14001', 'SGS RoHS report'])
     body += f'''<section class="sec tight"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">Certificates &amp; reports</p><h2 class="h2">Every claim has <em>a certificate number.</em></h2></div><p class="lead">Click a certificate to see it full size, or download the PDF. Each one applies to the scope printed on it.</p></div>
+  <div class="head rv"><div><p class="eyebrow">Certificates &amp; reports</p><h2 class="h2">Which certificates <em>does POLYMER hold?</em></h2></div><p class="lead">Click a certificate to see it full size, or download the PDF. Each one applies to the scope printed on it.</p></div>
   {cert_cards(detail=True)}
   <p class="tbl-note">ISO certificates can be verified on the issuer’s website, www.ngv.org.cn, or by scanning the QR code on the certificate. The SGS report covers the sample tested; reports for other products can be arranged for a project.</p></div></section>
 <section class="sec tight alt"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">In-house laboratory</p><h2 class="h2">What we check <em>on panels and batches.</em></h2></div><p class="lead">Our technical research lab, QC lab and sample room test every new colour and every batch before release. These are internal test conditions, not third-party reports.</p></div>
+  <div class="head rv"><div><p class="eyebrow">In-house laboratory</p><h2 class="h2">What do we check <em>on panels and batches?</em></h2></div><p class="lead">Our technical research lab, QC lab and sample room test every new colour and every batch before release. These are internal test conditions, not third-party reports.</p></div>
   {labs}
   <div class="tbl-wrap rv" style="margin-top:40px"><table class="tbl" style="min-width:620px"><thead><tr><th>Test</th><th>Method / equipment</th><th>What it shows</th></tr></thead><tbody>{rows}</tbody></table></div>
 </div></section>
 <section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Two checkpoints</p><h2 class="h3" style="margin-top:20px">No batch is packed <em>before it passes.</em></h2></div>
+  <div class="rv"><p class="eyebrow">Two checkpoints</p><h2 class="h3" style="margin-top:20px">How is each batch <em>released?</em></h2></div>
   <div class="rv"><ol class="list">
    <li><span>01</span><div><b>Self-check after sieving.</b> The production team checks the finished powder. A failure goes back to the formula and premix stage.</div></li>
    <li><span>02</span><div><b>Laboratory test.</b> QC tests the batch against the approved panel. Only qualified batches are cooled, weighed, packed and put into the warehouse.</div></li>
   </ol></div>
 </div></section>
 <section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">The approved version</p><h2 class="h3" style="margin-top:20px">How repeat orders <em>stay the same.</em></h2></div>
+  <div class="rv"><p class="eyebrow">The approved version</p><h2 class="h3" style="margin-top:20px">How do repeat orders <em>stay the same?</em></h2></div>
   <div class="rv"><ol class="list">
    <li><span>01</span><div><b>Panel linked to its settings.</b> System, colour, gloss, texture, film thickness and cure are recorded with each approved panel.</div></li>
    <li><span>02</span><div><b>One reference for everyone.</b> Samples, trial orders and bulk supply all refer to the same version.</div></li>
@@ -705,7 +726,7 @@ def build_quality():
    <li><span>04</span><div><b>Changes are new versions.</b> A new colour, part or condition becomes a new approved version, not a silent change.</div></li>
   </ol></div>
 </div></section>
-<section class="sec tight alt"><div class="wrap split"><div class="rv"><p class="eyebrow">Questions</p><h2 class="h3" style="margin-top:20px">About quality.</h2></div><div class="rv">{faq_block(['what-qualicoat-class-1-covers', 'in-house-testing-scope-and-limits', 'approved-panel-version-repeat-orders', 'documents-available-tds-sds-certificates'])}</div></div></section>'''
+<section class="sec tight alt"><div class="wrap split"><div class="rv"><p class="eyebrow">Questions</p><h2 class="h3" style="margin-top:20px">What do buyers ask <em>about quality?</em></h2></div><div class="rv">{faq_block(['what-qualicoat-class-1-covers', 'in-house-testing-scope-and-limits', 'approved-panel-version-repeat-orders', 'documents-available-tds-sds-certificates'])}</div></div></section>'''
     body += cta()
     write('/quality/', 'Quality & Certificates: Qualicoat Class 1, ISO 9001, ISO 14001, RoHS | POLYMER',
           'Qualicoat Class 1 for polyester system PLM100611 (P-2199), ISO 9001 and ISO 14001 certificates valid to 2029, an SGS EU RoHS report, in-house laboratory tests and approved-panel version control.', body, 'quality')
@@ -719,11 +740,11 @@ def build_company():
                  figure=f'<figure class="tall">{img("home/hero-panels", 1122, 1402, "Powder-coated panels in five finishes", "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>')
     body += f'''<section class="proof" style="background:var(--night)"><div class="wrap">{stats}</div></section>
 <section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">What we do</p><h2 class="h3" style="margin-top:20px">The right system, the matched colour, <em>on time.</em></h2></div>
+  <div class="rv"><p class="eyebrow">What we do</p><h2 class="h3" style="margin-top:20px">What does POLYMER <em>do for buyers?</em></h2></div>
   <div class="rv prose"><p>We produce three powder systems: epoxy for indoor functional parts, polyester for outdoor parts, and epoxy-polyester hybrid for indoor decorative parts. Our polyester system PLM100611 is Qualicoat Class 1 approved.</p><p>Our work starts from the customer’s part and where it will be used. We recommend the system, match the colour and finish, and record the approved panel so every batch can be checked against it. Standard lead time is within 10 days, and we do not make low-end powder.</p><h3>Who we supply</h3><ul><li>Powder importers and distributors, our main channel</li><li>Aluminium extruders, metal furniture, appliance, enclosure and equipment manufacturers</li><li>Professional coating applicators ordering from 1 t</li></ul></div>
 </div></section>
 <section class="sec tight alt" id="factory"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">Inside the factory</p><h2 class="h2">From formula <em>to warehouse.</em></h2></div><p class="lead">Eight production lines, five sampling lines for panels and small trial batches, and two bonding machines for gold, silver and other metallic effects. Monthly output up to 500 t.</p></div>
+  <div class="head rv"><div><p class="eyebrow">Inside the factory</p><h2 class="h2">How is our powder <em>made?</em></h2></div><p class="lead">Eight production lines, five sampling lines for panels and small trial batches, and two bonding machines for gold, silver and other metallic effects. Monthly output up to 500 t.</p></div>
   {photos([('real/premixer', 'Operator loading raw materials into the premixer', 'Premix'), ('real/extruder', 'Twin-screw powder coating extruder with cooling belt', 'Melt extrusion'), ('real/grinder', 'Grinding and classifying mill', 'Grinding & sieving'),
            ('real/cone-mixer', 'Double-cone mixer', 'Cone mixer'), ('real/bonding', 'Metallic bonding machine', 'Metallic bonding'), ('real/loading', 'Forklift loading powder cartons into a container', 'Export loading')])}
   <ol class="flow rv">
@@ -732,15 +753,15 @@ def build_company():
   <p class="tbl-note">A batch that fails the self-check or the lab test goes back to the formula stage. See <a class="link" href="/quality/">quality and testing</a>.</p>
 </div></section>
 <section class="sec tight"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Company facts</p><h2 class="h3" style="margin-top:20px">Capacity, <em>people and labs.</em></h2></div>
+  <div class="rv"><p class="eyebrow">Company facts</p><h2 class="h3" style="margin-top:20px">How large is <em>the factory?</em></h2></div>
   <div class="rv"><dl class="kv"><dt>Founded</dt><dd>22 April 2019, Zhangzhou, Fujian</dd><dt>Capacity</dt><dd>5,000 t per year; up to 500 t per month</dd><dt>Production</dt><dd>8 production lines and 5 sampling lines</dd><dt>Metallics</dt><dd>2 metallic bonding machines, which help reduce separation of metallic pigment during spraying and reclaim</dd><dt>Laboratories</dt><dd>Technical research lab, QC lab and sample development room</dd><dt>Testing</dt><dd>Colour, 60° gloss, film thickness, particle size, salt spray, UV accelerated ageing, pencil hardness, impact, bend, cross-cut adhesion, oven temperature profiling</dd><dt>Certificates</dt><dd>Qualicoat Class 1 (P-2199) · ISO 9001:2015 · ISO 14001:2015 · SGS EU RoHS report</dd><dt>China offices</dt><dd>Fuzhou, Quanzhou, Xiamen and Longyan in Fujian; Guangdong; Zhejiang</dd></dl></div>
 </div></section>
 <section class="sec tight" id="company-structure"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Company structure</p><h2 class="h3" style="margin-top:20px">Who stands <em>behind the brand.</em></h2><p class="prose mt24">POLYMER Powder Coatings is the brand of Fujian Polymer Industry &amp; Trade Co., Ltd., the company that formulates, manufactures and sells it from its own factory in Zhangzhou.</p></div>
+  <div class="rv"><p class="eyebrow">Company structure</p><h2 class="h3" style="margin-top:20px">Who stands <em>behind the brand?</em></h2><p class="prose mt24">POLYMER Powder Coatings is the brand of Fujian Polymer Industry &amp; Trade Co., Ltd., the company that formulates, manufactures and sells it from its own factory in Zhangzhou.</p></div>
   <div class="rv"><dl class="kv"><dt>Legal entity</dt><dd>Fujian Polymer Industry &amp; Trade Co., Ltd. (福建玻利玛工贸有限公司), founded 22 April 2019; unified social credit code 91350602MA32PFWW73</dd><dt>Brand</dt><dd>POLYMER (玻利玛), owned and used by Fujian Polymer Industry &amp; Trade Co., Ltd.; slogan “You apply powder, we apply care.”</dd><dt>Factory</dt><dd>No. 2 Zhuli Road, Xiangcheng District, Zhangzhou, Fujian 363005, China</dd><dt>Sales offices</dt><dd>Six China offices of the same company: Fuzhou, Quanzhou, Xiamen, Longyan, Guangdong and Zhejiang</dd><dt>Memberships</dt><dd>Vice-chair member unit, Xiangcheng District Enterprise and Entrepreneur Association, Zhangzhou</dd><dt>Website</dt><dd>polymerpaints.com is the official website of POLYMER Powder Coatings</dd></dl></div>
 </div></section>
 <section class="sec tight dark"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Recognition</p><h2 class="h3" style="margin-top:20px">Recognised <em>at home.</em></h2><p class="prose mt24" style="color:#b4b8bd">Awarded by national and Fujian provincial authorities. Certificates are available on request.</p></div>
+  <div class="rv"><p class="eyebrow">Recognition</p><h2 class="h3" style="margin-top:20px">Which awards <em>has POLYMER received?</em></h2><p class="prose mt24" style="color:#b4b8bd">Awarded by national and Fujian provincial authorities. Certificates are available on request.</p></div>
   <div class="rv"><ol class="list">
    <li><span>01</span><div><b>National High-Tech Enterprise.</b> Recognised under China’s high-tech enterprise programme.</div></li>
    <li><span>02</span><div><b>Fujian “Specialised, Refined, Distinctive and Innovative” SME.</b> Fujian Department of Industry and Information Technology, 2025–2028.</div></li>
@@ -751,7 +772,7 @@ def build_company():
   </ol></div>
 </div></section>
 <section class="sec tight"><div class="wrap">
-  <div class="head rv"><div><p class="eyebrow">Where we export</p><h2 class="h2">About 20 countries <em>and regions.</em></h2></div><p class="lead">Experienced with export documents, packing and sea freight to our established markets.</p></div>
+  <div class="head rv"><div><p class="eyebrow">Where we export</p><h2 class="h2">Where does POLYMER <em>export?</em></h2></div><p class="lead">Experienced with export documents, packing and sea freight to our established markets.</p></div>
   <div class="regions light">
    <div class="region rv"><h3>Russia &amp; Europe</h3><p>Russia · Latvia · Turkey</p></div>
    <div class="region rv"><h3>Latin America</h3><p>Mexico · Dominican Republic · Colombia · Peru · Brazil · Chile</p></div>
@@ -760,7 +781,7 @@ def build_company():
   </div>
 </div></section>
 <section class="sec tight alt"><div class="wrap split">
-  <div class="rv"><p class="eyebrow">Environment</p><h2 class="h3" style="margin-top:20px">Powder, <em>by nature.</em></h2></div>
+  <div class="rv"><p class="eyebrow">Environment</p><h2 class="h3" style="margin-top:20px">Why is powder <em>a cleaner coating?</em></h2></div>
   <div class="rv prose"><p>Powder coatings are applied as a dry powder and contain no solvent carrier, and oversprayed powder can be reclaimed and reused on many lines. Our environmental management system is certified to ISO 14001:2015, and an SGS test of a black powder sample found none of the ten EU RoHS restricted substances.</p><p>We make no further environmental claims without data. If your purchasing team needs specific declarations, ask us and we will confirm what can be supplied for the product concerned.</p></div>
 </div></section>'''
     body += cta()
@@ -799,7 +820,7 @@ def build_geo():
     body += f'''<section class="sec tight"><div class="wrap fq-layout">
   <aside class="fq-toc"><p class="eyebrow">Topics</p><label class="fq-search"><span class="hp">Search questions</span><input type="search" id="fq-q" placeholder="Search questions…" autocomplete="off"></label><nav aria-label="FAQ topics">{toc}</nav></aside>
   <div class="fq-main">{glance}{cats}<p class="fq-none" id="fq-none" hidden>No question matches your search. <a class="link" href="/contact/">Ask our team</a></p>
-   <section class="fq-spec rv" id="specialist">{bgimg('cta-red')}<div class="fq-spec-in"><p class="eyebrow">When to talk to our team directly</p><h2 class="h3">Some answers depend <em>on your part.</em></h2>
+   <section class="fq-spec rv" id="specialist">{bgimg('cta-red')}<div class="fq-spec-in"><p class="eyebrow">When to talk to our team directly</p><h2 class="h3">Why do some answers <em>depend on your part?</em></h2>
     <ul><li>Volume pricing and annual supply</li><li>Projects that name Qualicoat or another specification</li><li>Custom colours, textures and metallic effects from your sample</li><li>Distributor ranges and regional terms</li><li>Documents for a tender or supplier approval file</li></ul>
     <div class="hero-ctas"><a class="btn btn-primary" href="/contact/">Send project details {ARROW}</a><a class="btn btn-line" href="/request-sample/">Request a sample</a></div></div></section>
   </div></div></section>
@@ -826,10 +847,10 @@ if(location.hash){{var t=document.getElementById(location.hash.slice(1));if(t&&t
         body += f'''<section class="sec tight"><div class="wrap split">
   <aside class="rv"><p class="eyebrow">When you need this</p><p class="prose mt24">{E(h["scene"])}</p>{f'<h3 class="h3" style="font-size:26px;margin-top:40px">Related questions</h3><ul style="margin-top:12px;list-style:none;display:grid;gap:10px">{relq}</ul>' if relq else ''}</aside>
   <article class="article rv">
-   <h2>Steps</h2><ol class="steps-a">{steps}</ol>
-   {f'<h2>Parameters</h2><dl class="kv">{params}</dl>' if params else ''}
-   <h2>Common mistakes</h2><ul class="mistakes">{mist}</ul>
-   <div class="aside-cta"><h3>Next step</h3><p>{E(h["cta"])}</p><a class="btn btn-primary" href="/request-sample/">Request a sample {ARROW}</a></div>
+   <h2>What are the steps?</h2><ol class="steps-a">{steps}</ol>
+   {f'<h2>Which parameters matter?</h2><dl class="kv">{params}</dl>' if params else ''}
+   <h2>What are the common mistakes?</h2><ul class="mistakes">{mist}</ul>
+   <div class="aside-cta"><h3>What should you do next?</h3><p>{E(h["cta"])}</p><a class="btn btn-primary" href="/request-sample/">Request a sample {ARROW}</a></div>
   </article>
 </div></section>'''
         write(f'/how-to/{h["slug"]}/', f'{h["title"]} | POLYMER Powder Coatings', h['summary'], body, 'resources', ld=[ld])

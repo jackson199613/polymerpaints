@@ -635,3 +635,6 @@ html[lang="ru"] .phero h1,html[lang="ru"] .h2,html[lang="ru"] .h3{letter-spacing
 .h1.h1-has-brand{margin-top:0}
 .h1 .h1-brand{display:flex;margin:0 0 28px;font-size:12px;line-height:1.5;letter-spacing:.14em;font-style:normal;max-width:none}
 .js .hero .h1 .h1-brand{animation:none}
+/* C07 page dates (footer, above the legal line) */
+.page-date{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--night-muted,#9ca1a7);margin:28px 0 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08)}
+.page-date time{color:#d4d7da}
