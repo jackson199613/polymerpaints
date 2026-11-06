@@ -10,7 +10,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v19.css'
+CSS = '/assets/css/polymer-v20.css'
 JS = '/assets/js/polymer-v6.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -59,7 +59,7 @@ def img(name, w, h, alt, sizes='100vw', small=None, lazy=True, cls=''):
     small = small or (IMG2[name][2] if name in IMG2 else (600 if w > 900 else 400))
     srcset = f'/assets/img/{name}-{small}.webp {small}w, /assets/img/{name}.webp {w}w'
     return (f'<img{" class=%s" % cls if cls else ""} src="/assets/img/{name}-{small}.webp" srcset="{srcset}" sizes="{sizes}" '
-            f'width="{w}" height="{h}"{" loading=lazy" if lazy else " fetchpriority=high"} alt="{E(alt)}">')
+            f'width="{w}" height="{h}"{" loading=lazy decoding=async" if lazy else " fetchpriority=high"} alt="{E(alt)}">')
 
 
 LANG_ALT = {'/': 'en', '/ru/': 'ru', '/es/': 'es'}
@@ -118,7 +118,7 @@ def header(active=''):
   <div class="r"><span>MOQ 1,000 kg</span><span>Lead time within 10 days</span><span><a href="mailto:{EMAIL}">{EMAIL}</a></span><span class="tb-wa"><a href="{wa_link(0)}" target="_blank" rel="noopener">{WA_ICON}WhatsApp {WA[0][0]}</a></span><span class="tb-wa2"><a href="{wa_link(1)}" target="_blank" rel="noopener">{WA[1][0]}</a></span></div>
 </div></div>
 <header class="site"><div class="wrap">
-  <a class="logo" href="/" aria-label="POLYMER home"><img src="/assets/img/logo-mark-dark.svg" width="30" height="35" alt=""><b>POLYMER</b><small>Powder coatings</small></a>
+  <a class="logo" href="/" aria-label="POLYMER home"><img src="/assets/img/logo-mark-dark.svg" width="30" height="35" alt="POLYMER powder coatings logo"><b>POLYMER</b><small>Powder coatings</small></a>
   <nav class="main" aria-label="Main">
     <div class="dd"><a href="/products/"{cur('products')}>Products</a><div class="menu wide"><div><small>By system</small>{prod}<a href="/products/#cure">Low-cure grades</a></div><div><small>Choose &amp; compare</small><a href="/finishes/">Colours &amp; finishes</a><a href="/selector/">System selector</a><a href="/selector/#matrix">Industry × system table</a></div></div></div>
     <div class="dd"><a href="/industries/"{cur('industries')}>Industries</a><div class="menu"><small>By application</small>{inds}</div></div>
@@ -148,7 +148,7 @@ def footer():
     inds = ''.join(f'<li><a href="/industries/{i["slug"]}/">{E(i["short"])}</a></li>' for i in IND)
     return f'''</main>
 <footer><div class="wrap">
-  <div><a class="logo" href="/"><img src="/assets/img/logo-mark-dark.svg" width="30" height="35" alt=""><b style="color:#fff">POLYMER</b><small>Powder coatings</small></a>
+  <div><a class="logo" href="/"><img src="/assets/img/logo-mark-dark.svg" width="30" height="35" alt="POLYMER powder coatings logo"><b style="color:#fff">POLYMER</b><small>Powder coatings</small></a>
     <p class="slogan">You apply powder,<br>we apply care.</p>
     <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian 363005, China<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:+865962600611">Tel {TEL}</a><br>WhatsApp <a href="{wa_link(0)}" rel="noopener">{WA[0][0]}</a> · <a href="{wa_link(1)}" rel="noopener">{WA[1][0]}</a></p></div>
   <div><h4>Products</h4><ul><li><a href="/products/polyester/">Polyester</a></li><li><a href="/products/hybrid/">Hybrid</a></li><li><a href="/products/epoxy/">Epoxy</a></li><li><a href="/finishes/">Colours &amp; finishes</a></li><li><a href="/selector/">System selector</a></li></ul></div>
@@ -196,7 +196,26 @@ def phero(crumbs, h1, lead, figure='', facts=None, ctas=None, bg=None):
 </section>'''
 
 
+def _mincss(c):
+    c = re.sub(r'/\*.*?\*/', '', c, flags=re.S)
+    c = re.sub(r'\s+', ' ', c)
+    c = re.sub(r'\s*([{};,>])\s*', r'\1', c)
+    return c.replace(';}', '}').strip() + '\n'
+
+
+from seo_meta import DESC as _SEO_DESC, KEYWORDS as _SEO_KW, TITLE as _SEO_TITLE
+
+
 def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.jpg', sitemap=True, extra_head='', pre='', lang='en'):
+    desc = _SEO_DESC.get(path, desc)
+    title = _SEO_TITLE.get(path, title)
+    if len(title) > 80 and title.endswith(' | POLYMER Powder Coatings'):
+        title = title[:-len(' | POLYMER Powder Coatings')] + ' | POLYMER'
+    if len(desc) > 200:
+        print('WARN long description', len(desc), path)
+    kw = _SEO_KW.get(path)
+    if kw:
+        extra_head = f'<meta name="keywords" content="{E(kw)}">\n' + extra_head
     out = head(title, desc, path, ld, og, extra_head + ('' if sitemap else '<meta name="robots" content="noindex">\n'), lang) + pre + header(active) + body + footer()
     fp = os.path.join(ROOT, path.strip('/'), 'index.html') if path.endswith('/') else os.path.join(ROOT, path.strip('/'))
     os.makedirs(os.path.dirname(fp), exist_ok=True)
@@ -204,11 +223,21 @@ def write(path, title, desc, body, active='', ld=None, og='/assets/img/home/og.j
     if sitemap: PAGES.append((path, title))
 
 
+BG_ALT = {
+    'cta-red': 'Signal red powder coating heap with a laboratory spatula',
+    'industries': 'Powder-coated metal parts from several industries on a conveyor',
+    'selector': 'Powder-coated aluminium test panels on an approval rack',
+    'contact': 'Export carton and sample box of powder-coated test panels',
+    'resources': 'Gloss meter, film thickness gauge and powder sample on a lab bench',
+    'qualicoat': 'Anthracite RAL 7016 powder-coated aluminium facade fins',
+}
+
+
 def bgimg(name, lazy=True):
     sm = 640 if name == 'cta-red' else 960
     w, h = (1024, 1024) if name == 'cta-red' else (1916, 821)
     return (f'<img class="bg-img bg-{name}" src="/assets/img/bg/{name}-{sm}.webp" srcset="/assets/img/bg/{name}-{sm}.webp {sm}w, /assets/img/bg/{name}.webp {w}w" '
-            f'sizes="100vw" width="{w}" height="{h}" alt=""{" loading=lazy" if lazy else " fetchpriority=high"}>')
+            f'sizes="100vw" width="{w}" height="{h}" alt="{BG_ALT.get(name, "Powder coating background image")}"{" loading=lazy decoding=async" if lazy else " fetchpriority=high"}>')
 
 
 def fig2(name, alt, cap):
@@ -286,10 +315,10 @@ def build_home():
                                              ('real/gloss', '60° gloss measurement on a green panel', '60° gloss check'), ('real/particle', 'Loading powder into the laser particle size analyser', 'Particle size')], 'c4'))
     lp = json.load(open(os.path.join(ROOT, 'build/logo_paths.json')))
     word = ''.join(f'<span style="transition-delay:{.06 * i:.2f}s">{c}</span>' for i, c in enumerate('POLYMER'))
-    lay = ''.join(f'<div class="pi-l pi-{k}" data-src="/assets/img/intro/{k}.webp" data-sm="/assets/img/intro/{k}-{sm}.webp"></div>' for k, sm in [('charge', 900), ('burst', 640), ('melt', 900), ('palette', 900), ('panels', 640)])
+    lay = ''.join(f'<div class="pi-l pi-{k}" data-src="/assets/img/intro/{k}-v2.webp" data-sm="/assets/img/intro/{k}-{sm}.webp"></div>' for k, sm in [('charge', 900), ('burst', 640), ('melt', 900), ('palette', 900), ('panels', 640)])
     intro = f'''<div id="pi" data-s="0">
 <div aria-hidden="true">{lay}<canvas></canvas><div class="pi-fl"></div><div class="pi-sweep"></div><div class="pi-vig"></div><div class="pi-grain"></div><div class="pi-lb t"></div><div class="pi-lb b"></div>
-<div class="pi-brand"><img src="/assets/img/logo-mark-dark.svg" alt="">POLYMER<small>Powder coatings · Since 2019</small></div>
+<div class="pi-brand"><img src="/assets/img/logo-mark-dark.svg" alt="POLYMER powder coatings logo">POLYMER<small>Powder coatings · Since 2019</small></div>
 <svg class="pi-mark" viewBox="{lp['vb']}"><path class="b" pathLength="1" fill-rule="evenodd" d="{lp['blue']}"/><path class="r" pathLength="1" fill-rule="evenodd" d="{lp['red']}"/></svg>
 <div class="pi-word"><b>{word}</b><em>You apply powder, <i>we apply care.</i></em><small>Epoxy · Polyester · Hybrid powder coatings · Zhangzhou, China</small></div>
 <div class="pi-cap"></div><div class="pi-bar"><i></i></div></div>
@@ -299,7 +328,8 @@ def build_home():
     hs = ('<script>(function(){try{var r=document.documentElement,f=/[?&]intro=1\\b/.test(location.search),s=false,m=false;'
           'try{s=sessionStorage.getItem("pl-intro")==="1"}catch(e){}try{m=matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){}'
           'if(f||(!s&&!m))r.classList.add("pi-on")}catch(e){}})()</script>\n'
-          '<link rel="preload" as="image" href="/assets/img/intro/charge.webp" media="(min-width:760px)">\n'
+          '<link rel="preload" as="image" href="/assets/img/intro/charge-v2.webp" media="(min-width:760px)">\n'
+          '<link rel="preload" as="image" href="/assets/img/home/hero-panels.webp" imagesrcset="/assets/img/home/hero-panels-600.webp 600w, /assets/img/home/hero-panels.webp 1122w" imagesizes="(min-width:980px) 46vw, 100vw" fetchpriority="high">\n'
           '<script src="/assets/js/intro-v1.js" defer></script>\n')
     write('/', 'POLYMER Powder Coatings | Epoxy, Polyester & Hybrid Powder Coatings, China',
           'Fujian Polymer manufactures epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system, colour matching, special finishes and lead times within 10 days.',
@@ -886,19 +916,44 @@ def build_meta():
     full += '\n## Insights\n' + '\n'.join(f"### {a['title']}\n{a['lead']}\n" + '\n'.join(f"{sec[0]}: {' '.join(sec[1])}" for sec in a['sections']) + '\n' for a in ARTICLES)
     full += '\n## How-to guides\n' + '\n'.join(f"### {h['title']}\n{h['summary']}\n" + '\n'.join(f"{k+1}. {s['name']}: {s['text']}" for k, s in enumerate(h['steps'])) + '\n' for h in GEO['howto'])
     open(os.path.join(ROOT, 'llms-full.txt'), 'w').write(full)
+    # GEO-T07: AI knowledge declaration at /.well-known/ai.txt (JSON-LD)
+    ai = {"@context": "https://schema.org", "@type": "Organization", "@id": BASE + "/#org",
+          "name": "POLYMER", "legalName": ORG["legalName"], "alternateName": "玻利玛",
+          "description": "Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system (PLM100611, licence P-2199), ISO 9001 and ISO 14001 certified management systems, 5,000 t annual capacity, MOQ 1,000 kg and lead times within 10 days.",
+          "url": BASE + "/", "logo": ORG["logo"], "foundingDate": ORG["foundingDate"], "email": EMAIL, "telephone": TEL,
+          "address": ORG.get("address"),
+          "knowledgeScope": ["Powder coatings", "Epoxy powder coatings", "Polyester powder coatings", "Epoxy-polyester hybrid powder coatings",
+                             "Low-cure powder coatings", "Powder coating colour matching", "Textured and metallic powder finishes",
+                             "Qualicoat Class 1 architectural powder coatings", "Powder coating selection by application"],
+          "knowsAbout": ["Architectural aluminium", "Metal furniture and shelving", "Appliances and commercial refrigeration",
+                         "Electrical and new-energy enclosures", "Agricultural and industrial equipment", "Powder coating distribution"],
+          "availableLanguage": ["English", "Russian", "Spanish", "Chinese"],
+          "aiUsage": {"allowedPaths": ["/"], "disallowedPaths": ["/thanks/", "/404.html"],
+                      "preferredSources": [BASE + "/llms.txt", BASE + "/llms-full.txt", BASE + "/faq/", BASE + "/sitemap.xml"],
+                      "attribution": "POLYMER Powder Coatings (polymerpaints.com)",
+                      "accuracyNotes": ["Qualicoat Class 1 applies to polyester system PLM100611 only, valid until 31 Dec 2026.",
+                                        "ISO 9001 and ISO 14001 are management system certifications, not product approvals.",
+                                        "Epoxy powder coatings are for indoor use only.",
+                                        "Tests listed on the site are in-house test conditions, not third-party reports."]},
+          "dateModified": "2026-11-05"}
+    ai = {k: v for k, v in ai.items() if v is not None}
+    os.makedirs(os.path.join(ROOT, '.well-known'), exist_ok=True)
+    txt = json.dumps(ai, ensure_ascii=False, indent=2) + '\n'
+    open(os.path.join(ROOT, '.well-known', 'ai.txt'), 'w').write(txt)
+    open(os.path.join(ROOT, 'ai.txt'), 'w').write(txt)
 
 
 def build_css():
     ff = open(os.path.join(ROOT, 'build/fontface.css')).read()
     home = open(os.path.join(ROOT, 'build/home.css')).read()
     extra = open(os.path.join(ROOT, 'build/extra.css')).read()
-    open(os.path.join(ROOT, CSS.lstrip('/')), 'w').write(ff + '\n' + home + '\n' + extra)
+    open(os.path.join(ROOT, CSS.lstrip('/')), 'w').write(_mincss(ff + '\n' + home + '\n' + extra))
 
 
 # ---------------------------------------------------------------- RU / ES landing pages
 def build_lang(code):
     L = I18N[code]; f = L['f']; a = L['aside']; nm = f'contact-{code}'
-    fig = f'<figure class="tall">{img("home/hero-panels", 1122, 1402, "", "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>'
+    fig = f'<figure class="tall">{img("home/hero-panels", 1122, 1402, {"ru": "Пять образцов с порошковым покрытием: молотковая, шагрень, бронзовый металлик, красный глянец и чёрная муар", "es": "Cinco paneles con pintura en polvo: martillado, texturado arena, bronce metálico, rojo brillante y negro arrugado"}.get(code, "Powder-coated panels in five finishes"), "(min-width:980px) 40vw, 100vw", lazy=False)}</figure>'
     ct = f'<div class="hero-ctas"><a class="btn btn-primary" href="#contact">{L["cta1"]} {ARROW}</a><a class="btn btn-line" href="{wa_link(0)}" target="_blank" rel="noopener">{L["cta2"]}</a></div><p class="lng-en"><a href="/">{L["en"]} →</a></p>'
     body = f'''<section class="phero has-img"><div class="wrap"><div><nav class="crumbs" aria-label="Breadcrumb"><a href="/">POLYMER</a><span>{L["name"]}</span></nav><p class="eyebrow" style="margin-top:24px">{L["eyebrow"]}</p><h1>{L["h1"]}</h1><p class="lead">{L["lead"]}</p>{ct}</div>{fig}</div></section>
 <section class="proof" style="background:var(--night)"><div class="wrap">{''.join(f'<div><strong>{x}</strong><span>{y}</span></div>' for x, y in L["stats"])}</div></section>'''
@@ -907,7 +962,7 @@ def build_lang(code):
     tiles = ''.join(f'<div class="tile rv"><figure>{img("finish/" + k, 800, 800, L["fin"][k], "(min-width:1060px) 20vw, (min-width:700px) 33vw, 50vw", 400)}</figure><h3>{L["fin"][k]}</h3></div>' for k, _, _ in FINISHES)
     bands = ''.join(f'<div>{n}<span>{v}</span></div>' for n, v in L['gloss'])
     body += f'''<section class="sec dark"><div class="wrap"><div class="head rv"><div><p class="eyebrow">{L["fin_eyebrow"]}</p><h2 class="h2">{L["fin_h"]}</h2></div><p class="lead">{L["fin_lead"]}</p></div><div class="atlas">{tiles}</div>
- <div class="gloss rv">{img("home/gloss-trio", 1536, 1024, "", "(min-width:980px) 60vw, 100vw", 768)}<div><div class="bands">{bands}</div></div></div></div></section>'''
+ <div class="gloss rv">{img("home/gloss-trio", 1536, 1024, {"ru": "Образцы антрацитового цвета: глубокий мат, полуглянец и высокий глянец", "es": "Paneles antracita en mate profundo, satinado y alto brillo"}.get(code, "Dead matt, satin and high gloss panels"), "(min-width:980px) 60vw, 100vw", 768)}<div><div class="bands">{bands}</div></div></div></div></section>'''
     steps = ''.join(f'<li><span>{i + 1:02d}</span><div><b>{h}.</b> {t}</div></li>' for i, (h, t) in enumerate(L['proc']))
     body += f'''<section class="sec tight"><div class="wrap split"><div class="rv"><p class="eyebrow">{L["proc_eyebrow"]}</p><h2 class="h3" style="margin-top:20px">{L["proc_h"]}</h2></div><div class="rv"><ol class="list">{steps}</ol></div></div></section>'''
     certs = ''.join(f'<article class="cert{" key" if i == 0 else ""} rv"><h3>{h}</h3><p>{t}</p></article>' for i, (h, t) in enumerate(L['certs']))

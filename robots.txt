@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# AI knowledge declaration: https://polymerpaints.com/.well-known/ai.txt
+# LLM summary: https://polymerpaints.com/llms.txt
+
 Sitemap: https://polymerpaints.com/sitemap.xml

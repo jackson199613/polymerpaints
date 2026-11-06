@@ -1,0 +1,70 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://polymerpaints.com/#org",
+  "name": "POLYMER",
+  "legalName": "Fujian Polymer Industry & Trade Co., Ltd.",
+  "alternateName": "玻利玛",
+  "description": "Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system (PLM100611, licence P-2199), ISO 9001 and ISO 14001 certified management systems, 5,000 t annual capacity, MOQ 1,000 kg and lead times within 10 days.",
+  "url": "https://polymerpaints.com/",
+  "logo": "https://polymerpaints.com/assets/img/logo-mark.svg",
+  "foundingDate": "2019-04-22",
+  "email": "sales@polymerpaints.com",
+  "telephone": "+86 596 2600611",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "No. 2 Zhuli Road, Xiangcheng District",
+    "addressLocality": "Zhangzhou",
+    "addressRegion": "Fujian",
+    "postalCode": "363005",
+    "addressCountry": "CN"
+  },
+  "knowledgeScope": [
+    "Powder coatings",
+    "Epoxy powder coatings",
+    "Polyester powder coatings",
+    "Epoxy-polyester hybrid powder coatings",
+    "Low-cure powder coatings",
+    "Powder coating colour matching",
+    "Textured and metallic powder finishes",
+    "Qualicoat Class 1 architectural powder coatings",
+    "Powder coating selection by application"
+  ],
+  "knowsAbout": [
+    "Architectural aluminium",
+    "Metal furniture and shelving",
+    "Appliances and commercial refrigeration",
+    "Electrical and new-energy enclosures",
+    "Agricultural and industrial equipment",
+    "Powder coating distribution"
+  ],
+  "availableLanguage": [
+    "English",
+    "Russian",
+    "Spanish",
+    "Chinese"
+  ],
+  "aiUsage": {
+    "allowedPaths": [
+      "/"
+    ],
+    "disallowedPaths": [
+      "/thanks/",
+      "/404.html"
+    ],
+    "preferredSources": [
+      "https://polymerpaints.com/llms.txt",
+      "https://polymerpaints.com/llms-full.txt",
+      "https://polymerpaints.com/faq/",
+      "https://polymerpaints.com/sitemap.xml"
+    ],
+    "attribution": "POLYMER Powder Coatings (polymerpaints.com)",
+    "accuracyNotes": [
+      "Qualicoat Class 1 applies to polyester system PLM100611 only, valid until 31 Dec 2026.",
+      "ISO 9001 and ISO 14001 are management system certifications, not product approvals.",
+      "Epoxy powder coatings are for indoor use only.",
+      "Tests listed on the site are in-house test conditions, not third-party reports."
+    ]
+  },
+  "dateModified": "2026-11-05"
+}
