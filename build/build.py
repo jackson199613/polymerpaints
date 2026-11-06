@@ -10,7 +10,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v21.css'
+CSS = '/assets/css/polymer-v22.css'
 JS = '/assets/js/polymer-v6.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -129,7 +129,7 @@ def header(active=''):
     <a href="/distributors/"{cur('distributors')}>Distributors</a>
     <a href="/quality/"{cur('quality')}>Quality</a>
     <a href="/faq/"{cur('faq')}>FAQ</a>
-    <div class="dd"><a href="/how-to/"{cur('resources')}>Resources</a><div class="menu"><a href="/insights/">Insights · buyer articles</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/selector/">System selector</a><a href="/faq/">FAQ · 40 answers</a></div></div>
+    <div class="dd"><a href="/how-to/"{cur('resources')}>Resources</a><div class="menu"><a href="/white-paper/powder-coating-specification-guide/">White paper · specification guide</a><a href="/insights/">Insights · buyer articles</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/selector/">System selector</a><a href="/faq/">FAQ · 40 answers</a></div></div>
     <a href="/company/"{cur('company')}>Company</a>
     <a href="/contact/"{cur('contact')}>Contact</a>
   </nav>
@@ -141,7 +141,7 @@ def header(active=''):
   <h4>Industries</h4>{mob_inds}
   <h4>FAQ</h4><a href="/faq/">FAQ · 40 answers</a>
   <h4>Language</h4><a href="/">English</a><a href="/ru/" lang="ru">Русский</a><a href="/es/" lang="es">Español</a>
-  <h4>Company</h4><a href="/quality/">Quality &amp; certificates</a><a href="/company/">About POLYMER</a><a href="/faq/">Technical FAQ</a><a href="/insights/">Insights</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/contact/">Contact</a>
+  <h4>Company</h4><a href="/quality/">Quality &amp; certificates</a><a href="/company/">About POLYMER</a><a href="/faq/">Technical FAQ</a><a href="/white-paper/powder-coating-specification-guide/">White paper</a><a href="/insights/">Insights</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/contact/">Contact</a>
   <a class="btn btn-primary" href="/request-sample/">Request a sample</a>
 </nav>
 <main id="main">'''
@@ -156,7 +156,7 @@ def footer(datebar=''):
     <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian 363005, China<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:+865962600611">Tel {TEL}</a><br>WhatsApp <a href="{wa_link(0)}" rel="noopener">{WA[0][0]}</a> · <a href="{wa_link(1)}" rel="noopener">{WA[1][0]}</a></p></div>
   <div><h4>Products</h4><ul><li><a href="/products/polyester/">Polyester</a></li><li><a href="/products/hybrid/">Hybrid</a></li><li><a href="/products/epoxy/">Epoxy</a></li><li><a href="/finishes/">Colours &amp; finishes</a></li><li><a href="/selector/">System selector</a></li></ul></div>
   <div><h4>Industries</h4><ul>{inds}<li><a href="/distributors/">Distributors</a></li></ul></div>
-  <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/insights/">Insights</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
+  <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/white-paper/powder-coating-specification-guide/">White paper</a></li><li><a href="/insights/">Insights</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
   {datebar}<div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd. · <a href="/privacy/">Privacy &amp; cookies</a></span><span>USCC 91350602MA32PFWW73 · Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
 </div></footer>
 <details class="wa-float"><summary aria-label="Chat on WhatsApp">{WA_ICON}<span>WhatsApp</span></summary><div class="wa-pop"><p>Chat with our sales team<small>Reply within one working day · UTC+8</small></p><a href="{wa_link(0)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[0][0]}</span></a><a href="{wa_link(1)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[1][0]}</span></a></div></details>
@@ -679,6 +679,7 @@ def build_forms():
     dform = std_form('documents', 'Request documents', 'Which documents you need (catalogue, TDS, SDS or the SGS report) and for which products, colours or project.')
     body = phero([('Resources', '/faq/'), ('Downloads', None)], 'Documents for <em>your approval file.</em>', 'Download our certificates now. Catalogue, TDS, SDS and the SGS report are sent by email on request, so each file matches the product you are evaluating and the latest version.',
                  figure=f'<figure>{img("ind/distributors-b", 1536, 1024, "Colour panels, colour card and powder sample", "(min-width:980px) 45vw, 100vw", 768, lazy=False)}</figure>', facts=['TDS', 'SDS', 'Certificates', 'Catalogue'])
+    body += f'<section class="sec tight" style="padding-bottom:0"><div class="wrap"><a class="wp-feature rv" href="/white-paper/powder-coating-specification-guide/"><small>Download now · technical white paper · free PDF</small><b>Powder Coating Specification Guide for Importers and Manufacturers</b><span class="link">Read online or download the PDF</span></a></div></section>'
     body += f'<section class="sec tight"><div class="wrap"><div class="head rv"><div><p class="eyebrow">Certificates</p><h2 class="h3" style="margin-top:18px">Download <em>now.</em></h2></div></div>{cert_cards()}</div></section><section class="sec tight" style="padding-top:0"><div class="wrap"><div class="head rv"><div><p class="eyebrow">On request</p><h2 class="h3" style="margin-top:18px">Product documents <em>by email.</em></h2></div></div><div class="cards c4">{cards}</div></div></section><section class="sec tight alt"><div class="wrap form-grid">{dform}{aside}</div></section>'
     body += cta()
     write('/downloads/', 'Downloads: TDS, SDS, Certificates & Catalogue | POLYMER', 'Request powder coating technical data sheets, safety data sheets, ISO and Qualicoat certificates and the product catalogue.', body, 'resources')
@@ -868,6 +869,7 @@ def build_insights():
         cards += f'<a class="card ins-card rv" href="/insights/{a["slug"]}/"><div class="ins-thumb">{img(n, w, h, alt, "(min-width:1060px) 33vw, 100vw", sm)}</div><small>Insight · {a["mins"]} min read</small><h3>{E(a["title"])}</h3><p>{E(a["desc"])}</p><span class="link">Read article</span></a>'
     body = phero([('Resources', None), ('Insights', None)], 'Insights <em>for powder buyers.</em>', 'Plain-language articles for purchasing, technical and distribution teams: choosing a system, sourcing from China, reading certificates and specifying effects.',
                  facts=[f'{len(ARTICLES)} articles', 'Written by our technical team', 'Updated ' + _fmt_date(max(a['date'] for a in ARTICLES))])
+    body += f'<section class="sec tight" style="padding-bottom:0"><div class="wrap"><a class="wp-feature rv" href="/white-paper/powder-coating-specification-guide/"><small>Technical white paper · free PDF</small><b>Powder Coating Specification Guide for Importers and Manufacturers</b><span class="link">Read the guide</span></a></div></section>'
     body += f'<section class="sec tight"><div class="wrap"><div class="cards c3 ins-grid">{cards}</div></div></section>' + cta()
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "POLYMER Insights", "url": BASE + "/insights/",
           "hasPart": [{"@type": "Article", "headline": a['title'], "url": f"{BASE}/insights/{a['slug']}/"} for a in ARTICLES]}
@@ -903,6 +905,63 @@ def build_insights():
               "author": {"@id": BASE + "/#org"}, "publisher": {"@id": BASE + "/#org"}}
         write(f'/insights/{a["slug"]}/', f'{a["short"]} | POLYMER Insights', a['desc'], body, 'resources', ld=[ld], og=f'/assets/img/{n}.webp')
 
+
+
+# ---------------------------------------------------------------- white paper (GEO-A05)
+from content_whitepaper import WP
+
+WP_URL = f'/white-paper/{WP["slug"]}/'
+
+
+def _wp_table(rows):
+    th = ''.join(f'<th>{E(c)}</th>' for c in rows[0])
+    tb = ''.join('<tr>' + ''.join((f'<td><b>{E(c)}</b></td>' if j == 0 else f'<td>{E(c)}</td>') for j, c in enumerate(r)) + '</tr>' for r in rows[1:])
+    return f'<div class="tbl-wrap ins-tbl"><table class="tbl"><thead><tr>{th}</tr></thead><tbody>{tb}</tbody></table></div>'
+
+
+def _wp_words():
+    t = ' '.join(WP['summary'] + WP['about'] + [WP['disclaimer']])
+    for sec in WP['sections']:
+        t += ' ' + ' '.join(sec.get('paras', []) + sec.get('bullets', []) + [sec.get('note', '')])
+        t += ' ' + ' '.join(' '.join(r) for r in sec.get('table', []))
+        t += ' ' + ' '.join(a + ' ' + b for a, b in sec.get('steps', []))
+    return len(t.split())
+
+
+def build_whitepaper():
+    words = _wp_words(); mins = max(1, round(words / 220))
+    pdf_kb = round(os.path.getsize(os.path.join(ROOT, WP['pdf'].lstrip('/'))) / 1024) if os.path.exists(os.path.join(ROOT, WP['pdf'].lstrip('/'))) else 0
+    fig = f'<figure>{img("home/sample-kit", 1536, 1024, "Powder-coated test panels and powder samples in a sample box", "(min-width:980px) 45vw, 100vw", 768, lazy=False)}</figure>'
+    body = phero([('Resources', None), ('White paper', None)], E(WP['title']), E(WP['subtitle']), figure=fig,
+                 facts=[WP['edition'], f'{mins} min read · {words:,} words', 'Free PDF, no sign-up'],
+                 ctas=[('Download the PDF', WP['pdf'], 'btn-primary'), ('Read online', '#wp-summary', 'btn-line')])
+    toc = '<li><a href="#wp-summary">Key takeaways</a></li>' + ''.join(f'<li><a href="#{sec["id"]}">{E(sec["title"])}</a></li>' for sec in WP['sections']) + '<li><a href="#wp-about">About POLYMER</a></li>'
+    art = '<div class="wp-box" id="wp-summary"><p class="eyebrow">Key takeaways</p><ol class="wp-take">' + ''.join(f'<li>{E(x)}</li>' for x in WP['summary']) + '</ol></div>'
+    art += '<div class="wp-aud"><b>Written for</b> ' + ' · '.join(E(a) for a in WP['audience']) + '</div>'
+    for k, sec in enumerate(WP['sections']):
+        art += f'<p class="wp-n" aria-hidden="true">{k + 1:02d}</p><h2 id="{sec["id"]}" class="wp-h">{E(sec["title"])}</h2>' + ''.join(f'<p>{E(x)}</p>' for x in sec.get('paras', []))
+        if sec.get('table'): art += _wp_table(sec['table'])
+        if sec.get('steps'): art += '<ol class="steps-a">' + ''.join(f'<li><div><b>{E(a)}</b><p>{E(b)}</p></div></li>' for a, b in sec['steps']) + '</ol>'
+        if sec.get('bullets'): art += '<ul class="wp-list">' + ''.join(f'<li>{E(x)}</li>' for x in sec['bullets']) + '</ul>'
+        if sec.get('note'): art += f'<p class="wp-note">{E(sec["note"])}</p>'
+    art += '<h2 id="wp-about">About POLYMER</h2>' + ''.join(f'<p>{E(x)}</p>' for x in WP['about'])
+    art += f'<p class="wp-disc">{E(WP["disclaimer"])}</p>'
+    art += f'<div class="aside-cta"><h3>Want this applied to your part?</h3><p>Send the part, environment, target colour and your oven conditions. We reply with a proposed system and a sample plan. Orders from 1,000 kg.</p><a class="btn btn-primary" href="/contact/">Send project details {ARROW}</a></div>'
+    dl = f'<a class="btn btn-primary wp-dl" href="{WP["pdf"]}" download>Download PDF{f" · {pdf_kb} KB" if pdf_kb else ""}</a>'
+    body += f"""<section class="sec tight"><div class="wrap split ins-split">
+  <aside class="rv ins-aside"><p class="eyebrow">Contents</p><ol class="ins-toc">{toc}</ol>{dl}<p class="tbl-note" style="margin-top:14px">Free to share with your team. Please cite “POLYMER Powder Coatings, {E(WP['title'])}, {E(WP['edition'].split(' · ')[1])}”.</p></aside>
+  <article class="article rv">{art}</article>
+</div></section>"""
+    body += cta()
+    ld = {"@context": "https://schema.org", "@type": ["TechArticle", "Report"], "headline": WP['title'], "name": WP['title'], "alternativeHeadline": WP['subtitle'],
+          "description": WP['desc'], "datePublished": WP['date'], "dateModified": WP['date'], "inLanguage": "en", "wordCount": words,
+          "version": WP['edition'], "image": BASE + "/assets/img/home/sample-kit.webp", "mainEntityOfPage": BASE + WP_URL,
+          "author": {"@id": BASE + "/#org"}, "publisher": {"@id": BASE + "/#org"}, "isAccessibleForFree": True,
+          "audience": [{"@type": "BusinessAudience", "audienceType": a} for a in WP['audience']],
+          "about": ["Powder coatings", "Powder coating specification", "Polyester powder coating", "Epoxy powder coating", "Hybrid powder coating", "Qualicoat"],
+          "hasPart": [{"@type": "WebPageElement", "name": sec['title'], "url": BASE + WP_URL + '#' + sec['id']} for sec in WP['sections']],
+          "encoding": {"@type": "MediaObject", "contentUrl": BASE + WP['pdf'], "encodingFormat": "application/pdf", "name": WP['title'] + " (PDF)"}}
+    write(WP_URL, WP['title'] + ' | POLYMER', WP['desc'], body, 'resources', ld=[ld], og='/assets/img/home/sample-kit.webp')
 
 # ---------------------------------------------------------------- legal + 404
 def build_legal():
@@ -1018,5 +1077,5 @@ def build_lang(code):
 if __name__ == '__main__':
     build_css()
     build_home(); build_products(); build_finishes(); build_selector(); build_industries(); build_distributors()
-    build_forms(); build_quality(); build_company(); build_geo(); build_insights(); build_legal(); build_lang('ru'); build_lang('es'); build_meta()
+    build_forms(); build_quality(); build_company(); build_geo(); build_insights(); build_whitepaper(); build_legal(); build_lang('ru'); build_lang('es'); build_meta()
     print(len(PAGES), 'pages')

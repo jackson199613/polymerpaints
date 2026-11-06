@@ -638,3 +638,22 @@ html[lang="ru"] .phero h1,html[lang="ru"] .h2,html[lang="ru"] .h3{letter-spacing
 /* C07 page dates (footer, above the legal line) */
 .page-date{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--night-muted,#9ca1a7);margin:28px 0 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.08)}
 .page-date time{color:#d4d7da}
+/* A05 white paper */
+.wp-box{background:var(--paper-2,#e7e9ea);border-left:3px solid var(--accent);padding:26px 28px;margin:0 0 28px}
+.wp-take{margin:14px 0 0;padding-left:20px}
+.wp-take li{margin:0 0 10px;color:var(--ink-2);font-size:16px}
+.wp-aud{font-size:14.5px;color:var(--muted);margin:0 0 8px;line-height:1.6}
+.wp-aud b{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-right:8px;font-weight:400}
+.article .wp-n{font-family:var(--mono);font-size:12px!important;letter-spacing:.14em;color:var(--accent)!important;margin:56px 0 -8px}
+.article h2.wp-h{margin-top:0}
+.wp-list{margin:18px 0 0;padding:0}
+.wp-list li{list-style:none;padding:11px 0 11px 26px;border-bottom:1px solid var(--line);position:relative;color:var(--ink-2);font-size:15.5px}
+.wp-list li::before{content:"";position:absolute;left:2px;top:19px;width:10px;height:1px;background:var(--accent)}
+.wp-note{font-size:14.5px!important;border-top:1px solid var(--line);padding-top:14px;margin-top:18px;color:var(--muted)!important}
+.wp-disc{font-size:13.5px!important;color:var(--muted)!important;margin-top:28px}
+.wp-dl{margin-top:28px;width:100%;justify-content:center}
+.wp-feature{display:grid;gap:8px;padding:28px 30px;background:#121416;color:#fff;text-decoration:none;border-left:3px solid var(--accent-hi,#f0584d)}
+.wp-feature small{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#9ca1a7}
+.wp-feature b{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3vw,34px);line-height:1.1}
+.wp-feature .link{color:var(--accent-hi,#f0584d)}
+@media print{.wp-dl,.aside-cta{display:none}}
