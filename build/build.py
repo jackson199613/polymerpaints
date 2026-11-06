@@ -10,7 +10,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v20.css'
+CSS = '/assets/css/polymer-v21.css'
 JS = '/assets/js/polymer-v6.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -43,7 +43,10 @@ ARROW = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width
 INDMAP = {i['slug']: i for i in IND}
 
 ORG = {"@context": "https://schema.org", "@type": "Organization", "@id": BASE + "/#org",
-       "name": "POLYMER", "legalName": "Fujian Polymer Industry & Trade Co., Ltd.", "alternateName": "玻利玛",
+       "name": "POLYMER Powder Coatings", "legalName": "Fujian Polymer Industry & Trade Co., Ltd.", "alternateName": ["POLYMER", "玻利玛", "福建玻利玛工贸有限公司"],
+       "brand": {"@type": "Brand", "@id": BASE + "/#brand", "name": "POLYMER", "alternateName": "玻利玛", "logo": BASE + "/assets/img/logo-mark.svg", "slogan": "You apply powder, we apply care."},
+       "memberOf": [{"@type": "Organization", "name": "Xiangcheng District Enterprise and Entrepreneur Association, Zhangzhou", "alternateName": "芗城区企业与企业家联合会", "description": "POLYMER is a vice-chair member unit"}],
+       "department": [{"@type": "Organization", "name": f"POLYMER sales office, {c}", "parentOrganization": {"@id": BASE + "/#org"}, "address": {"@type": "PostalAddress", "addressLocality": c, "addressCountry": "CN"}} for c in ["Fuzhou", "Quanzhou", "Xiamen", "Longyan", "Guangdong", "Zhejiang"]],
        "url": BASE + "/", "logo": BASE + "/assets/img/logo-mark.svg", "foundingDate": "2019-04-22", "taxID": "91350602MA32PFWW73", "telephone": TEL, "email": EMAIL, "contactPoint": [{"@type": "ContactPoint", "contactType": "sales", "telephone": t, "email": EMAIL, "availableLanguage": ["English", "Chinese"]} for t in ["+86-158-2472-9376", "+86-188-5021-3808"]],
        "slogan": "You apply powder, we apply care.",
        "address": {"@type": "PostalAddress", "streetAddress": "No. 2 Zhuli Road, Xiangcheng District", "addressLocality": "Zhangzhou", "addressRegion": "Fujian", "postalCode": "363005", "addressCountry": "CN"},
@@ -732,6 +735,10 @@ def build_company():
   <div class="rv"><p class="eyebrow">Company facts</p><h2 class="h3" style="margin-top:20px">Capacity, <em>people and labs.</em></h2></div>
   <div class="rv"><dl class="kv"><dt>Founded</dt><dd>22 April 2019, Zhangzhou, Fujian</dd><dt>Capacity</dt><dd>5,000 t per year; up to 500 t per month</dd><dt>Production</dt><dd>8 production lines and 5 sampling lines</dd><dt>Metallics</dt><dd>2 metallic bonding machines, which help reduce separation of metallic pigment during spraying and reclaim</dd><dt>Laboratories</dt><dd>Technical research lab, QC lab and sample development room</dd><dt>Testing</dt><dd>Colour, 60° gloss, film thickness, particle size, salt spray, UV accelerated ageing, pencil hardness, impact, bend, cross-cut adhesion, oven temperature profiling</dd><dt>Certificates</dt><dd>Qualicoat Class 1 (P-2199) · ISO 9001:2015 · ISO 14001:2015 · SGS EU RoHS report</dd><dt>China offices</dt><dd>Fuzhou, Quanzhou, Xiamen and Longyan in Fujian; Guangdong; Zhejiang</dd></dl></div>
 </div></section>
+<section class="sec tight" id="company-structure"><div class="wrap split">
+  <div class="rv"><p class="eyebrow">Company structure</p><h2 class="h3" style="margin-top:20px">Who stands <em>behind the brand.</em></h2><p class="prose mt24">POLYMER Powder Coatings is the brand of Fujian Polymer Industry &amp; Trade Co., Ltd., the company that formulates, manufactures and sells it from its own factory in Zhangzhou.</p></div>
+  <div class="rv"><dl class="kv"><dt>Legal entity</dt><dd>Fujian Polymer Industry &amp; Trade Co., Ltd. (福建玻利玛工贸有限公司), founded 22 April 2019; unified social credit code 91350602MA32PFWW73</dd><dt>Brand</dt><dd>POLYMER (玻利玛), owned and used by Fujian Polymer Industry &amp; Trade Co., Ltd.; slogan “You apply powder, we apply care.”</dd><dt>Factory</dt><dd>No. 2 Zhuli Road, Xiangcheng District, Zhangzhou, Fujian 363005, China</dd><dt>Sales offices</dt><dd>Six China offices of the same company: Fuzhou, Quanzhou, Xiamen, Longyan, Guangdong and Zhejiang</dd><dt>Memberships</dt><dd>Vice-chair member unit, Xiangcheng District Enterprise and Entrepreneur Association, Zhangzhou</dd><dt>Website</dt><dd>polymerpaints.com is the official website of POLYMER Powder Coatings</dd></dl></div>
+</div></section>
 <section class="sec tight dark"><div class="wrap split">
   <div class="rv"><p class="eyebrow">Recognition</p><h2 class="h3" style="margin-top:20px">Recognised <em>at home.</em></h2><p class="prose mt24" style="color:#b4b8bd">Awarded by national and Fujian provincial authorities. Certificates are available on request.</p></div>
   <div class="rv"><ol class="list">
@@ -918,7 +925,7 @@ def build_meta():
     open(os.path.join(ROOT, 'llms-full.txt'), 'w').write(full)
     # GEO-T07: AI knowledge declaration at /.well-known/ai.txt (JSON-LD)
     ai = {"@context": "https://schema.org", "@type": "Organization", "@id": BASE + "/#org",
-          "name": "POLYMER", "legalName": ORG["legalName"], "alternateName": "玻利玛",
+          "name": ORG["name"], "legalName": ORG["legalName"], "alternateName": ORG["alternateName"], "brand": ORG["brand"], "memberOf": ORG["memberOf"],
           "description": "Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system (PLM100611, licence P-2199), ISO 9001 and ISO 14001 certified management systems, 5,000 t annual capacity, MOQ 1,000 kg and lead times within 10 days.",
           "url": BASE + "/", "logo": ORG["logo"], "foundingDate": ORG["foundingDate"], "email": EMAIL, "telephone": TEL,
           "address": ORG.get("address"),

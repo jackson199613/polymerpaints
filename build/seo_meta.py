@@ -1,6 +1,6 @@
 # SEO meta (GEO-T08): hand-written descriptions (<=200 chars) and unique keywords per page (3-5 terms, <=100 chars).
 DESC = {
-    '/': 'POLYMER makes epoxy, polyester and hybrid powder coatings in China: Qualicoat Class 1 polyester, colour matching, special finishes, MOQ 1,000 kg, lead times within 10 days.',
+    '/': 'POLYMER Powder Coatings makes epoxy, polyester and hybrid powder coatings in China: Qualicoat Class 1 polyester, colour matching, special finishes, MOQ 1,000 kg, 10-day lead time.',
     '/industries/architectural-aluminium/': 'Qualicoat Class 1 polyester powder coatings for architectural aluminium profiles and facades: RAL and custom colours, matched to the approved panel batch after batch.',
     '/industries/metal-furniture/': 'Powder coatings for metal furniture, shelving and metalwork: hybrid for indoor ranges, polyester outdoors, with colour and texture kept consistent across repeat orders.',
     '/industries/appliances/': 'Hybrid and polyester powder coatings for appliances and commercial refrigeration: stable whites, custom colours and smooth high-gloss finishes for steady production.',

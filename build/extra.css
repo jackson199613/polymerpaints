@@ -630,3 +630,8 @@ html[lang="ru"] .phero h1,html[lang="ru"] .h2,html[lang="ru"] .h3{letter-spacing
 @media(min-width:980px){
 .cta .bg-img{right:0;width:min(70%,1180px);height:100%;object-fit:cover;object-position:72% 52%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 38%);mask-image:linear-gradient(90deg,transparent 0,#000 38%)}
 }
+
+/* E01 brand name inside the home H1 (looks like the old eyebrow line) */
+.h1.h1-has-brand{margin-top:0}
+.h1 .h1-brand{display:flex;margin:0 0 28px;font-size:12px;line-height:1.5;letter-spacing:.14em;font-style:normal;max-width:none}
+.js .hero .h1 .h1-brand{animation:none}

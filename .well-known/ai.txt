@@ -2,9 +2,29 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": "https://polymerpaints.com/#org",
-  "name": "POLYMER",
+  "name": "POLYMER Powder Coatings",
   "legalName": "Fujian Polymer Industry & Trade Co., Ltd.",
-  "alternateName": "玻利玛",
+  "alternateName": [
+    "POLYMER",
+    "玻利玛",
+    "福建玻利玛工贸有限公司"
+  ],
+  "brand": {
+    "@type": "Brand",
+    "@id": "https://polymerpaints.com/#brand",
+    "name": "POLYMER",
+    "alternateName": "玻利玛",
+    "logo": "https://polymerpaints.com/assets/img/logo-mark.svg",
+    "slogan": "You apply powder, we apply care."
+  },
+  "memberOf": [
+    {
+      "@type": "Organization",
+      "name": "Xiangcheng District Enterprise and Entrepreneur Association, Zhangzhou",
+      "alternateName": "芗城区企业与企业家联合会",
+      "description": "POLYMER is a vice-chair member unit"
+    }
+  ],
   "description": "Manufacturer of epoxy, polyester and epoxy-polyester hybrid powder coatings for metal finishing, with a Qualicoat Class 1 approved polyester system (PLM100611, licence P-2199), ISO 9001 and ISO 14001 certified management systems, 5,000 t annual capacity, MOQ 1,000 kg and lead times within 10 days.",
   "url": "https://polymerpaints.com/",
   "logo": "https://polymerpaints.com/assets/img/logo-mark.svg",
