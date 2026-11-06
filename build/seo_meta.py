@@ -34,6 +34,7 @@ KEYWORDS = {
     '/contact/': 'contact powder coating manufacturer, powder coating quote, powder coating enquiry, POLYMER sales',
     '/faq/': 'powder coating FAQ, powder coating MOQ, powder coating lead time, powder coating certificates',
     '/white-paper/powder-coating-specification-guide/': 'powder coating specification, powder coating white paper, powder coating buying guide, Qualicoat',
+    '/news/': 'POLYMER news, powder coating company news, powder coating certificates, Qualicoat approval',
     '/how-to/': 'powder coating guide, powder coating how-to, powder coating tips, powder coating application',
     '/insights/': 'powder coating insights, powder coating buying guide, powder coating articles, powder coating sourcing',
     '/privacy/': 'POLYMER privacy notice, cookies, data protection',
@@ -61,7 +62,7 @@ TITLE = {'/privacy/': 'Privacy & Cookies Notice | POLYMER Powder Coatings'}
 # GEO-C07: content dates. UPDATED = date of the last site-wide content review; bump it whenever pages change.
 UPDATED = '2026-11-05'
 PUBLISHED_DEFAULT = '2026-10-27'          # full site v1 went live
-PUBLISHED_PREFIX = {'/white-paper/': '2026-11-05', '/insights/': '2026-10-28', '/ru/': '2026-10-28', '/es/': '2026-10-28'}
+PUBLISHED_PREFIX = {'/news/': '2026-11-05', '/white-paper/': '2026-11-05', '/insights/': '2026-10-28', '/ru/': '2026-10-28', '/es/': '2026-10-28'}
 
 
 def published(path):

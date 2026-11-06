@@ -10,7 +10,7 @@ IMG2.update(json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = 'https://polymerpaints.com'
-CSS = '/assets/css/polymer-v22.css'
+CSS = '/assets/css/polymer-v23.css'
 JS = '/assets/js/polymer-v6.js'
 TEL = '+86 596 2600611'
 EMAIL = 'sales@polymerpaints.com'
@@ -101,6 +101,7 @@ def head(title, desc, path, ld=None, og='/assets/img/home/og.jpg', extra='', lan
 <link rel="preload" href="/assets/fonts/instrument-serif-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/manrope-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{CSS}">
+<link rel="alternate" type="application/rss+xml" title="POLYMER news and insights" href="/news/feed.xml">
 {extra}{ldtxt}
 </head>
 <body>'''
@@ -129,7 +130,7 @@ def header(active=''):
     <a href="/distributors/"{cur('distributors')}>Distributors</a>
     <a href="/quality/"{cur('quality')}>Quality</a>
     <a href="/faq/"{cur('faq')}>FAQ</a>
-    <div class="dd"><a href="/how-to/"{cur('resources')}>Resources</a><div class="menu"><a href="/white-paper/powder-coating-specification-guide/">White paper · specification guide</a><a href="/insights/">Insights · buyer articles</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/selector/">System selector</a><a href="/faq/">FAQ · 40 answers</a></div></div>
+    <div class="dd"><a href="/how-to/"{cur('resources')}>Resources</a><div class="menu"><a href="/white-paper/powder-coating-specification-guide/">White paper · specification guide</a><a href="/news/">News · company updates</a><a href="/insights/">Insights · buyer articles</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/selector/">System selector</a><a href="/faq/">FAQ · 40 answers</a></div></div>
     <a href="/company/"{cur('company')}>Company</a>
     <a href="/contact/"{cur('contact')}>Contact</a>
   </nav>
@@ -141,7 +142,7 @@ def header(active=''):
   <h4>Industries</h4>{mob_inds}
   <h4>FAQ</h4><a href="/faq/">FAQ · 40 answers</a>
   <h4>Language</h4><a href="/">English</a><a href="/ru/" lang="ru">Русский</a><a href="/es/" lang="es">Español</a>
-  <h4>Company</h4><a href="/quality/">Quality &amp; certificates</a><a href="/company/">About POLYMER</a><a href="/faq/">Technical FAQ</a><a href="/white-paper/powder-coating-specification-guide/">White paper</a><a href="/insights/">Insights</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/contact/">Contact</a>
+  <h4>Company</h4><a href="/quality/">Quality &amp; certificates</a><a href="/company/">About POLYMER</a><a href="/faq/">Technical FAQ</a><a href="/white-paper/powder-coating-specification-guide/">White paper</a><a href="/news/">News</a><a href="/insights/">Insights</a><a href="/how-to/">How-to guides</a><a href="/downloads/">Downloads</a><a href="/contact/">Contact</a>
   <a class="btn btn-primary" href="/request-sample/">Request a sample</a>
 </nav>
 <main id="main">'''
@@ -156,7 +157,7 @@ def footer(datebar=''):
     <p>Fujian Polymer Industry &amp; Trade Co., Ltd.<br>No. 2 Zhuli Road, Xiangcheng District,<br>Zhangzhou, Fujian 363005, China<br><a href="mailto:{EMAIL}">{EMAIL}</a><br><a href="tel:+865962600611">Tel {TEL}</a><br>WhatsApp <a href="{wa_link(0)}" rel="noopener">{WA[0][0]}</a> · <a href="{wa_link(1)}" rel="noopener">{WA[1][0]}</a></p></div>
   <div><h4>Products</h4><ul><li><a href="/products/polyester/">Polyester</a></li><li><a href="/products/hybrid/">Hybrid</a></li><li><a href="/products/epoxy/">Epoxy</a></li><li><a href="/finishes/">Colours &amp; finishes</a></li><li><a href="/selector/">System selector</a></li></ul></div>
   <div><h4>Industries</h4><ul>{inds}<li><a href="/distributors/">Distributors</a></li></ul></div>
-  <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/white-paper/powder-coating-specification-guide/">White paper</a></li><li><a href="/insights/">Insights</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
+  <div><h4>Company</h4><ul><li><a href="/company/">About POLYMER</a></li><li><a href="/quality/">Quality &amp; certificates</a></li><li><a href="/faq/">Technical FAQ</a></li><li><a href="/white-paper/powder-coating-specification-guide/">White paper</a></li><li><a href="/news/">News</a></li><li><a href="/insights/">Insights</a></li><li><a href="/how-to/">How-to guides</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/contact/">Contact</a></li><li><a href="/request-sample/">Request a sample</a></li></ul></div>
   {datebar}<div class="f-bottom"><span>© 2026 Fujian Polymer Industry &amp; Trade Co., Ltd. · <a href="/privacy/">Privacy &amp; cookies</a></span><span>USCC 91350602MA32PFWW73 · Product data apply to stated conditions. Certificates apply to the scope stated on each certificate.</span></div>
 </div></footer>
 <details class="wa-float"><summary aria-label="Chat on WhatsApp">{WA_ICON}<span>WhatsApp</span></summary><div class="wa-pop"><p>Chat with our sales team<small>Reply within one working day · UTC+8</small></p><a href="{wa_link(0)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[0][0]}</span></a><a href="{wa_link(1)}" target="_blank" rel="noopener">{WA_ICON}<span><b>Sales</b>{WA[1][0]}</span></a></div></details>
@@ -963,6 +964,66 @@ def build_whitepaper():
           "encoding": {"@type": "MediaObject", "contentUrl": BASE + WP['pdf'], "encodingFormat": "application/pdf", "name": WP['title'] + " (PDF)"}}
     write(WP_URL, WP['title'] + ' | POLYMER', WP['desc'], body, 'resources', ld=[ld], og='/assets/img/home/sample-kit.webp')
 
+
+# ---------------------------------------------------------------- news + RSS (GEO-X05)
+from content_news import NEWS, DATELINE
+from email.utils import format_datetime
+import datetime as _dt
+
+
+def _long_date(d):
+    return _fmt_date(d)
+
+
+def build_news():
+    items = sorted(NEWS, key=lambda n: n['event'], reverse=True)
+    rows = ''.join(f'<a class="news-row rv" href="/news/{n["slug"]}/"><time datetime="{n["event"]}">{_long_date(n["event"])}</time><div><h2 class="news-t">{E(n["title"])}</h2><p>{E(n["desc"])}</p></div><span class="link">Read</span></a>' for n in items)
+    body = phero([('Company', '/company/'), ('News', None)], 'News <em>and company updates.</em>', 'Announcements from POLYMER Powder Coatings: certificates, test reports, publications and company milestones. Each item states the date of the event and the date it was announced.',
+                 facts=[f'{len(NEWS)} updates', 'RSS feed available', 'Media contact: sales@polymerpaints.com'])
+    body += f'<section class="sec tight"><div class="wrap"><div class="news-list">{rows}</div><p class="tbl-note" style="margin-top:22px">Subscribe: <a href="/news/feed.xml">RSS feed</a> (news, insights and the white paper). For media enquiries write to <a href="mailto:{EMAIL}">{EMAIL}</a>.</p></div></section>' + cta()
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "POLYMER News", "url": BASE + "/news/",
+          "hasPart": [{"@type": "NewsArticle", "headline": n['title'], "url": f"{BASE}/news/{n['slug']}/", "datePublished": n['published']} for n in items]}
+    write('/news/', 'News & Company Updates | POLYMER Powder Coatings', 'News from POLYMER Powder Coatings: certificates, test reports, publications and company milestones, each with event and announcement dates.', body, 'company', ld=[ld])
+    for n in items:
+        others = [o for o in items if o['slug'] != n['slug']][:3]
+        lead_d = f'{DATELINE}, {_long_date(n["published"])} —'
+        txt = ''.join((f'<p><b>{lead_d}</b> {E(x)}</p>' if i == 0 else f'<p>{E(x)}</p>') for i, x in enumerate(n['paras']))
+        rel = ''.join(f'<li><a class="link" href="{u}">{E(t)}</a></li>' for t, u in n['links'])
+        more = ''.join(f'<a class="card rv" href="/news/{o["slug"]}/"><small>News · {_long_date(o["event"])}</small><h3 style="font-size:22px">{E(o["title"])}</h3><span class="link">Read</span></a>' for o in others)
+        about = 'POLYMER Powder Coatings is the brand of Fujian Polymer Industry &amp; Trade Co., Ltd., founded in 2019 in Zhangzhou, Fujian, China. The company makes epoxy, polyester and epoxy-polyester hybrid powder coatings, with 5,000 t annual capacity, 8 production lines and a Qualicoat Class 1 approved polyester system.'
+        body = phero([('Company', '/company/'), ('News', '/news/'), (n['short'], None)], E(n['title']), E(n['desc']),
+                     facts=[f'Event date: {_long_date(n["event"])}', f'Announced: {_long_date(n["published"])}', 'Source: POLYMER Powder Coatings'])
+        body += f"""<section class="sec tight"><div class="wrap split ins-split">
+  <aside class="rv ins-aside"><p class="eyebrow">Related</p><ul class="ins-rel">{rel}</ul><h3 class="h3" style="font-size:22px;margin-top:32px">Media contact</h3><p class="tbl-note">POLYMER Powder Coatings<br><a href="mailto:{EMAIL}">{EMAIL}</a><br>{TEL}</p></aside>
+  <article class="article rv">{txt}<h2>About POLYMER Powder Coatings</h2><p>{about}</p><p class="wp-note">Source: Fujian Polymer Industry &amp; Trade Co., Ltd. Event date {_long_date(n["event"])}; announced {_long_date(n["published"])}.</p></article>
+</div></section>
+<section class="sec tight"><div class="wrap"><p class="eyebrow">More news</p><div class="cards c3 mt24">{more}</div></div></section>"""
+        ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": n['title'], "description": n['desc'],
+              "datePublished": n['published'], "dateModified": n['published'], "dateline": DATELINE, "inLanguage": "en",
+              "mainEntityOfPage": f"{BASE}/news/{n['slug']}/", "image": BASE + "/assets/img/home/og.jpg",
+              "author": {"@id": BASE + "/#org"}, "publisher": {"@id": BASE + "/#org"},
+              "about": {"@type": "Event", "name": n['short'], "startDate": n['event'], "organizer": {"@id": BASE + "/#org"}}}
+        _SEO_KW.setdefault(f'/news/{n["slug"]}/', f'POLYMER news, {n["short"]}, powder coating manufacturer China')
+        write(f'/news/{n["slug"]}/', f'{n["short"]} | POLYMER News', n['desc'], body, 'company', ld=[ld])
+
+
+def build_rss():
+    def rfc(d):
+        return format_datetime(_dt.datetime.strptime(d, '%Y-%m-%d').replace(hour=9, tzinfo=_dt.timezone(_dt.timedelta(hours=8))))
+    entries = [(n['published'], n['event'], n['title'], f'{BASE}/news/{n["slug"]}/', n['desc'], 'News') for n in NEWS]
+    entries += [(a['date'], a['date'], a['title'], f'{BASE}/insights/{a["slug"]}/', a['desc'], 'Insights') for a in ARTICLES]
+    entries += [(WP['date'], WP['date'], WP['title'], BASE + WP_URL, WP['desc'], 'White paper')]
+    entries.sort(key=lambda e: (e[0], e[1]), reverse=True)
+    x = lambda t: html.escape(t, quote=False)
+    items = ''.join(f'<item><title>{x(t)}</title><link>{u}</link><guid isPermaLink="true">{u}</guid><pubDate>{rfc(p)}</pubDate><category>{c}</category><description>{x(d)}</description></item>\n' for p, ev, t, u, d, c in entries)
+    feed = (f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>\n'
+            f'<title>POLYMER Powder Coatings — News and insights</title><link>{BASE}/news/</link>'
+            f'<atom:link href="{BASE}/news/feed.xml" rel="self" type="application/rss+xml"/>'
+            f'<description>News, technical articles and white papers from POLYMER Powder Coatings (Fujian Polymer Industry &amp; Trade Co., Ltd.).</description>'
+            f'<language>en</language><lastBuildDate>{rfc(max(e[0] for e in entries))}</lastBuildDate>\n{items}</channel></rss>\n')
+    os.makedirs(os.path.join(ROOT, 'news'), exist_ok=True)
+    open(os.path.join(ROOT, 'news', 'feed.xml'), 'w').write(feed)
+
 # ---------------------------------------------------------------- legal + 404
 def build_legal():
     body = phero([('Privacy & cookies', None)], 'Privacy <em>&amp; cookies.</em>', 'How we handle the details you send us through this website. Last updated 27 October 2026.')
@@ -1077,5 +1138,5 @@ def build_lang(code):
 if __name__ == '__main__':
     build_css()
     build_home(); build_products(); build_finishes(); build_selector(); build_industries(); build_distributors()
-    build_forms(); build_quality(); build_company(); build_geo(); build_insights(); build_whitepaper(); build_legal(); build_lang('ru'); build_lang('es'); build_meta()
+    build_forms(); build_quality(); build_company(); build_geo(); build_insights(); build_whitepaper(); build_news(); build_rss(); build_legal(); build_lang('ru'); build_lang('es'); build_meta()
     print(len(PAGES), 'pages')

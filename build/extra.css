@@ -657,3 +657,11 @@ html[lang="ru"] .phero h1,html[lang="ru"] .h2,html[lang="ru"] .h3{letter-spacing
 .wp-feature b{font-family:var(--serif);font-weight:400;font-size:clamp(24px,3vw,34px);line-height:1.1}
 .wp-feature .link{color:var(--accent-hi,#f0584d)}
 @media print{.wp-dl,.aside-cta{display:none}}
+/* X05 news */
+.news-list{border-top:1px solid var(--line)}
+.news-row{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:24px;align-items:start;padding:26px 0;border-bottom:1px solid var(--line);color:inherit;text-decoration:none}
+.news-row time{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--accent);padding-top:6px}
+.news-row .news-t{font-family:var(--serif);font-weight:400;font-size:26px;line-height:1.15;margin:0 0 8px}
+.news-row p{color:var(--ink-2);font-size:15.5px;margin:0}
+.news-row:hover .news-t{color:var(--accent)}
+@media(max-width:760px){.news-row{grid-template-columns:1fr;gap:8px}}
